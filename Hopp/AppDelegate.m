@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 
 @interface AppDelegate ()
@@ -38,6 +39,9 @@
     
     //setup facebook SDK
     [FBLoginView class];
+    
+    //setup google maps SDK
+    [GMSServices provideAPIKey:@"AIzaSyCKGZDYbNxEs2y7ch7pKtIq5MtUA5mIWuI"];
     
     
     return YES;
