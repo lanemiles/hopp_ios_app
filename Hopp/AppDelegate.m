@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import <FacebookSDK/FacebookSDK.h>
+
 
 @interface AppDelegate ()
 
@@ -33,6 +35,9 @@
                                                                              categories:nil];
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
+    
+    //setup facebook SDK
+    [FBLoginView class];
     
     
     return YES;

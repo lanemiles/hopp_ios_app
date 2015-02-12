@@ -27,6 +27,7 @@
 		1DFC2C451A8C0BBC00ADEA1B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C441A8C0BBC00ADEA1B /* SystemConfiguration.framework */; };
 		1DFC2C471A8C0BC100ADEA1B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C461A8C0BC100ADEA1B /* libz.dylib */; };
 		1DFC2C491A8C0BC700ADEA1B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C481A8C0BC700ADEA1B /* libsqlite3.dylib */; };
+		1DFC2C4B1A8C51A900ADEA1B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C4A1A8C51A900ADEA1B /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		1DFC2C441A8C0BBC00ADEA1B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1DFC2C461A8C0BC100ADEA1B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		1DFC2C481A8C0BC700ADEA1B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		1DFC2C4A1A8C51A900ADEA1B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				1DFC2C351A8C0B9400ADEA1B /* AudioToolbox.framework in Frameworks */,
 				1DFC2C331A8C0B6B00ADEA1B /* Parse.framework in Frameworks */,
 				1DFC2C321A8C0B6B00ADEA1B /* Bolts.framework in Frameworks */,
+				1DFC2C4B1A8C51A900ADEA1B /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +105,7 @@
 		1DFC2BFE1A8C080800ADEA1B = {
 			isa = PBXGroup;
 			children = (
+				1DFC2C4A1A8C51A900ADEA1B /* FacebookSDK.framework */,
 				1DFC2C481A8C0BC700ADEA1B /* libsqlite3.dylib */,
 				1DFC2C461A8C0BC100ADEA1B /* libz.dylib */,
 				1DFC2C441A8C0BBC00ADEA1B /* SystemConfiguration.framework */,
@@ -400,6 +404,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/lanemiles/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Hopp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -415,6 +420,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/lanemiles/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = Hopp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
