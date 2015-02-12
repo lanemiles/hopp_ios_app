@@ -30,6 +30,14 @@
 		1DFC2C4B1A8C51A900ADEA1B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C4A1A8C51A900ADEA1B /* FacebookSDK.framework */; };
 		1DFC2C5F1A8C575400ADEA1B /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C5E1A8C575400ADEA1B /* GoogleMaps.framework */; };
 		1DFC2C611A8C576000ADEA1B /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1DFC2C601A8C576000ADEA1B /* GoogleMaps.bundle */; };
+		1DFC2C631A8C57AD00ADEA1B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C621A8C57AD00ADEA1B /* AVFoundation.framework */; };
+		1DFC2C651A8C57B200ADEA1B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C641A8C57B200ADEA1B /* CoreData.framework */; };
+		1DFC2C671A8C57BD00ADEA1B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C661A8C57BD00ADEA1B /* CoreText.framework */; };
+		1DFC2C691A8C57C200ADEA1B /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C681A8C57C200ADEA1B /* GLKit.framework */; };
+		1DFC2C6B1A8C57C700ADEA1B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C6A1A8C57C700ADEA1B /* ImageIO.framework */; };
+		1DFC2C6D1A8C57CD00ADEA1B /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C6C1A8C57CD00ADEA1B /* libc++.dylib */; };
+		1DFC2C6F1A8C57D300ADEA1B /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C6E1A8C57D300ADEA1B /* libicucore.dylib */; };
+		1DFC2C711A8C57DE00ADEA1B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C701A8C57DE00ADEA1B /* OpenGLES.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +80,14 @@
 		1DFC2C4A1A8C51A900ADEA1B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		1DFC2C5E1A8C575400ADEA1B /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		1DFC2C601A8C576000ADEA1B /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		1DFC2C621A8C57AD00ADEA1B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1DFC2C641A8C57B200ADEA1B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1DFC2C661A8C57BD00ADEA1B /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		1DFC2C681A8C57C200ADEA1B /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		1DFC2C6A1A8C57C700ADEA1B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		1DFC2C6C1A8C57CD00ADEA1B /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		1DFC2C6E1A8C57D300ADEA1B /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		1DFC2C701A8C57DE00ADEA1B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,15 +95,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DFC2C491A8C0BC700ADEA1B /* libsqlite3.dylib in Frameworks */,
-				1DFC2C471A8C0BC100ADEA1B /* libz.dylib in Frameworks */,
 				1DFC2C451A8C0BBC00ADEA1B /* SystemConfiguration.framework in Frameworks */,
+				1DFC2C3F1A8C0BAE00ADEA1B /* QuartzCore.framework in Frameworks */,
+				1DFC2C711A8C57DE00ADEA1B /* OpenGLES.framework in Frameworks */,
+				1DFC2C471A8C0BC100ADEA1B /* libz.dylib in Frameworks */,
+				1DFC2C6F1A8C57D300ADEA1B /* libicucore.dylib in Frameworks */,
+				1DFC2C6D1A8C57CD00ADEA1B /* libc++.dylib in Frameworks */,
+				1DFC2C6B1A8C57C700ADEA1B /* ImageIO.framework in Frameworks */,
+				1DFC2C691A8C57C200ADEA1B /* GLKit.framework in Frameworks */,
+				1DFC2C671A8C57BD00ADEA1B /* CoreText.framework in Frameworks */,
+				1DFC2C3B1A8C0BA300ADEA1B /* CoreLocation.framework in Frameworks */,
+				1DFC2C651A8C57B200ADEA1B /* CoreData.framework in Frameworks */,
+				1DFC2C631A8C57AD00ADEA1B /* AVFoundation.framework in Frameworks */,
+				1DFC2C491A8C0BC700ADEA1B /* libsqlite3.dylib in Frameworks */,
 				1DFC2C5F1A8C575400ADEA1B /* GoogleMaps.framework in Frameworks */,
 				1DFC2C431A8C0BB700ADEA1B /* StoreKit.framework in Frameworks */,
 				1DFC2C411A8C0BB200ADEA1B /* Security.framework in Frameworks */,
-				1DFC2C3F1A8C0BAE00ADEA1B /* QuartzCore.framework in Frameworks */,
 				1DFC2C3D1A8C0BA800ADEA1B /* MobileCoreServices.framework in Frameworks */,
-				1DFC2C3B1A8C0BA300ADEA1B /* CoreLocation.framework in Frameworks */,
 				1DFC2C391A8C0B9E00ADEA1B /* CoreGraphics.framework in Frameworks */,
 				1DFC2C371A8C0B9800ADEA1B /* CFNetwork.framework in Frameworks */,
 				1DFC2C351A8C0B9400ADEA1B /* AudioToolbox.framework in Frameworks */,
@@ -110,6 +134,14 @@
 		1DFC2BFE1A8C080800ADEA1B = {
 			isa = PBXGroup;
 			children = (
+				1DFC2C701A8C57DE00ADEA1B /* OpenGLES.framework */,
+				1DFC2C6E1A8C57D300ADEA1B /* libicucore.dylib */,
+				1DFC2C6C1A8C57CD00ADEA1B /* libc++.dylib */,
+				1DFC2C6A1A8C57C700ADEA1B /* ImageIO.framework */,
+				1DFC2C681A8C57C200ADEA1B /* GLKit.framework */,
+				1DFC2C661A8C57BD00ADEA1B /* CoreText.framework */,
+				1DFC2C641A8C57B200ADEA1B /* CoreData.framework */,
+				1DFC2C621A8C57AD00ADEA1B /* AVFoundation.framework */,
 				1DFC2C601A8C576000ADEA1B /* GoogleMaps.bundle */,
 				1DFC2C5E1A8C575400ADEA1B /* GoogleMaps.framework */,
 				1DFC2C4A1A8C51A900ADEA1B /* FacebookSDK.framework */,
