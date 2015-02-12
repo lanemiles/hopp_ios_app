@@ -28,6 +28,8 @@
 		1DFC2C471A8C0BC100ADEA1B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C461A8C0BC100ADEA1B /* libz.dylib */; };
 		1DFC2C491A8C0BC700ADEA1B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C481A8C0BC700ADEA1B /* libsqlite3.dylib */; };
 		1DFC2C4B1A8C51A900ADEA1B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C4A1A8C51A900ADEA1B /* FacebookSDK.framework */; };
+		1DFC2C5F1A8C575400ADEA1B /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C5E1A8C575400ADEA1B /* GoogleMaps.framework */; };
+		1DFC2C611A8C576000ADEA1B /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1DFC2C601A8C576000ADEA1B /* GoogleMaps.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		1DFC2C461A8C0BC100ADEA1B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		1DFC2C481A8C0BC700ADEA1B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		1DFC2C4A1A8C51A900ADEA1B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		1DFC2C5E1A8C575400ADEA1B /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		1DFC2C601A8C576000ADEA1B /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,7 @@
 				1DFC2C491A8C0BC700ADEA1B /* libsqlite3.dylib in Frameworks */,
 				1DFC2C471A8C0BC100ADEA1B /* libz.dylib in Frameworks */,
 				1DFC2C451A8C0BBC00ADEA1B /* SystemConfiguration.framework in Frameworks */,
+				1DFC2C5F1A8C575400ADEA1B /* GoogleMaps.framework in Frameworks */,
 				1DFC2C431A8C0BB700ADEA1B /* StoreKit.framework in Frameworks */,
 				1DFC2C411A8C0BB200ADEA1B /* Security.framework in Frameworks */,
 				1DFC2C3F1A8C0BAE00ADEA1B /* QuartzCore.framework in Frameworks */,
@@ -105,6 +110,8 @@
 		1DFC2BFE1A8C080800ADEA1B = {
 			isa = PBXGroup;
 			children = (
+				1DFC2C601A8C576000ADEA1B /* GoogleMaps.bundle */,
+				1DFC2C5E1A8C575400ADEA1B /* GoogleMaps.framework */,
 				1DFC2C4A1A8C51A900ADEA1B /* FacebookSDK.framework */,
 				1DFC2C481A8C0BC700ADEA1B /* libsqlite3.dylib */,
 				1DFC2C461A8C0BC100ADEA1B /* libz.dylib */,
@@ -259,6 +266,7 @@
 				1DFC2C161A8C080900ADEA1B /* Main.storyboard in Resources */,
 				1DFC2C1B1A8C080900ADEA1B /* LaunchScreen.xib in Resources */,
 				1DFC2C181A8C080900ADEA1B /* Images.xcassets in Resources */,
+				1DFC2C611A8C576000ADEA1B /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +489,7 @@
 				1DFC2C2C1A8C080900ADEA1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1DFC2C2D1A8C080900ADEA1B /* Build configuration list for PBXNativeTarget "HoppTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +498,7 @@
 				1DFC2C2F1A8C080900ADEA1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
