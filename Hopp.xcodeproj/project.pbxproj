@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DE452EA1A907D87009EF986 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE452E91A907D87009EF986 /* MapViewController.m */; };
 		1DFC2C0D1A8C080800ADEA1B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC2C0C1A8C080800ADEA1B /* main.m */; };
 		1DFC2C101A8C080800ADEA1B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC2C0F1A8C080800ADEA1B /* AppDelegate.m */; };
-		1DFC2C131A8C080900ADEA1B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC2C121A8C080900ADEA1B /* ViewController.m */; };
 		1DFC2C161A8C080900ADEA1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DFC2C141A8C080900ADEA1B /* Main.storyboard */; };
 		1DFC2C181A8C080900ADEA1B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DFC2C171A8C080900ADEA1B /* Images.xcassets */; };
 		1DFC2C1B1A8C080900ADEA1B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DFC2C191A8C080900ADEA1B /* LaunchScreen.xib */; };
@@ -51,13 +51,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1DE452E81A907D87009EF986 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		1DE452E91A907D87009EF986 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		1DFC2C071A8C080800ADEA1B /* Hopp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hopp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DFC2C0B1A8C080800ADEA1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DFC2C0C1A8C080800ADEA1B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1DFC2C0E1A8C080800ADEA1B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1DFC2C0F1A8C080800ADEA1B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1DFC2C111A8C080900ADEA1B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1DFC2C121A8C080900ADEA1B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1DFC2C151A8C080900ADEA1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DFC2C171A8C080900ADEA1B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1DFC2C1A1A8C080900ADEA1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -178,9 +178,9 @@
 			children = (
 				1DFC2C0E1A8C080800ADEA1B /* AppDelegate.h */,
 				1DFC2C0F1A8C080800ADEA1B /* AppDelegate.m */,
-				1DFC2C111A8C080900ADEA1B /* ViewController.h */,
-				1DFC2C121A8C080900ADEA1B /* ViewController.m */,
 				1DFC2C141A8C080900ADEA1B /* Main.storyboard */,
+				1DE452E81A907D87009EF986 /* MapViewController.h */,
+				1DE452E91A907D87009EF986 /* MapViewController.m */,
 				1DFC2C171A8C080900ADEA1B /* Images.xcassets */,
 				1DFC2C191A8C080900ADEA1B /* LaunchScreen.xib */,
 				1DFC2C0A1A8C080800ADEA1B /* Supporting Files */,
@@ -316,9 +316,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DFC2C131A8C080900ADEA1B /* ViewController.m in Sources */,
 				1DFC2C101A8C080800ADEA1B /* AppDelegate.m in Sources */,
 				1DFC2C0D1A8C080800ADEA1B /* main.m in Sources */,
+				1DE452EA1A907D87009EF986 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
