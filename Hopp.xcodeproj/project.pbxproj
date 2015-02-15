@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1DE452EA1A907D87009EF986 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE452E91A907D87009EF986 /* MapViewController.m */; };
+		1DE452EC1A9080C8009EF986 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE452EB1A9080C8009EF986 /* Accounts.framework */; };
+		1DE452EE1A9080F7009EF986 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE452ED1A9080F7009EF986 /* Social.framework */; };
 		1DFC2C0D1A8C080800ADEA1B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC2C0C1A8C080800ADEA1B /* main.m */; };
 		1DFC2C101A8C080800ADEA1B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC2C0F1A8C080800ADEA1B /* AppDelegate.m */; };
 		1DFC2C161A8C080900ADEA1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DFC2C141A8C080900ADEA1B /* Main.storyboard */; };
 		1DFC2C181A8C080900ADEA1B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DFC2C171A8C080900ADEA1B /* Images.xcassets */; };
 		1DFC2C1B1A8C080900ADEA1B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DFC2C191A8C080900ADEA1B /* LaunchScreen.xib */; };
 		1DFC2C271A8C080900ADEA1B /* HoppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC2C261A8C080900ADEA1B /* HoppTests.m */; };
-		1DFC2C321A8C0B6B00ADEA1B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C301A8C0B6B00ADEA1B /* Bolts.framework */; };
 		1DFC2C331A8C0B6B00ADEA1B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C311A8C0B6B00ADEA1B /* Parse.framework */; };
 		1DFC2C351A8C0B9400ADEA1B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C341A8C0B9400ADEA1B /* AudioToolbox.framework */; };
 		1DFC2C371A8C0B9800ADEA1B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C361A8C0B9800ADEA1B /* CFNetwork.framework */; };
@@ -53,6 +54,8 @@
 /* Begin PBXFileReference section */
 		1DE452E81A907D87009EF986 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		1DE452E91A907D87009EF986 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		1DE452EB1A9080C8009EF986 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		1DE452ED1A9080F7009EF986 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		1DFC2C071A8C080800ADEA1B /* Hopp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hopp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DFC2C0B1A8C080800ADEA1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DFC2C0C1A8C080800ADEA1B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -64,7 +67,6 @@
 		1DFC2C201A8C080900ADEA1B /* HoppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HoppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DFC2C251A8C080900ADEA1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DFC2C261A8C080900ADEA1B /* HoppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HoppTests.m; sourceTree = "<group>"; };
-		1DFC2C301A8C0B6B00ADEA1B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		1DFC2C311A8C0B6B00ADEA1B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		1DFC2C341A8C0B9400ADEA1B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1DFC2C361A8C0B9800ADEA1B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -95,6 +97,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DE452EE1A9080F7009EF986 /* Social.framework in Frameworks */,
+				1DE452EC1A9080C8009EF986 /* Accounts.framework in Frameworks */,
 				1DFC2C451A8C0BBC00ADEA1B /* SystemConfiguration.framework in Frameworks */,
 				1DFC2C3F1A8C0BAE00ADEA1B /* QuartzCore.framework in Frameworks */,
 				1DFC2C711A8C57DE00ADEA1B /* OpenGLES.framework in Frameworks */,
@@ -116,7 +120,6 @@
 				1DFC2C371A8C0B9800ADEA1B /* CFNetwork.framework in Frameworks */,
 				1DFC2C351A8C0B9400ADEA1B /* AudioToolbox.framework in Frameworks */,
 				1DFC2C331A8C0B6B00ADEA1B /* Parse.framework in Frameworks */,
-				1DFC2C321A8C0B6B00ADEA1B /* Bolts.framework in Frameworks */,
 				1DFC2C4B1A8C51A900ADEA1B /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,6 +137,8 @@
 		1DFC2BFE1A8C080800ADEA1B = {
 			isa = PBXGroup;
 			children = (
+				1DE452ED1A9080F7009EF986 /* Social.framework */,
+				1DE452EB1A9080C8009EF986 /* Accounts.framework */,
 				1DFC2C701A8C57DE00ADEA1B /* OpenGLES.framework */,
 				1DFC2C6E1A8C57D300ADEA1B /* libicucore.dylib */,
 				1DFC2C6C1A8C57CD00ADEA1B /* libc++.dylib */,
@@ -156,7 +161,6 @@
 				1DFC2C381A8C0B9E00ADEA1B /* CoreGraphics.framework */,
 				1DFC2C361A8C0B9800ADEA1B /* CFNetwork.framework */,
 				1DFC2C341A8C0B9400ADEA1B /* AudioToolbox.framework */,
-				1DFC2C301A8C0B6B00ADEA1B /* Bolts.framework */,
 				1DFC2C311A8C0B6B00ADEA1B /* Parse.framework */,
 				1DFC2C091A8C080800ADEA1B /* Hopp */,
 				1DFC2C231A8C080900ADEA1B /* HoppTests */,
