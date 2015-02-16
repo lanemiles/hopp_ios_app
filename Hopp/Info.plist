@@ -18,12 +18,27 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1581357332106990</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Hopp takes privacy very seriously. We will never give or sell your location to anyone.</string>
+	<key>FacebookAppID</key>
+	<string>1581357332106990</string>
+	<key>FacebookDisplayName</key>
+	<string>Hopp</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Hopp takes privacy very seriously. We will never give or sell your location to anyone.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -32,26 +47,11 @@
 	<array>
 		<string>armv7</string>
 	</array>
-	<key>FacebookAppID</key>
-	<string>1581357332106990</string>
-	<key>FacebookDisplayName</key>
-	<string>Hopp</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb1581357332106990</string>
-			</array>
-			<key>CFBundleURLName</key>
-			<string></string>
-		</dict>
-	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>
