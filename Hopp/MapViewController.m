@@ -97,6 +97,7 @@
     //get new pins
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
+    
 }
 
 //we want to stop getting constant location udpates
@@ -107,6 +108,21 @@
     _mapView.myLocationEnabled = NO;
     
 }
+
+//this is called from the app delegate when we enter the background
+- (void) stopConstantUpdates {
+    
+    [_spinnerView stopAnimating];
+    
+}
+
+
+#pragma mark - Network Calls
+
+
+
+
+
 
 
 - (void)didReceiveMemoryWarning {
