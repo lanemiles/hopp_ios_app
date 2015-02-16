@@ -26,8 +26,8 @@
 //our user object for getting properties
 @property (strong, nonatomic) UserDetails *userDetails;
 
-//boolean used to check if we should be posting notification on new location
-//we don't post the notification if we on the view
+//boolean used to check if we are visible
+@property BOOL viewIsVisible;
 
 @end
 
@@ -45,7 +45,7 @@
     //note that we don't start updating location in viewdidload
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    _locationManager.distanceFilter = 5.0;
     _locationManager.delegate = self;
     
     //we get approval to use user location even while in the background
@@ -105,6 +105,9 @@
     [_mapView animateWithCameraUpdate:update];
     [_mapView animateToBearing:1];
     
+    //set view active to yes
+    _viewIsVisible = YES;
+    
     //turn on myLocation
     _mapView.myLocationEnabled = YES;
     
@@ -124,7 +127,7 @@
     [super viewDidAppear:YES];
     
     //first, check on logged in status
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"] == NO) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"] == false) {
         [self.tabBarController performSegueWithIdentifier:@"Login" sender:self.tabBarController];
     }
     
@@ -148,6 +151,7 @@
 #pragma mark-Notification Methods
 - (void) postNewLocation: (NSNotification *) notification {
     [_locationManager startUpdatingLocation];
+
 }
 
 #pragma mark-GPS Methods
@@ -155,25 +159,29 @@
 - (void) stopConstantUpdates {
     _mapView.myLocationEnabled = NO;
     [_locationManager stopUpdatingLocation];
+    //set view is active to no
+    _viewIsVisible = NO;
 }
 
 //this is called every time we get a new location from the CLLocationManager
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    //check to see if our view is open, meaning we shouldn't post the notification or stop updating location
-    if (self.isViewLoaded && self.view.window) {
-        NSLog(@"Visible and updating");
+    
+    if (_viewIsVisible) {
+        
+        [[UserDetails currentUser] updateUserLocationWithCoordinate:newLocation];
+        
     } else {
-         NSLog(@"Not visible and updating");
+        
         //if here, our view is not visible and we should just get a single location update and post an update
         [[NSNotificationCenter defaultCenter] postNotificationName:@"MapViewControlledDidPostNewLocation"
                                                             object:nil userInfo:[[NSDictionary alloc] initWithObjects: [NSArray arrayWithObject:newLocation] forKeys:[NSArray arrayWithObject:@"Location"]]];
         
         //and then stop updating the location
         [_locationManager stopUpdatingLocation];
+        
     }
     
-    
-    
+
     
 }
 
@@ -197,6 +205,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    _viewIsVisible = NO;
 }
 
 

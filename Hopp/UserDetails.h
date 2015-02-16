@@ -16,7 +16,7 @@
 
 //network methods
 - (void) getUserDetails;
-- (void) printUserID;
+- (void) updateUserLocationWithCoordinate: (CLLocation*) newLocation;
 - (void) registerUserWithLongName: (NSString *)longName andShortName: (NSString *)shortName andGender: (NSString *)gender andLocation: (CLLocation *)location;
 
 

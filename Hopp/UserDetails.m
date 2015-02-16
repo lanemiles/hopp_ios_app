@@ -39,11 +39,6 @@ static UserDetails *currentUser = nil;
     return currentUser;
 }
 
-#pragma mark -Local Getters
-- (void) printUserID {
-    NSLog(@"%@",_userID);
-}
-
 #pragma mark -Network Methods
 
 
@@ -66,6 +61,8 @@ static UserDetails *currentUser = nil;
     
     // Create url connection and fire request
     [NSURLConnection connectionWithRequest:request delegate:self];
+    
+      NSLog(@"%@", request.URL.absoluteString);
 }
 
 - (void) registerUserWithLongName: (NSString *)longName andShortName: (NSString *)shortName andGender: (NSString *)gender andLocation: (CLLocation *)location {

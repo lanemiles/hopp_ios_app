@@ -28,7 +28,7 @@
     //register for the notifications we are going to receive
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivedNewLocation:)
-                                                 name:@"MapViewControllerDidPostNewLocation"
+                                                 name:@"MapViewControlledDidPostNewLocation"
                                                object:nil];
     
     
@@ -43,9 +43,13 @@
 - (void) receivedNewLocation: (NSNotification *) notification {
     
     //we set logged in to true
+    NSLog(@"Got notification and value is: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"]);
    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"] != YES) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"] == true) {
         
+    } else {
+        
+    
         //if we aren't logged in, let's get the location
         NSDictionary *temp = notification.userInfo;
         _lastLocation = [temp objectForKey:@"Location"];
@@ -70,8 +74,10 @@
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     
+    NSLog(@"Logged in via FB");
+    
     //if they successfully login via facebook, we want to get a location, register them, and never do that again
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MapViewControlledShouldPostNewLocation"
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MapViewControllerShouldPostNewLocation"
                                                         object:nil userInfo:nil];
     
     //set our variable so we can register with these details later

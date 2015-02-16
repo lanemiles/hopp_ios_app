@@ -72,6 +72,7 @@
     MapViewController* mapVC = (MapViewController*)  [[[[((UITabBarController *)self.window.rootViewController) viewControllers] objectAtIndex:0] viewControllers] objectAtIndex:0];
     [mapVC stopConstantUpdates];
     
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
