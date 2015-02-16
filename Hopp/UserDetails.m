@@ -8,21 +8,12 @@
 
 #import "UserDetails.h"
 #import <CoreLocation/CoreLocation.h>
+#import <UIKit/UIKit.h>
 
 @interface UserDetails () <NSURLConnectionDelegate>
 
 //this is what we use to store the results of our asynch url request
 @property (strong, nonatomic) NSMutableData *responseData;
-
-//these will be set after the request
-@property (strong, nonatomic) NSString *userID;
-@property (strong, nonatomic) NSString *currentPartyName;
-@property (strong, nonatomic) NSString *fullName;
-@property (strong, nonatomic) NSString *firstName;
-@property (strong, nonatomic) NSString *gender;
-@property (strong, nonatomic) NSString *latitude;
-@property (strong, nonatomic) NSString *longitude;
-@property (strong, nonatomic) NSString *lastUpdated;
 
 @end
 
@@ -30,15 +21,30 @@
 @implementation UserDetails 
 
 //whenever we create this object, we want to gather data based off the IDforVendor
-- (id)initWithDeviceID: (NSString *)deviceID {
+- (id)init {
     self = [super init];
     if (self) {
-        _userID = [deviceID stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        _userID = [UIDevice currentDevice].identifierForVendor.UUIDString;
     }
     return self;
 }
 
-#pragma mark - Get and Set User Details
+#pragma mark-Static Getter
+static UserDetails *currentUser = nil;
+
++ (UserDetails *)currentUser {
+    if (currentUser == nil) {
+        currentUser = [[self alloc] init];
+    }
+    return currentUser;
+}
+
+#pragma mark -Local Getters
+- (void) printUserID {
+    NSLog(@"%@",_userID);
+}
+
+#pragma mark -Network Methods
 
 
 //get user details from server
@@ -60,6 +66,23 @@
     
     // Create url connection and fire request
     [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+- (void) registerUserWithLongName: (NSString *)longName andShortName: (NSString *)shortName andGender: (NSString *)gender andLocation: (CLLocation *)location {
+    
+    //we build up our URL
+    NSString *url = [NSString stringWithFormat:@"http://www.lanemiles.com/Hopp/addUser.php?userID=%@&gender=%@&longName=%@&shortName=%@&latitude=%f&longitude=%f", _userID,gender,longName,shortName,location.coordinate.latitude,location.coordinate.longitude];
+
+    //encode it
+    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    // Create url connection and fire request
+    [NSURLConnection connectionWithRequest:request delegate:self];
+   
+    NSLog(@"%@", url);
+
 }
 
 
@@ -95,9 +118,9 @@
     //first, we check if we just updated details
     if ([urlString containsString:@"getUserInfo"]) {
         NSError* error;
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:_responseData
+        NSDictionary* json = [[NSJSONSerialization JSONObjectWithData:_responseData
                                                              options:kNilOptions
-                                                               error:&error];
+                                                               error:&error] objectForKey:@"Data"];
         if (error) {
             NSLog(@"%@", error);
         } else {

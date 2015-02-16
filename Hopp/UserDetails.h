@@ -7,11 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface UserDetails : NSObject
 
-- (id)initWithDeviceID: (NSString *)deviceID;
+//singleton static getter
++ (id)currentUser;
+
+//network methods
 - (void) getUserDetails;
+- (void) printUserID;
+- (void) registerUserWithLongName: (NSString *)longName andShortName: (NSString *)shortName andGender: (NSString *)gender andLocation: (CLLocation *)location;
+
+
+//these will be set after the request
+@property (strong, nonatomic) NSString *userID;
+@property (strong, nonatomic) NSString *currentPartyName;
+@property (strong, nonatomic) NSString *fullName;
+@property (strong, nonatomic) NSString *firstName;
+@property (strong, nonatomic) NSString *gender;
+@property (strong, nonatomic) NSString *latitude;
+@property (strong, nonatomic) NSString *longitude;
+@property (strong, nonatomic) NSString *lastUpdated;
 
 
 @end
