@@ -168,6 +168,7 @@
     
     if (_viewIsVisible) {
         
+        //if we're visible, we want to update every time we get a new location
         [[UserDetails currentUser] updateUserLocationWithCoordinate:newLocation];
         
     } else {
@@ -188,6 +189,43 @@
 #pragma mark-Map Object Methods
 
 
+#pragma mark-Background Location Update Methods
+-(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    
+    //since we need to do things on our own, we create our own manager
+    CLLocationManager *backgroundManager = [[CLLocationManager alloc] init];
+    backgroundManager.delegate = self;
+    backgroundManager.distanceFilter = 0;
+    backgroundManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    [backgroundManager startUpdatingLocation];
+    [self getUpdateWithManager: backgroundManager AndHandler:completionHandler];
+    
+}
+
+//now we have our manager, and we recurse until we get a location
+//TODO: This is bad, but how to do better?
+- (void) getUpdateWithManager: (CLLocationManager *)temp AndHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    //if we have a location
+    if (temp.location != nil) {
+        
+        //update user location
+        [[UserDetails currentUser] updateUserLocationWithCoordinate:temp.location];
+        
+        //stop getting locations
+        [temp stopUpdatingLocation];
+        
+        //free the space?
+        temp = nil;
+        
+        //return back and go back to background
+        completionHandler(UIBackgroundFetchResultNewData);
+        
+    } else {
+        [self getUpdateWithManager: temp AndHandler:completionHandler];
+    }
+    
+}
 
 
 #pragma mark-

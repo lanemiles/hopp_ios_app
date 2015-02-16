@@ -73,6 +73,7 @@ static UserDetails *currentUser = nil;
     //encode it
     url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
+    //create the request
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     
     // Create url connection and fire request

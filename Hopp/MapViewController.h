@@ -13,4 +13,7 @@
 //this is called by the app delegate on backgrounding
 - (void) stopConstantUpdates;
 
+//this is called by delegate for silent push notifications
+-(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
+
 @end
