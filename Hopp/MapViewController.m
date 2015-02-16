@@ -8,6 +8,7 @@
 
 #import "MapViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "UserDetails.h"
 
 @interface MapViewController () <GMSMapViewDelegate>
 
@@ -19,6 +20,9 @@
 
 //spinner view for while we get network data
 @property (strong, nonatomic) UIActivityIndicatorView *spinnerView;
+
+//our user object for getting properties
+@property (strong, nonatomic) UserDetails *userDetails;
 
 @end
 
@@ -64,6 +68,9 @@
     _spinnerView.center=self.view.center;
     _spinnerView.transform = CGAffineTransformMakeScale(1.25, 1.25);
     [self.view addSubview:_spinnerView];
+    
+    //create our user object
+    _userDetails = [[UserDetails alloc] initWithDeviceID: [UIDevice currentDevice].identifierForVendor.UUIDString];
     
 }
 
