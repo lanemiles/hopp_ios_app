@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DC511DB1A91D03B00947C20 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC511DA1A91D03B00947C20 /* UserDetails.m */; };
+		1DC511DE1A91DFCF00947C20 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC511DD1A91DFCF00947C20 /* LoginViewController.m */; };
 		1DE452EA1A907D87009EF986 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE452E91A907D87009EF986 /* MapViewController.m */; };
 		1DE452EC1A9080C8009EF986 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE452EB1A9080C8009EF986 /* Accounts.framework */; };
 		1DE452EE1A9080F7009EF986 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE452ED1A9080F7009EF986 /* Social.framework */; };
@@ -55,6 +56,8 @@
 /* Begin PBXFileReference section */
 		1DC511D91A91D03B00947C20 /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
 		1DC511DA1A91D03B00947C20 /* UserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
+		1DC511DC1A91DFCF00947C20 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		1DC511DD1A91DFCF00947C20 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		1DE452E81A907D87009EF986 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		1DE452E91A907D87009EF986 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		1DE452EB1A9080C8009EF986 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -186,6 +189,8 @@
 				1DFC2C0E1A8C080800ADEA1B /* AppDelegate.h */,
 				1DFC2C0F1A8C080800ADEA1B /* AppDelegate.m */,
 				1DFC2C141A8C080900ADEA1B /* Main.storyboard */,
+				1DC511DC1A91DFCF00947C20 /* LoginViewController.h */,
+				1DC511DD1A91DFCF00947C20 /* LoginViewController.m */,
 				1DC511D91A91D03B00947C20 /* UserDetails.h */,
 				1DC511DA1A91D03B00947C20 /* UserDetails.m */,
 				1DE452E81A907D87009EF986 /* MapViewController.h */,
@@ -329,6 +334,7 @@
 				1DC511DB1A91D03B00947C20 /* UserDetails.m in Sources */,
 				1DFC2C0D1A8C080800ADEA1B /* main.m in Sources */,
 				1DE452EA1A907D87009EF986 /* MapViewController.m in Sources */,
+				1DC511DE1A91DFCF00947C20 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +467,7 @@
 				INFOPLIST_FILE = Hopp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -478,6 +485,7 @@
 				INFOPLIST_FILE = Hopp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -80,8 +80,15 @@
 //we center ourselves on the 5Cs
 //we turn enable my location on GMS
 //we turn on our loading spinner
+//check if we are logged in
 - (void) viewWillAppear:(BOOL)animated {
+    
     [super viewWillAppear:YES];
+    
+    //first, check on logged in status
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"] == NO) {
+        [self.tabBarController performSegueWithIdentifier:@"Login" sender:self.tabBarController];
+    }
     
     //center the 5Cs
     CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(34.094764, -117.716715);
