@@ -12,7 +12,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "UserDetails.h"
 
-@interface MapViewController () <GMSMapViewDelegate, CLLocationManagerDelegate>
+@interface MapViewController () <GMSMapViewDelegate, CLLocationManagerDelegate, NSURLConnectionDelegate>
 
 //CLLocationManager used to get GPS level data when view is open and background data when view is not visible
 @property (strong, nonatomic) CLLocationManager *locationManager;
@@ -29,11 +29,18 @@
 //boolean used to check if we are visible
 @property BOOL viewIsVisible;
 
+//this is what we use to store the results of our asynch url request
+@property (strong, nonatomic) NSMutableData *responseData;
+
+//so we can go from outline to marker tap
+@property (nonatomic, strong) NSMutableDictionary *overlayToMarker;
+
 @end
 
 @implementation MapViewController
 
-#pragma mark -View Controller Life Cycle
+#pragma mark-
+#pragma mark View Controller Life Cycle
 
 - (void)viewDidLoad {
     
@@ -45,7 +52,7 @@
     //note that we don't start updating location in viewdidload
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-    _locationManager.distanceFilter = 5.0;
+    _locationManager.distanceFilter = 0.0;
     _locationManager.delegate = self;
     
     //we get approval to use user location even while in the background
@@ -129,7 +136,14 @@
     //first, check on logged in status
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"] == false) {
         [self.tabBarController performSegueWithIdentifier:@"Login" sender:self.tabBarController];
+    } else {
+        [[UserDetails currentUser] getUserDetails];
     }
+    
+    
+    
+    //send off our request to get markers
+    [self getPartyLocationMarkers];
     
 }
 
@@ -143,18 +157,25 @@
 }
 
 
+#pragma mark-
+#pragma mark Network Calls
+- (void) getPartyLocationMarkers {
+    // Create the request.
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.lanemiles.com/Hopp/getPartyLocationData.php"]]];
+    
+    // Create url connection and fire request
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
 
-#pragma mark -Network Calls
 
-
-
-#pragma mark-Notification Methods
+#pragma mark-
+#pragma mark Notification Methods
 - (void) postNewLocation: (NSNotification *) notification {
     [_locationManager startUpdatingLocation];
 
 }
-
-#pragma mark-GPS Methods
+#pragma mark-
+#pragma mark GPS Methods
 //this is called from the app delegate when we enter the background
 - (void) stopConstantUpdates {
     _mapView.myLocationEnabled = NO;
@@ -171,6 +192,9 @@
         //if we're visible, we want to update every time we get a new location
         [[UserDetails currentUser] updateUserLocationWithCoordinate:newLocation];
         
+        //for now, just udpate title with location
+       self.title = [NSString stringWithFormat:@"%@ @ %@",[[UserDetails currentUser] currentPartyName],[[UserDetails currentUser] lastUpdated]];
+        
     } else {
         
         //if here, our view is not visible and we should just get a single location update and post an update
@@ -185,11 +209,40 @@
 
     
 }
+#pragma mark-
+#pragma mark Map Display Methods
 
-#pragma mark-Map Object Methods
+- (void) stopRefreshControl {
+    [_spinnerView stopAnimating];
+}
 
+- (BOOL) mapView: (GMSMapView *) mapView  didTapMarker:(GMSMarker *)marker {
+    CGPoint point = [_mapView.projection pointForCoordinate:marker.position];
+    GMSCameraUpdate *camera =
+    [GMSCameraUpdate setTarget:[_mapView.projection coordinateForPoint:point]];
+    [_mapView animateWithCameraUpdate:camera];
+    
+    
+    
+    GMSCameraUpdate *update1 = [GMSCameraUpdate zoomTo:19];
+    [_mapView animateWithCameraUpdate:update1];
+    [_mapView animateToBearing:1];
+    return NO;
+}
 
-#pragma mark-Background Location Update Methods
+- (void) centerMarker: (GMSMarker *) marker {
+    GMSCameraUpdate *update1 = [GMSCameraUpdate zoomTo:19];
+    [_mapView animateWithCameraUpdate:update1];
+    CGPoint point = [_mapView.projection pointForCoordinate:marker.position];
+    GMSCameraUpdate *camera =
+    [GMSCameraUpdate setTarget:[_mapView.projection coordinateForPoint:point]];
+    [_mapView animateWithCameraUpdate:camera];
+    
+    [_mapView animateToBearing:1];
+}
+
+#pragma mark-
+#pragma mark Background Location Update Methods
 -(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
     
     //since we need to do things on our own, we create our own manager
@@ -222,22 +275,134 @@
         completionHandler(UIBackgroundFetchResultNewData);
         
     } else {
+        
+        //else, try again
         [self getUpdateWithManager: temp AndHandler:completionHandler];
     }
     
 }
 
 
-#pragma mark-
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark-
+#pragma mark NSURLConnection Delegate Methods
 
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    // A response has been received, this is where we initialize the instance var you created
+    // so that we can append data to it in the didReceiveData method
+    // Furthermore, this method is called each time there is a redirect so reinitializing it
+    // also serves to clear it
+    _responseData = [[NSMutableData alloc] init];
+}
 
-#pragma mark - Navigation
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    // Append the new data to the instance variable you declared
+    [_responseData appendData:data];
+    
+    
+}
+
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
+                  willCacheResponse:(NSCachedURLResponse*)cachedResponse {
+    // Return nil to indicate not necessary to store a cached response for this connection
+    return nil;
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    // The request is complete and data has been received
+    // You can parse the stuff in your instance variable now
+    //now, let's check to see what request we just successfully completed
+    NSString *urlString = connection.currentRequest.URL.absoluteString;
+    
+    //first, we check if we just updated details
+    if ([urlString containsString:@"getPartyLocationData"]) {
+        NSError* error;
+        NSArray* json = [[NSJSONSerialization JSONObjectWithData:_responseData
+                                                              options:kNilOptions
+                                                                error:&error] objectForKey:@"Data"];
+        if (error) {
+            NSLog(@"%@", error);
+        } else {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                //remove all of the map overlays
+                [self.mapView clear];
+                
+                //add back school outlines
+                //[self addPolygons];
+                
+                //iterate through locations
+                for (NSDictionary *dict in json) {
+                    
+                    //get properties from JSON
+                    NSString *name = [dict valueForKey:@"Name"];
+                    NSString *numPeople = [dict valueForKey:@"NumPeople"];
+                    CLLocationCoordinate2D position = CLLocationCoordinate2DMake( [[dict valueForKey:@"Latitude"] doubleValue], [[dict valueForKey:@"Longitude"] doubleValue]);
+                    
+                    //make the GMS marker
+                    GMSMarker *marker = [GMSMarker markerWithPosition:position];
+                    marker.title = name;
+                    marker.snippet = numPeople;
+                    marker.map = _mapView;
+                    //marker.infoWindowAnchor = CGPointMake(.44f, -0.075f);
+                    
+                    //make the building outline
+                    GMSMutablePath *path = [GMSMutablePath path];
+                    NSArray *locs = [dict valueForKey:@"Outline"];
+                    for (NSDictionary *locPair in locs) {
+                        CLLocationCoordinate2D position = CLLocationCoordinate2DMake( [[locPair valueForKey:@"Latitude"] doubleValue], [[locPair valueForKey:@"Longitude"] doubleValue]);
+                        [path addCoordinate:position];
+                    }
+                    GMSPolygon *outline = [GMSPolygon polygonWithPath:path];
+                    outline.strokeWidth = 2;
+                    outline.map = _mapView;
+                    
+                    
+                    //set the marker and outline color properties
+                    if ([[dict valueForKey:@"NumPeople"] doubleValue] > 0) {
+                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:1.0 green:0 blue:0.0 alpha:1.0]];
+                        marker.zIndex = 100;
+                        outline.fillColor = [UIColor colorWithRed:1.0 green:0 blue:0 alpha:.3];
+                        outline.strokeColor = [UIColor colorWithRed:1.00 green:0 blue:0 alpha:1];
+                        
+                    } else {
+                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0 blue:1.0 alpha:1.0]];
+                        marker.zIndex=10;
+                        outline.fillColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.3];
+                        outline.strokeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1];
+                    }
+                    outline.title = name;
+                    [outline setTappable:YES];
+                    [_overlayToMarker setObject:marker forKey:name];
+                    
+                    //and we want to stop spinning
+                    [self performSelector:@selector(stopRefreshControl) withObject:nil afterDelay:.75];
+                    
+                    
+                }
+                
+            });
+            
+        }
+        
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    // The request has failed for some reason!
+    // Check the error var
+    NSLog(@"%@", error);
+}
+
+#pragma mark-
+#pragma mark Navigation Methods
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

@@ -62,7 +62,6 @@ static UserDetails *currentUser = nil;
     // Create url connection and fire request
     [NSURLConnection connectionWithRequest:request delegate:self];
     
-      NSLog(@"%@", request.URL.absoluteString);
 }
 
 - (void) registerUserWithLongName: (NSString *)longName andShortName: (NSString *)shortName andGender: (NSString *)gender andLocation: (CLLocation *)location {
@@ -79,7 +78,6 @@ static UserDetails *currentUser = nil;
     // Create url connection and fire request
     [NSURLConnection connectionWithRequest:request delegate:self];
    
-    NSLog(@"%@", url);
 
 }
 
@@ -134,6 +132,13 @@ static UserDetails *currentUser = nil;
             
         }
         
+        
+    } else {
+        
+        //do other stuff here
+        
+        //and then get user details when done
+        [self getUserDetails];
         
     }
 }
