@@ -18,6 +18,7 @@
 - (void) getUserDetails;
 - (void) updateUserLocationWithCoordinate: (CLLocation*) newLocation;
 - (void) registerUserWithLongName: (NSString *)longName andShortName: (NSString *)shortName andGender: (NSString *)gender andLocation: (CLLocation *)location;
+- (void) backgroundUserLocationUpdateWithCoordinate: (CLLocation*) newLocation;
 
 
 //these will be set after the request

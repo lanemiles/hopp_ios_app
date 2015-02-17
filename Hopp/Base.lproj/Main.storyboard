@@ -37,17 +37,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EkD-wN-bFd" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EkD-wN-bFd" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="EkD-wN-bFd" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="IRV-hK-WwR"/>
-                            <constraint firstAttribute="width" secondItem="EkD-wN-bFd" secondAttribute="width" id="SXt-se-OpM"/>
-                            <constraint firstAttribute="centerX" secondItem="EkD-wN-bFd" secondAttribute="centerX" id="d0g-Eq-80C"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="EkD-wN-bFd" secondAttribute="bottom" id="hkE-SQ-saE"/>
+                            <constraint firstAttribute="trailing" secondItem="EkD-wN-bFd" secondAttribute="trailing" id="GsK-Pe-76N"/>
+                            <constraint firstItem="EkD-wN-bFd" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="MAT-Kk-iKU"/>
+                            <constraint firstItem="EkD-wN-bFd" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="SVq-To-0zt"/>
+                            <constraint firstItem="EkD-wN-bFd" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="prn-2b-VWh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="HOPP @ CLAREMONT" id="bxF-we-Nbd"/>

@@ -11,6 +11,7 @@
 #import "UserDetails.h"
 #import <CoreLocation/CoreLocation.h>
 #import "UserDetails.h"
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @interface MapViewController () <GMSMapViewDelegate, CLLocationManagerDelegate, NSURLConnectionDelegate>
 
@@ -68,7 +69,7 @@
     //Shows the compass button on the map
     _mapView.settings.compassButton = NO;
     //Shows the my location button on the map
-   _mapView.settings.myLocationButton = NO;
+   _mapView.settings.myLocationButton = YES;
     //Sets the view controller to be the GMSMapView delegate
    _mapView.delegate = self;
     
@@ -193,7 +194,15 @@
         [[UserDetails currentUser] updateUserLocationWithCoordinate:newLocation];
         
         //for now, just udpate title with location
-       self.title = [NSString stringWithFormat:@"%@ @ %@",[[UserDetails currentUser] currentPartyName],[[UserDetails currentUser] lastUpdated]];
+        //TODO: remove this
+        if ([[UserDetails currentUser] currentPartyName] == nil) {
+            //do nothing if null
+        } else {
+            self.title = [NSString stringWithFormat:@"%@ @ %@",[[UserDetails currentUser] currentPartyName],[[UserDetails currentUser] lastUpdated]];
+        }
+       
+        //and we also want to update the map
+        [self getPartyLocationMarkers];
         
     } else {
         
@@ -241,6 +250,42 @@
     [_mapView animateToBearing:1];
 }
 
+- (BOOL) didTapMyLocationButtonForMapView: (GMSMapView *) mapView {
+    
+    CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(34.094764, -117.716715);
+    CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(34.106765, -117.703073);
+    GMSCoordinateBounds *bounds =
+    [[GMSCoordinateBounds alloc] initWithCoordinate:sw coordinate:ne];
+    
+    
+    GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds
+                                             withPadding:15.0f];
+    [_mapView animateWithCameraUpdate:update];
+    [_mapView animateToBearing:1];
+    return YES;
+}
+
+- (void) addDarkOverlay {
+    
+    //to make our dark overlay, we just do a big overlay with a dark bg and medium opacity?
+    //TODO: do this better
+    GMSMutablePath *other = [GMSMutablePath path];
+    [other addCoordinate:CLLocationCoordinate2DMake(34.110484, -117.724027)];
+    [other addCoordinate:CLLocationCoordinate2DMake(34.111092, -117.689668)];
+    [other addCoordinate:CLLocationCoordinate2DMake(34.084754, -117.686852)];
+    [other addCoordinate:CLLocationCoordinate2DMake(34.085567, -117.732380)];
+    [other addCoordinate:CLLocationCoordinate2DMake(34.110484, -117.724027)];
+    // Create the polygon, and assign it to the map.
+    GMSPolygon *otherPolygon = [GMSPolygon polygonWithPath:other];
+    float valNum = (20.0/255);
+    otherPolygon.fillColor = [UIColor colorWithRed:valNum green:valNum blue:valNum alpha:.5];
+    otherPolygon.zIndex = 0;
+    otherPolygon.map = _mapView;
+    otherPolygon.tappable = NO;
+    
+   }
+
+
 #pragma mark-
 #pragma mark Background Location Update Methods
 -(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
@@ -263,7 +308,7 @@
     if (temp.location != nil) {
         
         //update user location
-        [[UserDetails currentUser] updateUserLocationWithCoordinate:temp.location];
+        [[UserDetails currentUser] backgroundUserLocationUpdateWithCoordinate:temp.location];
         
         //stop getting locations
         [temp stopUpdatingLocation];
@@ -321,6 +366,7 @@
     NSString *urlString = connection.currentRequest.URL.absoluteString;
     
     //first, we check if we just updated details
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
     if ([urlString containsString:@"getPartyLocationData"]) {
         NSError* error;
         NSArray* json = [[NSJSONSerialization JSONObjectWithData:_responseData
@@ -336,7 +382,7 @@
                 [self.mapView clear];
                 
                 //add back school outlines
-                //[self addPolygons];
+                [self addDarkOverlay];
                 
                 //iterate through locations
                 for (NSDictionary *dict in json) {
@@ -392,6 +438,83 @@
             
         }
         
+    }
+    }
+    
+    else {
+       if ([urlString rangeOfString:@"getPartyLocationData"].location == NSNotFound) {
+       } else {
+            NSError* error;
+            NSArray* json = [[NSJSONSerialization JSONObjectWithData:_responseData
+                                                             options:kNilOptions
+                                                               error:&error] objectForKey:@"Data"];
+            if (error) {
+                NSLog(@"%@", error);
+            } else {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    //remove all of the map overlays
+                    [self.mapView clear];
+                    
+                    //add back school outlines
+                    [self addDarkOverlay];
+                    
+                    //iterate through locations
+                    for (NSDictionary *dict in json) {
+                        
+                        //get properties from JSON
+                        NSString *name = [dict valueForKey:@"Name"];
+                        NSString *numPeople = [dict valueForKey:@"NumPeople"];
+                        CLLocationCoordinate2D position = CLLocationCoordinate2DMake( [[dict valueForKey:@"Latitude"] doubleValue], [[dict valueForKey:@"Longitude"] doubleValue]);
+                        
+                        //make the GMS marker
+                        GMSMarker *marker = [GMSMarker markerWithPosition:position];
+                        marker.title = name;
+                        marker.snippet = numPeople;
+                        marker.map = _mapView;
+                        //marker.infoWindowAnchor = CGPointMake(.44f, -0.075f);
+                        
+                        //make the building outline
+                        GMSMutablePath *path = [GMSMutablePath path];
+                        NSArray *locs = [dict valueForKey:@"Outline"];
+                        for (NSDictionary *locPair in locs) {
+                            CLLocationCoordinate2D position = CLLocationCoordinate2DMake( [[locPair valueForKey:@"Latitude"] doubleValue], [[locPair valueForKey:@"Longitude"] doubleValue]);
+                            [path addCoordinate:position];
+                        }
+                        GMSPolygon *outline = [GMSPolygon polygonWithPath:path];
+                        outline.strokeWidth = 2;
+                        outline.map = _mapView;
+                        
+                        
+                        //set the marker and outline color properties
+                        if ([[dict valueForKey:@"NumPeople"] doubleValue] > 0) {
+                            marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:1.0 green:0 blue:0.0 alpha:1.0]];
+                            marker.zIndex = 100;
+                            outline.fillColor = [UIColor colorWithRed:1.0 green:0 blue:0 alpha:.3];
+                            outline.strokeColor = [UIColor colorWithRed:1.00 green:0 blue:0 alpha:1];
+                            
+                        } else {
+                            marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0 blue:1.0 alpha:1.0]];
+                            marker.zIndex=10;
+                            outline.fillColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.3];
+                            outline.strokeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1];
+                        }
+                        outline.title = name;
+                        [outline setTappable:YES];
+                        [_overlayToMarker setObject:marker forKey:name];
+                        
+                        //and we want to stop spinning
+                        [self performSelector:@selector(stopRefreshControl) withObject:nil afterDelay:.75];
+                        
+                        
+                    }
+                    
+                });
+                
+            }
+            
+        }
     }
 }
 

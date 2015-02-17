@@ -9,6 +9,7 @@
 #import "UserDetails.h"
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @interface UserDetails () <NSURLConnectionDelegate>
 
@@ -55,12 +56,28 @@ static UserDetails *currentUser = nil;
 
 //update user location
 - (void) updateUserLocationWithCoordinate: (CLLocation*) newLocation {
-    
     //create request
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.lanemiles.com/Hopp/updateUserLocation.php?userID=%@&latitude=%f&longitude=%f", _userID, newLocation.coordinate.latitude, newLocation.coordinate.longitude]]];
     
     // Create url connection and fire request
     [NSURLConnection connectionWithRequest:request delegate:self];
+    
+}
+
+- (void) backgroundUserLocationUpdateWithCoordinate: (CLLocation*) newLocation {
+    //create request
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.lanemiles.com/Hopp/updateUserLocation.php?userID=%@&latitude=%f&longitude=%f", _userID, newLocation.coordinate.latitude, newLocation.coordinate.longitude]]];
+    
+    // Create url connection and fire request
+    // Send a synchronous request
+    NSError *error = nil;
+    [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+    if (error != nil) {
+        NSLog(@"ERROR");
+    } else {
+        NSLog(@"Background location updated");
+    }
+
     
 }
 
@@ -112,36 +129,76 @@ static UserDetails *currentUser = nil;
     NSString *urlString = connection.currentRequest.URL.absoluteString;
     
     //first, we check if we just updated details
-    if ([urlString containsString:@"getUserInfo"]) {
-        NSError* error;
-        NSDictionary* json = [[NSJSONSerialization JSONObjectWithData:_responseData
-                                                             options:kNilOptions
-                                                               error:&error] objectForKey:@"Data"];
-        if (error) {
-            NSLog(@"%@", error);
+    
+    //if ios8
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+        if ([urlString containsString:@"getUserInfo"]) {
+            NSError* error;
+            NSDictionary* json = [[NSJSONSerialization JSONObjectWithData:_responseData
+                                                                  options:kNilOptions
+                                                                    error:&error] objectForKey:@"Data"];
+            if (error) {
+                NSLog(@"%@", error);
+            } else {
+                
+                //if we don't have an error in reading the JSON, let's set our instance variables
+                _currentPartyName = [json objectForKey:@"placeName"];
+                _fullName = [json objectForKey:@"fullName"];
+                _firstName = [json objectForKey:@"shortName"];
+                _latitude = [json objectForKey:@"latitude"];
+                _longitude = [json objectForKey:@"longitude"];
+                _lastUpdated = [json objectForKey:@"time"];
+                _gender = [json objectForKey:@"gender"];
+                
+            }
+            
+            
         } else {
             
-            //if we don't have an error in reading the JSON, let's set our instance variables
-            _currentPartyName = [json objectForKey:@"placeName"];
-            _fullName = [json objectForKey:@"fullName"];
-            _firstName = [json objectForKey:@"shortName"];
-            _latitude = [json objectForKey:@"latitude"];
-            _longitude = [json objectForKey:@"longitude"];
-            _lastUpdated = [json objectForKey:@"time"];
-            _gender = [json objectForKey:@"gender"];
+            //do other stuff here
+            
+            //and then get user details when done
+            [self getUserDetails];
             
         }
-        
-        
-    } else {
-        
+
+
+} else {
+    if ([urlString rangeOfString:@"getUserInfo"].location == NSNotFound) {
         //do other stuff here
         
         //and then get user details when done
         [self getUserDetails];
+    } else {
         
+            NSError* error;
+            NSDictionary* json = [[NSJSONSerialization JSONObjectWithData:_responseData
+                                                                  options:kNilOptions
+                                                                    error:&error] objectForKey:@"Data"];
+            if (error) {
+                NSLog(@"%@", error);
+            } else {
+                
+                //if we don't have an error in reading the JSON, let's set our instance variables
+                _currentPartyName = [json objectForKey:@"placeName"];
+                _fullName = [json objectForKey:@"fullName"];
+                _firstName = [json objectForKey:@"shortName"];
+                _latitude = [json objectForKey:@"latitude"];
+                _longitude = [json objectForKey:@"longitude"];
+                _lastUpdated = [json objectForKey:@"time"];
+                _gender = [json objectForKey:@"gender"];
+                
+            }
     }
-}
+    
+            
+
+        }
+    }
+    
+    
+    
+
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     // The request has failed for some reason!
