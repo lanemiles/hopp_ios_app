@@ -128,48 +128,16 @@ static UserDetails *currentUser = nil;
     //now, let's check to see what request we just successfully completed
     NSString *urlString = connection.currentRequest.URL.absoluteString;
     
-    //first, we check if we just updated details
-    
-    //if ios8
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-        if ([urlString containsString:@"getUserInfo"]) {
-            NSError* error;
-            NSDictionary* json = [[NSJSONSerialization JSONObjectWithData:_responseData
-                                                                  options:kNilOptions
-                                                                    error:&error] objectForKey:@"Data"];
-            if (error) {
-                NSLog(@"%@", error);
-            } else {
-                
-                //if we don't have an error in reading the JSON, let's set our instance variables
-                _currentPartyName = [json objectForKey:@"placeName"];
-                _fullName = [json objectForKey:@"fullName"];
-                _firstName = [json objectForKey:@"shortName"];
-                _latitude = [json objectForKey:@"latitude"];
-                _longitude = [json objectForKey:@"longitude"];
-                _lastUpdated = [json objectForKey:@"time"];
-                _gender = [json objectForKey:@"gender"];
-                
-            }
-            
-            
-        } else {
-            
-            //do other stuff here
-            
-            //and then get user details when done
-            [self getUserDetails];
-            
-        }
-
-
-} else {
+    //first, we check if we just updated details, if here, we didn't
     if ([urlString rangeOfString:@"getUserInfo"].location == NSNotFound) {
-        //do other stuff here
         
-        //and then get user details when done
+        //so we get user details after an udpate
         [self getUserDetails];
-    } else {
+        
+    }
+    
+    //if here, we just updated user details and want to update local
+    else {
         
             NSError* error;
             NSDictionary* json = [[NSJSONSerialization JSONObjectWithData:_responseData
@@ -191,10 +159,7 @@ static UserDetails *currentUser = nil;
             }
     }
     
-            
-
-        }
-    }
+}
     
     
     

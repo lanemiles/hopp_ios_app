@@ -11,7 +11,6 @@
 #import "UserDetails.h"
 #import <CoreLocation/CoreLocation.h>
 #import "UserDetails.h"
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @interface MapViewController () <GMSMapViewDelegate, CLLocationManagerDelegate, NSURLConnectionDelegate>
 
@@ -48,7 +47,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-     
+    
     //first, we initialize the location manager and set its preferences
     //note that we don't start updating location in viewdidload
     _locationManager = [[CLLocationManager alloc] init];
@@ -69,9 +68,9 @@
     //Shows the compass button on the map
     _mapView.settings.compassButton = NO;
     //Shows the my location button on the map
-   _mapView.settings.myLocationButton = YES;
+    _mapView.settings.myLocationButton = YES;
     //Sets the view controller to be the GMSMapView delegate
-   _mapView.delegate = self;
+    _mapView.delegate = self;
     
     //initialize the spinner view
     _spinnerView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -97,7 +96,7 @@
 
 
 //we don't want to make any network calls here as that can cause latency issues
-    //TODO: if we do asynch network calls does that matter? can we start those here?
+//TODO: if we do asynch network calls does that matter? can we start those here?
 //we center ourselves on the 5Cs
 //we turn enable my location on GMS
 //we turn on our loading spinner
@@ -128,9 +127,9 @@
 }
 
 //we want to make our network calls here
-    //update location to server
-    //get new pins
-    //check if we are logged in (this cannot happen in VWA)
+//update location to server
+//get new pins
+//check if we are logged in (this cannot happen in VWA)
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     
@@ -173,7 +172,7 @@
 #pragma mark Notification Methods
 - (void) postNewLocation: (NSNotification *) notification {
     [_locationManager startUpdatingLocation];
-
+    
 }
 #pragma mark-
 #pragma mark GPS Methods
@@ -200,7 +199,7 @@
         } else {
             self.title = [NSString stringWithFormat:@"%@ @ %@",[[UserDetails currentUser] currentPartyName],[[UserDetails currentUser] lastUpdated]];
         }
-       
+        
         //and we also want to update the map
         [self getPartyLocationMarkers];
         
@@ -215,7 +214,7 @@
         
     }
     
-
+    
     
 }
 #pragma mark-
@@ -283,7 +282,7 @@
     otherPolygon.map = _mapView;
     otherPolygon.tappable = NO;
     
-   }
+}
 
 
 #pragma mark-
@@ -366,12 +365,16 @@
     NSString *urlString = connection.currentRequest.URL.absoluteString;
     
     //first, we check if we just updated details
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-    if ([urlString containsString:@"getPartyLocationData"]) {
+    if ([urlString rangeOfString:@"getPartyLocationData"].location == NSNotFound) {
+        
+    }
+    
+    //if here, we just get new party data
+    else {
         NSError* error;
         NSArray* json = [[NSJSONSerialization JSONObjectWithData:_responseData
-                                                              options:kNilOptions
-                                                                error:&error] objectForKey:@"Data"];
+                                                         options:kNilOptions
+                                                           error:&error] objectForKey:@"Data"];
         if (error) {
             NSLog(@"%@", error);
         } else {
@@ -439,83 +442,7 @@
         }
         
     }
-    }
     
-    else {
-       if ([urlString rangeOfString:@"getPartyLocationData"].location == NSNotFound) {
-       } else {
-            NSError* error;
-            NSArray* json = [[NSJSONSerialization JSONObjectWithData:_responseData
-                                                             options:kNilOptions
-                                                               error:&error] objectForKey:@"Data"];
-            if (error) {
-                NSLog(@"%@", error);
-            } else {
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    //remove all of the map overlays
-                    [self.mapView clear];
-                    
-                    //add back school outlines
-                    [self addDarkOverlay];
-                    
-                    //iterate through locations
-                    for (NSDictionary *dict in json) {
-                        
-                        //get properties from JSON
-                        NSString *name = [dict valueForKey:@"Name"];
-                        NSString *numPeople = [dict valueForKey:@"NumPeople"];
-                        CLLocationCoordinate2D position = CLLocationCoordinate2DMake( [[dict valueForKey:@"Latitude"] doubleValue], [[dict valueForKey:@"Longitude"] doubleValue]);
-                        
-                        //make the GMS marker
-                        GMSMarker *marker = [GMSMarker markerWithPosition:position];
-                        marker.title = name;
-                        marker.snippet = numPeople;
-                        marker.map = _mapView;
-                        //marker.infoWindowAnchor = CGPointMake(.44f, -0.075f);
-                        
-                        //make the building outline
-                        GMSMutablePath *path = [GMSMutablePath path];
-                        NSArray *locs = [dict valueForKey:@"Outline"];
-                        for (NSDictionary *locPair in locs) {
-                            CLLocationCoordinate2D position = CLLocationCoordinate2DMake( [[locPair valueForKey:@"Latitude"] doubleValue], [[locPair valueForKey:@"Longitude"] doubleValue]);
-                            [path addCoordinate:position];
-                        }
-                        GMSPolygon *outline = [GMSPolygon polygonWithPath:path];
-                        outline.strokeWidth = 2;
-                        outline.map = _mapView;
-                        
-                        
-                        //set the marker and outline color properties
-                        if ([[dict valueForKey:@"NumPeople"] doubleValue] > 0) {
-                            marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:1.0 green:0 blue:0.0 alpha:1.0]];
-                            marker.zIndex = 100;
-                            outline.fillColor = [UIColor colorWithRed:1.0 green:0 blue:0 alpha:.3];
-                            outline.strokeColor = [UIColor colorWithRed:1.00 green:0 blue:0 alpha:1];
-                            
-                        } else {
-                            marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0 blue:1.0 alpha:1.0]];
-                            marker.zIndex=10;
-                            outline.fillColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.3];
-                            outline.strokeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1];
-                        }
-                        outline.title = name;
-                        [outline setTappable:YES];
-                        [_overlayToMarker setObject:marker forKey:name];
-                        
-                        //and we want to stop spinning
-                        [self performSelector:@selector(stopRefreshControl) withObject:nil afterDelay:.75];
-                        
-                        
-                    }
-                    
-                });
-                
-            }
-            
-        }
-    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
