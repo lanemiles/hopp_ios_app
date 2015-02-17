@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0E13761A932DD10006D292 /* OBShapedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E13751A932DD10006D292 /* OBShapedButton.m */; };
+		1D0E13791A932DD90006D292 /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E13781A932DD90006D292 /* UIImage+ColorAtPixel.m */; };
 		1D396E141A92895E0040382E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D396E131A92895E0040382E /* StoreKit.framework */; };
 		1DC511DB1A91D03B00947C20 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC511DA1A91D03B00947C20 /* UserDetails.m */; };
 		1DC511DE1A91DFCF00947C20 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC511DD1A91DFCF00947C20 /* LoginViewController.m */; };
@@ -54,6 +56,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D0E13741A932DD10006D292 /* OBShapedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBShapedButton.h; sourceTree = "<group>"; };
+		1D0E13751A932DD10006D292 /* OBShapedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBShapedButton.m; sourceTree = "<group>"; };
+		1D0E13771A932DD90006D292 /* UIImage+ColorAtPixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorAtPixel.h"; sourceTree = "<group>"; };
+		1D0E13781A932DD90006D292 /* UIImage+ColorAtPixel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorAtPixel.m"; sourceTree = "<group>"; };
 		1D396E131A92895E0040382E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1DC511D91A91D03B00947C20 /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
 		1DC511DA1A91D03B00947C20 /* UserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
@@ -140,6 +146,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D0E137A1A932DDF0006D292 /* Circular Button Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D0E13771A932DD90006D292 /* UIImage+ColorAtPixel.h */,
+				1D0E13781A932DD90006D292 /* UIImage+ColorAtPixel.m */,
+				1D0E13741A932DD10006D292 /* OBShapedButton.h */,
+				1D0E13751A932DD10006D292 /* OBShapedButton.m */,
+			);
+			name = "Circular Button Classes";
+			sourceTree = "<group>";
+		};
 		1DFC2BFE1A8C080800ADEA1B = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +203,7 @@
 		1DFC2C091A8C080800ADEA1B /* Hopp */ = {
 			isa = PBXGroup;
 			children = (
+				1D0E137A1A932DDF0006D292 /* Circular Button Classes */,
 				1DFC2C0E1A8C080800ADEA1B /* AppDelegate.h */,
 				1DFC2C0F1A8C080800ADEA1B /* AppDelegate.m */,
 				1DFC2C141A8C080900ADEA1B /* Main.storyboard */,
@@ -337,9 +355,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DFC2C101A8C080800ADEA1B /* AppDelegate.m in Sources */,
+				1D0E13761A932DD10006D292 /* OBShapedButton.m in Sources */,
 				1DC511DB1A91D03B00947C20 /* UserDetails.m in Sources */,
 				1DFC2C0D1A8C080800ADEA1B /* main.m in Sources */,
 				1DE452EA1A907D87009EF986 /* MapViewController.m in Sources */,
+				1D0E13791A932DD90006D292 /* UIImage+ColorAtPixel.m in Sources */,
 				1DC511DE1A91DFCF00947C20 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

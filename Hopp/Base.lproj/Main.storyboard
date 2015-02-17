@@ -41,13 +41,24 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxx-cP-Ba0" customClass="OBShapedButton">
+                                <rect key="frame" x="531" y="416" width="60" height="60"/>
+                                <state key="normal" image="circle">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="wasTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PQf-Lv-Ffu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Mxx-cP-Ba0" secondAttribute="trailing" constant="-7" id="51v-Vw-jM2"/>
                             <constraint firstAttribute="trailing" secondItem="EkD-wN-bFd" secondAttribute="trailing" id="GsK-Pe-76N"/>
                             <constraint firstItem="EkD-wN-bFd" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="MAT-Kk-iKU"/>
                             <constraint firstItem="EkD-wN-bFd" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="SVq-To-0zt"/>
                             <constraint firstItem="EkD-wN-bFd" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="prn-2b-VWh"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Mxx-cP-Ba0" secondAttribute="bottom" constant="75" id="ria-6l-5v5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="HOPP @ CLAREMONT" id="bxF-we-Nbd"/>
@@ -199,10 +210,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VV2-3K-460" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2810" y="-1480"/>
+            <point key="canvasLocation" x="-2690" y="-1480"/>
         </scene>
     </scenes>
     <resources>
+        <image name="circle" width="60" height="60"/>
         <image name="map" width="30" height="30"/>
     </resources>
 </document>

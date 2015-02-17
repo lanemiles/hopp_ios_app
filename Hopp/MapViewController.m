@@ -11,6 +11,8 @@
 #import "UserDetails.h"
 #import <CoreLocation/CoreLocation.h>
 #import "UserDetails.h"
+#import <QuartzCore/QuartzCore.h>
+#import "OBShapedButton.h"
 
 @interface MapViewController () <GMSMapViewDelegate, CLLocationManagerDelegate, NSURLConnectionDelegate>
 
@@ -35,10 +37,10 @@
 //so we can go from outline to marker tap
 @property (nonatomic, strong) NSMutableDictionary *overlayToMarker;
 
+
 @end
 
 @implementation MapViewController
-
 #pragma mark-
 #pragma mark View Controller Life Cycle
 
@@ -100,6 +102,7 @@
 //we center ourselves on the 5Cs
 //we turn enable my location on GMS
 //we turn on our loading spinner
+//style our navigation controller
 - (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:YES];
@@ -123,6 +126,10 @@
     
     //turn on spinner
     [_spinnerView startAnimating];
+    
+    //style our nav/tab controller
+    [self styleNavigationController];
+    [self styleTabBarController];
     
 }
 
@@ -192,14 +199,6 @@
         //if we're visible, we want to update every time we get a new location
         [[UserDetails currentUser] updateUserLocationWithCoordinate:newLocation];
         
-        //for now, just udpate title with location
-        //TODO: remove this
-        if ([[UserDetails currentUser] currentPartyName] == nil) {
-            //do nothing if null
-        } else {
-            self.title = [NSString stringWithFormat:@"%@ @ %@",[[UserDetails currentUser] currentPartyName],[[UserDetails currentUser] lastUpdated]];
-        }
-        
         //and we also want to update the map
         [self getPartyLocationMarkers];
         
@@ -249,8 +248,9 @@
     [_mapView animateToBearing:1];
 }
 
-- (BOOL) didTapMyLocationButtonForMapView: (GMSMapView *) mapView {
-    
+
+
+- (IBAction)wasTapped:(OBShapedButton *)sender {
     CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(34.094764, -117.716715);
     CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(34.106765, -117.703073);
     GMSCoordinateBounds *bounds =
@@ -261,7 +261,12 @@
                                              withPadding:15.0f];
     [_mapView animateWithCameraUpdate:update];
     [_mapView animateToBearing:1];
-    return YES;
+}
+
+- (BOOL) didTapMyLocationButtonForMapView: (GMSMapView *) mapView {
+    
+    
+    return NO;
 }
 
 - (void) addDarkOverlay {
@@ -281,6 +286,10 @@
     otherPolygon.zIndex = 0;
     otherPolygon.map = _mapView;
     otherPolygon.tappable = NO;
+    
+}
+
+- (void) addZoomOutButton {
     
 }
 
@@ -449,6 +458,29 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"%@", error);
+}
+
+#pragma mark-
+#pragma mark Tab and Nav Bar Styling
+- (void) styleNavigationController {
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:.85 green:.1 blue:0 alpha:1]];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor whiteColor],
+      NSForegroundColorAttributeName,
+      
+      [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:22.0],
+      NSFontAttributeName,
+      nil]];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
+}
+- (void) styleTabBarController {
+    self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:.85 green:.1 blue:0 alpha:1];
+}
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark-

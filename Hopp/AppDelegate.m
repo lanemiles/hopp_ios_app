@@ -22,6 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    sleep(5);
     
     //set up Parse
     [Parse setApplicationId:@"0UW66oQJdG531qkgHXNjhcPRceTeVHG8hplMedDk"
@@ -30,11 +31,17 @@
     
     //register for push notifications from Parse
     //this handles ios 7 and 8
+    
+    /*
+     
+     XCODE SAYS THIS CODE IS NOT NEEDED
+     TODO: can we remove this?
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
                                                     UIUserNotificationTypeBadge |
                                                     UIUserNotificationTypeSound);
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
                                                                              categories:nil];
+    */
     
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
