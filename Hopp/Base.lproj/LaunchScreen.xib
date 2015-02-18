@@ -11,17 +11,23 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3jw-gE-IbT">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="0xw-CU-ya0">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logonew" translatesAutoresizingMaskIntoConstraints="NO" id="Jef-5z-ncy">
-                    <rect key="frame" x="175" y="100" width="250" height="242"/>
+                    <rect key="frame" x="175" y="80" width="250" height="242"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOPP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzA-af-nIv">
-                    <rect key="frame" x="182" y="300" width="237" height="130.5"/>
+                    <rect key="frame" x="182" y="280" width="237" height="130.5"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="110"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Know before you go." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kT9-Sn-eez">
-                    <rect key="frame" x="184" y="411" width="232" height="32"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Know before you go." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kT9-Sn-eez">
+                    <rect key="frame" x="185" y="389" width="230" height="29"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
                     <color key="textColor" red="0.88235294119999996" green="0.098039215690000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -30,16 +36,31 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="tzA-af-nIv" firstAttribute="top" secondItem="Jef-5z-ncy" secondAttribute="bottom" constant="-42" id="60y-PF-MHV"/>
-                <constraint firstItem="Jef-5z-ncy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="dyP-af-rIM"/>
+                <constraint firstItem="3jw-gE-IbT" firstAttribute="bottom" secondItem="0xw-CU-ya0" secondAttribute="bottom" id="Grq-5k-7Su"/>
+                <constraint firstAttribute="bottom" secondItem="0xw-CU-ya0" secondAttribute="bottom" id="IAI-Or-Yf9"/>
+                <constraint firstItem="3jw-gE-IbT" firstAttribute="top" secondItem="0xw-CU-ya0" secondAttribute="top" id="R76-By-39P"/>
+                <constraint firstItem="3jw-gE-IbT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bo0-T7-P60"/>
+                <constraint firstItem="0xw-CU-ya0" firstAttribute="centerX" secondItem="tzA-af-nIv" secondAttribute="centerX" id="dWK-eG-4Ax"/>
+                <constraint firstItem="Jef-5z-ncy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="dyP-af-rIM"/>
                 <constraint firstAttribute="centerX" secondItem="Jef-5z-ncy" secondAttribute="centerX" constant="-0.5" id="fTl-N2-iV5"/>
-                <constraint firstItem="kT9-Sn-eez" firstAttribute="top" secondItem="tzA-af-nIv" secondAttribute="bottom" constant="-19.5" id="jXC-wE-0Es"/>
+                <constraint firstItem="3jw-gE-IbT" firstAttribute="trailing" secondItem="0xw-CU-ya0" secondAttribute="trailing" id="iTF-2q-4RH"/>
+                <constraint firstItem="kT9-Sn-eez" firstAttribute="top" secondItem="tzA-af-nIv" secondAttribute="bottom" constant="-21.5" id="jXC-wE-0Es"/>
+                <constraint firstItem="3jw-gE-IbT" firstAttribute="leading" secondItem="0xw-CU-ya0" secondAttribute="leading" id="jXL-mp-V9n"/>
                 <constraint firstItem="tzA-af-nIv" firstAttribute="centerX" secondItem="kT9-Sn-eez" secondAttribute="centerX" constant="0.5" id="nHl-3d-bH9"/>
+                <constraint firstAttribute="bottom" secondItem="0xw-CU-ya0" secondAttribute="bottom" id="ppt-Dx-i6U"/>
                 <constraint firstItem="Jef-5z-ncy" firstAttribute="centerX" secondItem="tzA-af-nIv" secondAttribute="centerX" constant="-0.25" id="yfb-fS-Fkn"/>
+                <constraint firstItem="0xw-CU-ya0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zlU-nq-fic"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="ppt-Dx-i6U"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="548" y="478"/>
         </view>
     </objects>
     <resources>
+        <image name="bg" width="640" height="1136"/>
         <image name="logonew" width="250" height="242"/>
     </resources>
 </document>

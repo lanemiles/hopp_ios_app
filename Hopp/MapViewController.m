@@ -479,9 +479,7 @@
 - (void) styleTabBarController {
     self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:.85 green:.1 blue:0 alpha:1];
 }
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
+
 
 #pragma mark-
 #pragma mark Navigation Methods

@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D014A541A93EEB80052E4FC /* NewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D014A531A93EEB80052E4FC /* NewsFeed.m */; };
 		1D0E13761A932DD10006D292 /* OBShapedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E13751A932DD10006D292 /* OBShapedButton.m */; };
 		1D0E13791A932DD90006D292 /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E13781A932DD90006D292 /* UIImage+ColorAtPixel.m */; };
+		1D0E137D1A9344BF0006D292 /* LiveFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E137C1A9344BF0006D292 /* LiveFeedTableViewController.m */; };
 		1D396E141A92895E0040382E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D396E131A92895E0040382E /* StoreKit.framework */; };
 		1DC511DB1A91D03B00947C20 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC511DA1A91D03B00947C20 /* UserDetails.m */; };
 		1DC511DE1A91DFCF00947C20 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC511DD1A91DFCF00947C20 /* LoginViewController.m */; };
@@ -56,10 +58,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D014A521A93EEB80052E4FC /* NewsFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeed.h; sourceTree = "<group>"; };
+		1D014A531A93EEB80052E4FC /* NewsFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeed.m; sourceTree = "<group>"; };
 		1D0E13741A932DD10006D292 /* OBShapedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBShapedButton.h; sourceTree = "<group>"; };
 		1D0E13751A932DD10006D292 /* OBShapedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBShapedButton.m; sourceTree = "<group>"; };
 		1D0E13771A932DD90006D292 /* UIImage+ColorAtPixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorAtPixel.h"; sourceTree = "<group>"; };
 		1D0E13781A932DD90006D292 /* UIImage+ColorAtPixel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorAtPixel.m"; sourceTree = "<group>"; };
+		1D0E137B1A9344BF0006D292 /* LiveFeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveFeedTableViewController.h; sourceTree = "<group>"; };
+		1D0E137C1A9344BF0006D292 /* LiveFeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveFeedTableViewController.m; sourceTree = "<group>"; };
 		1D396E131A92895E0040382E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1DC511D91A91D03B00947C20 /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
 		1DC511DA1A91D03B00947C20 /* UserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
@@ -206,7 +212,11 @@
 				1D0E137A1A932DDF0006D292 /* Circular Button Classes */,
 				1DFC2C0E1A8C080800ADEA1B /* AppDelegate.h */,
 				1DFC2C0F1A8C080800ADEA1B /* AppDelegate.m */,
+				1D014A521A93EEB80052E4FC /* NewsFeed.h */,
+				1D014A531A93EEB80052E4FC /* NewsFeed.m */,
 				1DFC2C141A8C080900ADEA1B /* Main.storyboard */,
+				1D0E137B1A9344BF0006D292 /* LiveFeedTableViewController.h */,
+				1D0E137C1A9344BF0006D292 /* LiveFeedTableViewController.m */,
 				1DC511DC1A91DFCF00947C20 /* LoginViewController.h */,
 				1DC511DD1A91DFCF00947C20 /* LoginViewController.m */,
 				1DC511D91A91D03B00947C20 /* UserDetails.h */,
@@ -354,9 +364,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D014A541A93EEB80052E4FC /* NewsFeed.m in Sources */,
 				1DFC2C101A8C080800ADEA1B /* AppDelegate.m in Sources */,
 				1D0E13761A932DD10006D292 /* OBShapedButton.m in Sources */,
 				1DC511DB1A91D03B00947C20 /* UserDetails.m in Sources */,
+				1D0E137D1A9344BF0006D292 /* LiveFeedTableViewController.m in Sources */,
 				1DFC2C0D1A8C080800ADEA1B /* main.m in Sources */,
 				1DE452EA1A907D87009EF986 /* MapViewController.m in Sources */,
 				1D0E13791A932DD90006D292 /* UIImage+ColorAtPixel.m in Sources */,
@@ -437,7 +449,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -475,7 +487,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "8ea016e2-0b67-4f70-97bb-ba10694162af";
@@ -488,6 +500,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -508,6 +521,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
