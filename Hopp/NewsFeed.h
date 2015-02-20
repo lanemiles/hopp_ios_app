@@ -10,4 +10,13 @@
 
 @interface NewsFeed : NSObject
 
+//public array of messages
+@property (strong, nonatomic) NSArray *messages;
+
+//network methods
+- (void) getMessages;
+
+//static getter
++ (NewsFeed *)currentFeed;
+
 @end

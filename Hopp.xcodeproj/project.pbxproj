@@ -12,6 +12,7 @@
 		1D0E13791A932DD90006D292 /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E13781A932DD90006D292 /* UIImage+ColorAtPixel.m */; };
 		1D0E137D1A9344BF0006D292 /* LiveFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E137C1A9344BF0006D292 /* LiveFeedTableViewController.m */; };
 		1D396E141A92895E0040382E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D396E131A92895E0040382E /* StoreKit.framework */; };
+		1DA6A73F1A97159E00BD4420 /* AddMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA6A73E1A97159E00BD4420 /* AddMessageTableViewController.m */; };
 		1DC511DB1A91D03B00947C20 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC511DA1A91D03B00947C20 /* UserDetails.m */; };
 		1DC511DE1A91DFCF00947C20 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC511DD1A91DFCF00947C20 /* LoginViewController.m */; };
 		1DE452EA1A907D87009EF986 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE452E91A907D87009EF986 /* MapViewController.m */; };
@@ -67,6 +68,8 @@
 		1D0E137B1A9344BF0006D292 /* LiveFeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveFeedTableViewController.h; sourceTree = "<group>"; };
 		1D0E137C1A9344BF0006D292 /* LiveFeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveFeedTableViewController.m; sourceTree = "<group>"; };
 		1D396E131A92895E0040382E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		1DA6A73D1A97159E00BD4420 /* AddMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMessageTableViewController.h; sourceTree = "<group>"; };
+		1DA6A73E1A97159E00BD4420 /* AddMessageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMessageTableViewController.m; sourceTree = "<group>"; };
 		1DC511D91A91D03B00947C20 /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
 		1DC511DA1A91D03B00947C20 /* UserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
 		1DC511DC1A91DFCF00947C20 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -214,13 +217,15 @@
 				1DFC2C0F1A8C080800ADEA1B /* AppDelegate.m */,
 				1D014A521A93EEB80052E4FC /* NewsFeed.h */,
 				1D014A531A93EEB80052E4FC /* NewsFeed.m */,
+				1DC511D91A91D03B00947C20 /* UserDetails.h */,
+				1DC511DA1A91D03B00947C20 /* UserDetails.m */,
 				1DFC2C141A8C080900ADEA1B /* Main.storyboard */,
+				1DA6A73D1A97159E00BD4420 /* AddMessageTableViewController.h */,
+				1DA6A73E1A97159E00BD4420 /* AddMessageTableViewController.m */,
 				1D0E137B1A9344BF0006D292 /* LiveFeedTableViewController.h */,
 				1D0E137C1A9344BF0006D292 /* LiveFeedTableViewController.m */,
 				1DC511DC1A91DFCF00947C20 /* LoginViewController.h */,
 				1DC511DD1A91DFCF00947C20 /* LoginViewController.m */,
-				1DC511D91A91D03B00947C20 /* UserDetails.h */,
-				1DC511DA1A91D03B00947C20 /* UserDetails.m */,
 				1DE452E81A907D87009EF986 /* MapViewController.h */,
 				1DE452E91A907D87009EF986 /* MapViewController.m */,
 				1DFC2C171A8C080900ADEA1B /* Images.xcassets */,
@@ -373,6 +378,7 @@
 				1DE452EA1A907D87009EF986 /* MapViewController.m in Sources */,
 				1D0E13791A932DD90006D292 /* UIImage+ColorAtPixel.m in Sources */,
 				1DC511DE1A91DFCF00947C20 /* LoginViewController.m in Sources */,
+				1DA6A73F1A97159E00BD4420 /* AddMessageTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

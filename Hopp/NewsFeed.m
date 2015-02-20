@@ -5,6 +5,7 @@
 //  Created by Lane Miles on 2/17/15.
 //  Copyright (c) 2015 Lane Miles. All rights reserved.
 //
+//
 
 #import "NewsFeed.h"
 
@@ -17,6 +18,42 @@
 
 @implementation NewsFeed
 
+#pragma mark -
+#pragma mark Static Getter
+static NewsFeed *currentFeed = nil;
+
++ (NewsFeed *)currentFeed {
+    if (currentFeed == nil) {
+        currentFeed = [[self alloc] init];
+    }
+    return currentFeed;
+}
+
+#pragma mark -
+#pragma mark Network Methods
+//get user details from server
+- (void) getMessages {
+    
+    // Create the request.
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.lanemiles.com/Hopp/getMessages.php"]];
+    
+    // Create url connection and fire request
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+}
+
+#pragma mark -
+#pragma mark Notification Methods
+
+//after we get our new message data, let's let the LiveFeed TVC know
+- (void) notifyThatMessagesHaveLoaded {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NewsFeedDidUpdateMessages"
+                                                        object:nil userInfo:nil];
+    
+}
+
+#pragma mark -
 #pragma mark NSURLConnection Delegate Methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -46,14 +83,29 @@
     //now, let's check to see what request we just successfully completed
     NSString *urlString = connection.currentRequest.URL.absoluteString;
     
-    //first, we check if we just updated details, if here, we didn't
-    if ([urlString rangeOfString:@"getUserInfo"].location == NSNotFound) {
+    //check if we were getting messages
+    if ([urlString rangeOfString:@"getMessages"].location != NSNotFound) {
         
-        //so we get user details after an udpate
+        //we get messages
+        NSError* error;
+        NSArray* json = [[NSJSONSerialization JSONObjectWithData:_responseData
+                                                              options:kNilOptions
+                                                                error:&error] objectForKey:@"Data"];
+        if (error) {
+            NSLog(@"%@", error);
+        } else {
+            
+            //if we don't have an error in reading the JSON, let's set our instance variables
+            _messages = json;
+            
+            //and notify that messages have loaded
+            [self notifyThatMessagesHaveLoaded];
+            
+        }
         
     }
     
-    //if here, we just updated user details and want to update local
+    //if not, we must be adding a message, so we should get again after
     else {
     
     
