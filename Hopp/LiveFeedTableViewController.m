@@ -8,6 +8,7 @@
 
 #import "LiveFeedTableViewController.h"
 #import "NewsFeed.h"
+#import "MessageTableViewCell.h"
 
 @interface LiveFeedTableViewController ()
 
@@ -31,6 +32,9 @@
     //set up pull to refresh
     [self setUpPullToRefresh];
     
+    //TODO: this
+     [self.tableView setContentInset:UIEdgeInsetsMake(-10,0,0,0)];
+    
 }
 
 //we want to do several things here:
@@ -40,6 +44,9 @@
     
     //style the nav bar
     [self styleNavigationController];
+    
+       self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
+
     
 }
 
@@ -51,8 +58,18 @@
     [self.refreshControl beginRefreshing];
     
     //get news feed messages
-    [[NewsFeed currentFeed] getMessages]; 
-   
+    [[NewsFeed currentFeed] getMessages];
+    
+    //testing making narrow
+    //TODO: this
+    [[[UIApplication sharedApplication] keyWindow] setBackgroundColor:[UIColor lightGrayColor]];
+        self.tableView.backgroundColor = [UIColor clearColor];
+    [self.tableView setFrame:CGRectMake(self.tableView.frame.origin.x+10, self.tableView.frame.origin.y, self.tableView.frame.size.width-20, self.tableView.frame.size.height)];
+    
+    //TODO: this
+    //more testing
+    self.tableView.backgroundView = nil;
+    
     
 }
 
@@ -93,11 +110,30 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TestMessageCell" forIndexPath:indexPath];
+    MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TestMessageCell" forIndexPath:indexPath];
     
-    cell.textLabel.text = [[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"messageBody"];
+    cell.messageBody.text = [[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"messageBody"];
     
     return cell;
+}
+
+
+#pragma mark - Sorting Methods
+- (IBAction)hasSortedMessages:(id)sender {
+    
+    //get our control and the selected value
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
+    
+    //this is new
+    if (selectedSegment == 0) {
+        [[NewsFeed currentFeed] sortMessagesByNewness];
+    }
+    
+    else{
+        [[NewsFeed currentFeed] sortMessagesByHotness];
+    }
+    
 }
 
 

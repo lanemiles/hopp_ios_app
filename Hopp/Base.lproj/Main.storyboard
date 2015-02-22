@@ -124,10 +124,10 @@
             </objects>
             <point key="canvasLocation" x="-1823" y="-2943"/>
         </scene>
-        <!--Root View Controller-->
+        <!--HOPP @ CLAREMONT-->
         <scene sceneID="ngz-ar-cZw">
             <objects>
-                <tableViewController id="z1B-If-dwg" sceneMemberID="viewController">
+                <tableViewController id="z1B-If-dwg" customClass="PartyListViewTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BMu-2b-kT0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -145,7 +145,7 @@
                             <outlet property="delegate" destination="z1B-If-dwg" id="Qod-Yl-w6d"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="X7L-GO-iPB"/>
+                    <navigationItem key="navigationItem" title="HOPP @ CLAREMONT" id="X7L-GO-iPB"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FuD-Um-UFi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -184,28 +184,54 @@
             </objects>
             <point key="canvasLocation" x="-3607" y="-1480"/>
         </scene>
-        <!--What's Hoppin?-->
+        <!--Live Feed Table View Controller-->
         <scene sceneID="gMx-QJ-F7d">
             <objects>
                 <tableViewController id="LTp-s0-3Kh" customClass="LiveFeedTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="jno-op-dFZ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="118" sectionHeaderHeight="10" sectionFooterHeight="10" id="jno-op-dFZ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TestMessageCell" textLabel="tdH-te-LXm" style="IBUITableViewCellStyleDefault" id="O82-Is-I8W">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TestMessageCell" rowHeight="118" id="O82-Is-I8W" customClass="MessageTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O82-Is-I8W" id="K8i-eV-cWR">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tdH-te-LXm">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuA-K9-zeF">
+                                            <rect key="frame" x="8" y="8" width="584" height="61"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Vy-Ml-fZ9">
+                                            <rect key="frame" x="8" y="86" width="584" height="0.5"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fuA-K9-zeF" firstAttribute="top" secondItem="K8i-eV-cWR" secondAttribute="topMargin" id="98N-2a-BxS"/>
+                                        <constraint firstItem="fuA-K9-zeF" firstAttribute="trailing" secondItem="K8i-eV-cWR" secondAttribute="trailingMargin" id="CSj-3b-1rs"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="8Vy-Ml-fZ9" secondAttribute="bottom" constant="23" id="Dua-3k-RGk"/>
+                                        <constraint firstItem="8Vy-Ml-fZ9" firstAttribute="leading" secondItem="K8i-eV-cWR" secondAttribute="leadingMargin" id="JVn-oB-Sn6"/>
+                                        <constraint firstItem="8Vy-Ml-fZ9" firstAttribute="top" secondItem="K8i-eV-cWR" secondAttribute="topMargin" constant="78" id="KVE-cY-L63"/>
+                                        <constraint firstItem="8Vy-Ml-fZ9" firstAttribute="top" secondItem="K8i-eV-cWR" secondAttribute="topMargin" constant="78" id="Q3T-qm-C9k"/>
+                                        <constraint firstItem="8Vy-Ml-fZ9" firstAttribute="trailing" secondItem="K8i-eV-cWR" secondAttribute="trailingMargin" id="Wn0-2N-As7"/>
+                                        <constraint firstItem="fuA-K9-zeF" firstAttribute="leading" secondItem="K8i-eV-cWR" secondAttribute="leadingMargin" id="a6Q-Ea-G54"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="fuA-K9-zeF" secondAttribute="bottom" constant="40.5" id="duu-Ip-yyl"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="8Vy-Ml-fZ9" secondAttribute="bottom" constant="59" id="oZS-W7-OBZ"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="Q3T-qm-C9k"/>
+                                            <exclude reference="oZS-W7-OBZ"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="messageBody" destination="fuA-K9-zeF" id="1kg-bF-a4a"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -213,7 +239,19 @@
                             <outlet property="delegate" destination="LTp-s0-3Kh" id="JdR-Iw-1HE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="What's Hoppin?" id="pZi-bc-isS">
+                    <navigationItem key="navigationItem" id="pZi-bc-isS">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="Iw3-kC-rDx">
+                            <rect key="frame" x="220" y="7" width="160" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="New"/>
+                                <segment title="Hot"/>
+                            </segments>
+                            <connections>
+                                <action selector="hasSortedMessages:" destination="LTp-s0-3Kh" eventType="valueChanged" id="Bee-2Y-Y07"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="OKY-Os-CFh">
                             <connections>
                                 <action selector="composeButtonPressed:" destination="LTp-s0-3Kh" id="XrZ-6b-AID"/>

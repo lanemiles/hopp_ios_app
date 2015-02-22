@@ -20,4 +20,8 @@
 //static getter
 + (NewsFeed *)currentFeed;
 
+//sorting methods
+- (void) sortMessagesByNewness;
+- (void) sortMessagesByHotness;
+
 @end

@@ -460,8 +460,7 @@
     NSLog(@"%@", error);
 }
 
-#pragma mark-
-#pragma mark Tab and Nav Bar Styling
+#pragma mark - Tab and Nav Bar Styling
 - (void) styleNavigationController {
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:.85 green:.1 blue:0 alpha:1]];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];

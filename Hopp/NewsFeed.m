@@ -29,8 +29,27 @@ static NewsFeed *currentFeed = nil;
     return currentFeed;
 }
 
-#pragma mark -
-#pragma mark Network Methods
+
+#pragma mark - Sorting Methods
+- (void) sortMessagesByHotness {
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"voteCount"  ascending:NO];
+    _messages = [_messages sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+    
+    
+    [self notifyThatMessagesHaveLoaded];
+    
+}
+
+- (void) sortMessagesByNewness {
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"messageID"  ascending:NO];
+    _messages = [_messages sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+    
+    
+    [self notifyThatMessagesHaveLoaded];
+    
+}
+
+#pragma mark - Network Methods
 //get user details from server
 - (void) getMessages {
     
@@ -115,6 +134,10 @@ static NewsFeed *currentFeed = nil;
             
             //if we don't have an error in reading the JSON, let's set our instance variables
             _messages = json;
+            
+            //default sort by hotness
+            //TODO: should this be here?
+            [self sortMessagesByHotness];
             
             //and notify that messages have loaded
             [self notifyThatMessagesHaveLoaded];
