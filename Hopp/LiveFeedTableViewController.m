@@ -84,6 +84,14 @@
 }
 
 
+//TODO: Matt, we want to style these messages like the designer had mocked-up in her most recent PDFs.
+//Some notes that may be helpful:
+    //The data source of this TVC is the "NewsFeed" singleton. When this class calls [[NewsFeed currentFeed] getMessages] it tells the NewsFeed to send an asynch request to our server and retrieve the newest JSON. When that's back, it sends a notification that is caught here in the didUpdateMessages method which calls [self.tableView reloadData].
+    //The news feed contains an NSArray, called messages, that is a list of NSDictionary's (one dictionary for each comment). The keys for the dictionary are "location", "messageBody", "time", and "voteCount." They return strings that do what you might expect. To get the voteCount, you may need to call the intValue NSString class method.
+    //In the storyboard for this class, I have the reuseable cell with the identifier "TestMessageCell", which is referenced below. I'm not sure how you plan on implementing custom UITableViewCells, but I'd suggest subclassing it and then playing around with it's view (potentially in some custom XIB).
+    //Please let me know if you have other questions!
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TestMessageCell" forIndexPath:indexPath];
     

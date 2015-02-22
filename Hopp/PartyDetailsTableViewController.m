@@ -19,11 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //register for the notifications we will receive from Party Details
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -43,6 +38,9 @@
     
     //and start the spinner
     [self.refreshControl beginRefreshing];
+    
+    //set our title
+    self.navigationItem.title = _seguePartyName;
     
 }
 
@@ -80,13 +78,13 @@
 
 #pragma mark - Table view data source
 
-//we have 3 sections: name, demographics, and messsages
+//we have 2 sections: demographics and messsages
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 3;
+    return 2;
 }
 
-//we have 1 for name, 1 for people, and count of PartyDetails message's array
+//we have 1 for demographics (for now), and count of PartyDetails message's array
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     // Return the number of rows in the section.
@@ -95,9 +93,6 @@
             return 1;
             break;
         case 1:
-            return 1;
-            break;
-        case 2:
             return [[PartyDetails currentParty] partyMessages].count;
             break;
             
@@ -112,13 +107,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DetailsTestCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    
+
     if (indexPath.section == 0) {
-        //set this to party name
-        cell.textLabel.text = [[PartyDetails currentParty] partyName];
-    }
-    
-    else if (indexPath.section == 1) {
         //set this to party num people
         cell.textLabel.text = [NSString stringWithFormat:@"%d",[[PartyDetails currentParty] numPeople]];
     }
@@ -128,6 +118,24 @@
     }
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    switch (section)
+    {
+        case 0:
+            sectionName = @"DEMOGRAPHICS";
+            break;
+        case 1:
+            sectionName = [NSString stringWithFormat:@"MESSAGES FROM %@", [[PartyDetails currentParty] partyName]];
+            break;
+        default:
+            sectionName = @"";
+            break;
+    }
+    return sectionName;
 }
 
 

@@ -74,10 +74,7 @@ static UserDetails *currentUser = nil;
     [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
     if (error != nil) {
         NSLog(@"ERROR");
-    } else {
-        NSLog(@"Background location updated");
     }
-
     
 }
 

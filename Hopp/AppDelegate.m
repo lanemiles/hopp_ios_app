@@ -78,7 +78,7 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
 {
     //to handle the silent notification, we do things not asynch, but sync because of time constraints and the handler
-    NSLog(@"GOTTEN REMOTE");
+
     //so we get our controller
     MapViewController* mainController = (MapViewController*)  [[[[((UITabBarController *)self.window.rootViewController) viewControllers] objectAtIndex:0] viewControllers] objectAtIndex:0];
     [mainController fetchNewDataWithCompletionHandler:handler];

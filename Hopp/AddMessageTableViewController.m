@@ -50,7 +50,7 @@
     //get time
     NSDate *currentTime = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"hh:mm a"];
+    [dateFormatter setDateFormat:@"h:mm a"];
     NSString *time = [dateFormatter stringFromDate: currentTime];
     
     //set the label
