@@ -28,6 +28,9 @@
                                                  name:@"NewsFeedDidUpdateMessages"
                                                object:nil];
     
+    //set up pull to refresh
+    [self setUpPullToRefresh];
+    
 }
 
 //we want to do several things here:
@@ -43,6 +46,9 @@
 //more things to do here
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
+    
+    //start our spinner
+    [self.refreshControl beginRefreshing];
     
     //get news feed messages
     [[NewsFeed currentFeed] getMessages]; 
@@ -61,6 +67,7 @@
 - (void) didUpdateMessages: (NSNotification *) notification {
 
     [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
     
 }
 
@@ -95,9 +102,24 @@
     
 }
 
+#pragma mark - Pull To Refresh Methods
+-(void) setUpPullToRefresh {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl setTintColor:[UIColor colorWithRed:.85 green:.1 blue:0 alpha:1]];
+    [self.refreshControl addTarget:self action:@selector(refreshInvoked:forState:) forControlEvents:UIControlEventValueChanged];
+}
 
-#pragma mark-
-#pragma mark Tab and Nav Bar Styling
+-(void) refreshInvoked:(id)sender forState:(UIControlState)state {
+    //ask for new messages
+    [[NewsFeed currentFeed] getMessages];
+    
+    //start the spinner
+    [self.refreshControl beginRefreshing];
+    
+}
+
+
+#pragma mark - Tab and Nav Bar Styling
 - (void) styleNavigationController {
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:.85 green:.1 blue:0 alpha:1]];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];

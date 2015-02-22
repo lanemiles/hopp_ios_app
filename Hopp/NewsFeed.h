@@ -15,6 +15,7 @@
 
 //network methods
 - (void) getMessages;
+- (void) postMessageWithMessageBody: (NSString *)body;
 
 //static getter
 + (NewsFeed *)currentFeed;

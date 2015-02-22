@@ -13,6 +13,7 @@
 #import "UserDetails.h"
 #import <QuartzCore/QuartzCore.h>
 #import "OBShapedButton.h"
+#import "PartyDetailsTableViewController.h"
 
 @interface MapViewController () <GMSMapViewDelegate, CLLocationManagerDelegate, NSURLConnectionDelegate>
 
@@ -216,8 +217,7 @@
     
     
 }
-#pragma mark-
-#pragma mark Map Display Methods
+#pragma mark - Map Display Methods
 
 - (void) stopRefreshControl {
     [_spinnerView stopAnimating];
@@ -264,8 +264,7 @@
 }
 
 - (BOOL) didTapMyLocationButtonForMapView: (GMSMapView *) mapView {
-    
-    
+   
     return NO;
 }
 
@@ -289,8 +288,9 @@
     
 }
 
-- (void) addZoomOutButton {
-    
+
+- (void) mapView:(GMSMapView *) mapView didTapInfoWindowOfMarker:(GMSMarker *) marker {
+    [self performSegueWithIdentifier:@"PartyDetailsSegue" sender:marker];
 }
 
 
@@ -489,6 +489,31 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     _viewIsVisible = NO;
+    
+    //check if seguing to a party detail TVC
+    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+
+        UINavigationController *navController = [segue destinationViewController];
+        PartyDetailsTableViewController *new = (PartyDetailsTableViewController *)([navController viewControllers][0]);
+        if ([sender isKindOfClass:[GMSMarker class]]) {
+            
+            GMSMarker *temp = (GMSMarker*) sender;
+            new.seguePartyName = temp.title;
+        }
+        
+        
+        
+    } else {
+        
+        PartyDetailsTableViewController *new = (PartyDetailsTableViewController *)segue.destinationViewController;
+        if ([sender isKindOfClass:[GMSMarker class]]) {
+            
+            GMSMarker *temp = (GMSMarker*) sender;
+            
+            new.seguePartyName = temp.title;
+        }
+    }
+    
 }
 
 

@@ -12,6 +12,8 @@
 		1D0E13791A932DD90006D292 /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E13781A932DD90006D292 /* UIImage+ColorAtPixel.m */; };
 		1D0E137D1A9344BF0006D292 /* LiveFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E137C1A9344BF0006D292 /* LiveFeedTableViewController.m */; };
 		1D396E141A92895E0040382E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D396E131A92895E0040382E /* StoreKit.framework */; };
+		1D7600B71A995D3F00E30766 /* PartyDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600B61A995D3F00E30766 /* PartyDetailsTableViewController.m */; };
+		1D7600BA1A995EAA00E30766 /* PartyDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600B91A995EAA00E30766 /* PartyDetails.m */; };
 		1DA6A73F1A97159E00BD4420 /* AddMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA6A73E1A97159E00BD4420 /* AddMessageTableViewController.m */; };
 		1DC511DB1A91D03B00947C20 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC511DA1A91D03B00947C20 /* UserDetails.m */; };
 		1DC511DE1A91DFCF00947C20 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC511DD1A91DFCF00947C20 /* LoginViewController.m */; };
@@ -68,6 +70,10 @@
 		1D0E137B1A9344BF0006D292 /* LiveFeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveFeedTableViewController.h; sourceTree = "<group>"; };
 		1D0E137C1A9344BF0006D292 /* LiveFeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveFeedTableViewController.m; sourceTree = "<group>"; };
 		1D396E131A92895E0040382E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		1D7600B51A995D3F00E30766 /* PartyDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyDetailsTableViewController.h; sourceTree = "<group>"; };
+		1D7600B61A995D3F00E30766 /* PartyDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyDetailsTableViewController.m; sourceTree = "<group>"; };
+		1D7600B81A995EAA00E30766 /* PartyDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyDetails.h; sourceTree = "<group>"; };
+		1D7600B91A995EAA00E30766 /* PartyDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyDetails.m; sourceTree = "<group>"; };
 		1DA6A73D1A97159E00BD4420 /* AddMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMessageTableViewController.h; sourceTree = "<group>"; };
 		1DA6A73E1A97159E00BD4420 /* AddMessageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMessageTableViewController.m; sourceTree = "<group>"; };
 		1DC511D91A91D03B00947C20 /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
@@ -215,11 +221,15 @@
 				1D0E137A1A932DDF0006D292 /* Circular Button Classes */,
 				1DFC2C0E1A8C080800ADEA1B /* AppDelegate.h */,
 				1DFC2C0F1A8C080800ADEA1B /* AppDelegate.m */,
+				1D7600B81A995EAA00E30766 /* PartyDetails.h */,
+				1D7600B91A995EAA00E30766 /* PartyDetails.m */,
 				1D014A521A93EEB80052E4FC /* NewsFeed.h */,
 				1D014A531A93EEB80052E4FC /* NewsFeed.m */,
 				1DC511D91A91D03B00947C20 /* UserDetails.h */,
 				1DC511DA1A91D03B00947C20 /* UserDetails.m */,
 				1DFC2C141A8C080900ADEA1B /* Main.storyboard */,
+				1D7600B51A995D3F00E30766 /* PartyDetailsTableViewController.h */,
+				1D7600B61A995D3F00E30766 /* PartyDetailsTableViewController.m */,
 				1DA6A73D1A97159E00BD4420 /* AddMessageTableViewController.h */,
 				1DA6A73E1A97159E00BD4420 /* AddMessageTableViewController.m */,
 				1D0E137B1A9344BF0006D292 /* LiveFeedTableViewController.h */,
@@ -371,6 +381,7 @@
 			files = (
 				1D014A541A93EEB80052E4FC /* NewsFeed.m in Sources */,
 				1DFC2C101A8C080800ADEA1B /* AppDelegate.m in Sources */,
+				1D7600B71A995D3F00E30766 /* PartyDetailsTableViewController.m in Sources */,
 				1D0E13761A932DD10006D292 /* OBShapedButton.m in Sources */,
 				1DC511DB1A91D03B00947C20 /* UserDetails.m in Sources */,
 				1D0E137D1A9344BF0006D292 /* LiveFeedTableViewController.m in Sources */,
@@ -379,6 +390,7 @@
 				1D0E13791A932DD90006D292 /* UIImage+ColorAtPixel.m in Sources */,
 				1DC511DE1A91DFCF00947C20 /* LoginViewController.m in Sources */,
 				1DA6A73F1A97159E00BD4420 /* AddMessageTableViewController.m in Sources */,
+				1D7600BA1A995EAA00E30766 /* PartyDetails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

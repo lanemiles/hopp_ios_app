@@ -1,53 +1,61 @@
 //
-//  NewsFeed.m
+//  PartyDetails.m
 //  Hopp
 //
-//  Created by Lane Miles on 2/17/15.
+//  Created by Lane Miles on 2/21/15.
 //  Copyright (c) 2015 Lane Miles. All rights reserved.
 //
-//
 
-#import "NewsFeed.h"
-#import "UserDetails.h"
+#import "PartyDetails.h"
 
-@interface NewsFeed () <NSURLConnectionDelegate>
+@interface PartyDetails () <NSURLConnectionDelegate>
 
 //this is what we use to store the results of our asynch url request
 @property (strong, nonatomic) NSMutableData *responseData;
 
 @end
 
-@implementation NewsFeed
+@implementation PartyDetails
 
 #pragma mark - Static Getter
-static NewsFeed *currentFeed = nil;
+static PartyDetails *currentParty = nil;
 
-+ (NewsFeed *)currentFeed {
-    if (currentFeed == nil) {
-        currentFeed = [[self alloc] init];
++ (PartyDetails *) currentParty {
+    if (currentParty == nil) {
+        currentParty = [[self alloc] init];
     }
-    return currentFeed;
+    return currentParty;
 }
 
-#pragma mark -
-#pragma mark Network Methods
-//get user details from server
-- (void) getMessages {
+#pragma mark - Network Methods
+
+//set send off our async call
+- (void) setCurrentPartyToPartyWithName: (NSString *)name {
+   
+    //set our name
+    _partyName = name;
     
-    // Create the request.
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.lanemiles.com/Hopp/getMessages.php"]];
+    //encode the space
+    NSString *nameEncoded = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlEncoded = [NSString stringWithFormat:@"http://www.lanemiles.com/Hopp/getDataForParty.php?partyName=%@", nameEncoded];
+    
+    // Create the request for the data
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlEncoded]];
     
     // Create url connection and fire request
     [NSURLConnection connectionWithRequest:request delegate:self];
     
 }
 
-- (void) postMessageWithMessageBody: (NSString *)body {
+
+- (void) updatePartyData {
     
-    // Create the request.
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"http://www.lanemiles.com/Hopp/addMessage.php?userID=%@&messageID=%f&messageBody=%@", [[UserDetails currentUser] userID], CFAbsoluteTimeGetCurrent(), body]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    //encode the space
+    NSString *nameEncoded = [_partyName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlEncoded = [NSString stringWithFormat:@"http://www.lanemiles.com/Hopp/getDataForParty.php?partyName=%@", nameEncoded];
     
-    NSLog(@"%@", request.URL.absoluteString);
+    // Create the request for the data
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlEncoded]];
     
     // Create url connection and fire request
     [NSURLConnection connectionWithRequest:request delegate:self];
@@ -57,20 +65,14 @@ static NewsFeed *currentFeed = nil;
 #pragma mark - Notification Methods
 
 //after we get our new message data, let's let the LiveFeed TVC know
-- (void) notifyThatMessagesHaveLoaded {
+- (void) notifyThatPartyDataDidLoad {
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"NewsFeedDidUpdateMessages"
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PartyDetailsDidLoadData"
                                                         object:nil userInfo:nil];
     
 }
 
-//after we post a message
-- (void) notifyThatMessageDidSend {
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"NewsFeedDidSendMessage"
-                                                        object:nil userInfo:nil];
-    
-}
+
 
 #pragma mark - NSURLConnection Delegate Methods
 
@@ -101,33 +103,44 @@ static NewsFeed *currentFeed = nil;
     //now, let's check to see what request we just successfully completed
     NSString *urlString = connection.currentRequest.URL.absoluteString;
     
-    //check if we were getting messages
-    if ([urlString rangeOfString:@"getMessages"].location != NSNotFound) {
+    //check if we were getting data for the party
+    if ([urlString rangeOfString:@"getDataForParty"].location != NSNotFound) {
         
         //we get messages
         NSError* error;
         NSArray* json = [[NSJSONSerialization JSONObjectWithData:_responseData
-                                                              options:kNilOptions
-                                                                error:&error] objectForKey:@"Data"];
+                                                         options:kNilOptions
+                                                           error:&error] objectForKey:@"Data"];
         if (error) {
             NSLog(@"%@", error);
         } else {
             
             //if we don't have an error in reading the JSON, let's set our instance variables
-            _messages = json;
             
-            //and notify that messages have loaded
-            [self notifyThatMessagesHaveLoaded];
+            
+            //lets get the first element in the array which stores name and num people
+            NSDictionary *nameAndNum = [json objectAtIndex:0];
+            
+            //set it
+            _numPeople = [[nameAndNum objectForKey:@"NumPeople"] intValue];
+            
+            //now lets get the messages
+            NSArray *messageList = [json objectAtIndex:1];
+            
+            //set it
+            _partyMessages = messageList;
+            
+            //and say we're set
+            [self notifyThatPartyDataDidLoad];
             
         }
         
     }
     
-    //if not, we must be adding a message, so we should get again after
+    //this should never be reached
     else {
         
-        [self notifyThatMessageDidSend];
-        [self getMessages];
+        
         
     }
     
