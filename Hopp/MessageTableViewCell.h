@@ -11,5 +11,7 @@
 @interface MessageTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UITextView *messageBody;
 @property (strong, nonatomic) IBOutlet UIImageView *leftImageView;
+@property (strong, nonatomic) IBOutlet UILabel *time;
+@property (strong, nonatomic) IBOutlet UILabel *location;
 
 @end

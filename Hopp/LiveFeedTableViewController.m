@@ -12,14 +12,17 @@
 
 @interface LiveFeedTableViewController ()
 
+//we keep track of our UITextViews as we create them, so we can get their heights
+//although all we really need is their attributed strings
+@property (strong, nonatomic) NSMutableDictionary *textViews;
+
 @end
 
 @implementation LiveFeedTableViewController
 
 #pragma mark - View Controller Life Cycle
 
-//here, we need to register for the notifications we will receive
-//
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -32,21 +35,29 @@
     //set up pull to refresh
     [self setUpPullToRefresh];
     
-    //TODO: this
-     [self.tableView setContentInset:UIEdgeInsetsMake(-10,0,0,0)];
+    //initialize our text view dictionary
+    _textViews = [[NSMutableDictionary alloc] init];
     
 }
 
-//we want to do several things here:
-    //style our nav and tab bar
+
+//style our nav and tab bar
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     
     //style the nav bar
     [self styleNavigationController];
     
-       self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
-
+    //and start spinning
+    self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
+    [self.refreshControl beginRefreshing];
+    
+    //get news feed messages
+    [[NewsFeed currentFeed] getMessages];
+    
+    //we would like our table to have a gray background
+    [[[UIApplication sharedApplication] keyWindow] setBackgroundColor:[UIColor lightGrayColor]];
+    self.tableView.backgroundColor = [UIColor clearColor];
     
 }
 
@@ -54,23 +65,9 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     
-    //start our spinner
-    [self.refreshControl beginRefreshing];
     
-    //get news feed messages
-    [[NewsFeed currentFeed] getMessages];
-    
-    //testing making narrow
-    //TODO: this
-    [[[UIApplication sharedApplication] keyWindow] setBackgroundColor:[UIColor lightGrayColor]];
-        self.tableView.backgroundColor = [UIColor clearColor];
-    [self.tableView setFrame:CGRectMake(self.tableView.frame.origin.x+10, self.tableView.frame.origin.y, self.tableView.frame.size.width-20, self.tableView.frame.size.height)];
-    
-    //TODO: this
-    //more testing
-    self.tableView.backgroundView = nil;
-    
-    
+
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,7 +85,7 @@
     
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table View Delegate and Data Source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     //we have one section for each message
@@ -100,20 +97,59 @@
     return 1;
 }
 
+//we want to have the cells have dynamic height based on how much text they have in the message
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITextView *temp = [_textViews objectForKey:indexPath];
+    
+    //if we have some text, then let's get it and ask our method to tell us how much v space that will take up and then add room for our controls
+    if (temp.text != nil) {
+        CGFloat num = [self textViewHeightForAttributedText:temp.attributedText andWidth:self.tableView.frame.size.width-40];
+
+        //arbitrary number but seems to work
+        return num+43;
+    }
+
+    //if no text, show nothing
+    else {
+        return 0;
+    }
+
+}
+
+//thanks, stack overflow for this
+//calculates height of textview
+- (CGFloat)textViewHeightForAttributedText: (NSAttributedString*)text andWidth: (CGFloat)width {
+    UITextView *calculationView = [[UITextView alloc] init];
+    [calculationView setAttributedText:text];
+    [calculationView sizeToFit];
+    [calculationView layoutIfNeeded];
+    CGSize size = [calculationView sizeThatFits:CGSizeMake(width, FLT_MAX)];
+    return size.height;
+}
+
 
 //TODO: Matt, we want to style these messages like the designer had mocked-up in her most recent PDFs.
 //Some notes that may be helpful:
     //The data source of this TVC is the "NewsFeed" singleton. When this class calls [[NewsFeed currentFeed] getMessages] it tells the NewsFeed to send an asynch request to our server and retrieve the newest JSON. When that's back, it sends a notification that is caught here in the didUpdateMessages method which calls [self.tableView reloadData].
     //The news feed contains an NSArray, called messages, that is a list of NSDictionary's (one dictionary for each comment). The keys for the dictionary are "location", "messageBody", "time", and "voteCount." They return strings that do what you might expect. To get the voteCount, you may need to call the intValue NSString class method.
-    //In the storyboard for this class, I have the reuseable cell with the identifier "TestMessageCell", which is referenced below. I'm not sure how you plan on implementing custom UITableViewCells, but I'd suggest subclassing it and then playing around with it's view (potentially in some custom XIB).
+    //In the storyboard for this class, I have the reuseable cell with the identifier "TestMessageCell", which is referenced below. I've created a subclass of UITableView called MessageTableViewCell, which takes care of making itself narrow, and controls the UITextView for the message and the other controls. If you would rather use a different approach to make the custom cells, that's totally fine with me.
     //Please let me know if you have other questions!
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //dequeue our cell
     MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TestMessageCell" forIndexPath:indexPath];
     
+    //set the message
     cell.messageBody.text = [[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"messageBody"];
     
+    //set the time
+    cell.time.text = [[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"time"];
+    
+    //set the location
+    cell.location.text = [[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"location"];
+    
+    [_textViews setObject:cell.messageBody forKey:indexPath];
     return cell;
 }
 
