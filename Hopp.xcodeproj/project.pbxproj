@@ -17,6 +17,7 @@
 		1D7600BD1A998A6300E30766 /* PartyListViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600BC1A998A6300E30766 /* PartyListViewTableViewController.m */; };
 		1D7600C01A99927400E30766 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600BF1A99927400E30766 /* MessageTableViewCell.m */; };
 		1DA6A73F1A97159E00BD4420 /* AddMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA6A73E1A97159E00BD4420 /* AddMessageTableViewController.m */; };
+		1DBCBD751A9C21DB00C7886A /* PartyHalfWidthBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DBCBD741A9C21DB00C7886A /* PartyHalfWidthBox.m */; };
 		1DC511DB1A91D03B00947C20 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC511DA1A91D03B00947C20 /* UserDetails.m */; };
 		1DC511DE1A91DFCF00947C20 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC511DD1A91DFCF00947C20 /* LoginViewController.m */; };
 		1DE452EA1A907D87009EF986 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE452E91A907D87009EF986 /* MapViewController.m */; };
@@ -82,6 +83,8 @@
 		1D7600BF1A99927400E30766 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
 		1DA6A73D1A97159E00BD4420 /* AddMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMessageTableViewController.h; sourceTree = "<group>"; };
 		1DA6A73E1A97159E00BD4420 /* AddMessageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMessageTableViewController.m; sourceTree = "<group>"; };
+		1DBCBD731A9C21DB00C7886A /* PartyHalfWidthBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyHalfWidthBox.h; sourceTree = "<group>"; };
+		1DBCBD741A9C21DB00C7886A /* PartyHalfWidthBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyHalfWidthBox.m; sourceTree = "<group>"; };
 		1DC511D91A91D03B00947C20 /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
 		1DC511DA1A91D03B00947C20 /* UserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
 		1DC511DC1A91DFCF00947C20 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 				1DC511D91A91D03B00947C20 /* UserDetails.h */,
 				1DC511DA1A91D03B00947C20 /* UserDetails.m */,
 				1DFC2C141A8C080900ADEA1B /* Main.storyboard */,
+				1DBCBD731A9C21DB00C7886A /* PartyHalfWidthBox.h */,
+				1DBCBD741A9C21DB00C7886A /* PartyHalfWidthBox.m */,
 				1D7600BB1A998A6300E30766 /* PartyListViewTableViewController.h */,
 				1D7600BC1A998A6300E30766 /* PartyListViewTableViewController.m */,
 				1D7600B51A995D3F00E30766 /* PartyDetailsTableViewController.h */,
@@ -401,6 +406,7 @@
 				1D7600C01A99927400E30766 /* MessageTableViewCell.m in Sources */,
 				1DC511DE1A91DFCF00947C20 /* LoginViewController.m in Sources */,
 				1D7600BD1A998A6300E30766 /* PartyListViewTableViewController.m in Sources */,
+				1DBCBD751A9C21DB00C7886A /* PartyHalfWidthBox.m in Sources */,
 				1DA6A73F1A97159E00BD4420 /* AddMessageTableViewController.m in Sources */,
 				1D7600BA1A995EAA00E30766 /* PartyDetails.m in Sources */,
 			);

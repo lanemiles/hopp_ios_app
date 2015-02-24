@@ -9,6 +9,7 @@
 #import "PartyDetailsTableViewController.h"
 #import "PartyDetails.h"
 #import "MessageTableViewCell.h"
+#import "UserDetails.h"
 
 @interface PartyDetailsTableViewController ()
 
@@ -133,18 +134,38 @@
         //we want to display the real cell
         if (_showCell) {
         
-        cell.messageBody.text = [[[[PartyDetails currentParty] partyMessages] objectAtIndex:indexPath.row/2] objectForKey:@"messageBody"];
-        
-        //set the time
-        cell.time.text = [[[[PartyDetails currentParty] partyMessages] objectAtIndex:indexPath.row/2] objectForKey:@"time"];
-        
-        //set the location
-        cell.location.text = [[[[PartyDetails currentParty] partyMessages] objectAtIndex:indexPath.row/2] objectForKey:@"location"];
-        
-        //set this value in our dictionary
-        [_textViews setObject:cell.messageBody forKey:indexPath];
+            //dequeue our cell
+            MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TestMessageCell" forIndexPath:indexPath];
             
-        _showCell = NO;
+            //set the message
+            cell.messageBody.text = [[[[PartyDetails currentParty] partyMessages] objectAtIndex:indexPath.row/2] objectForKey:@"messageBody"];
+            
+            //set the time
+            cell.time.text = [[[[PartyDetails currentParty] partyMessages]  objectAtIndex:indexPath.row/2] objectForKey:@"time"];
+            
+            //set the location
+            cell.location.text = [[[[PartyDetails currentParty] partyMessages]  objectAtIndex:indexPath.row/2] objectForKey:@"location"];
+            
+            //set the voute count
+            cell.pointLabel.text = [[[[PartyDetails currentParty] partyMessages]  objectAtIndex:indexPath.row/2] objectForKey:@"voteCount"];
+            
+            //and give it the ID
+            cell.messageID = [[[[PartyDetails currentParty] partyMessages]  objectAtIndex:indexPath.row/2] objectForKey:@"messageID"];
+            
+            //[cell.contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+            // [cell.contentView.layer setBorderWidth:.250f];
+            
+            NSString *hasVoted = [[[UserDetails currentUser] voteHistory] objectForKey:cell.messageID];
+            
+            if (hasVoted != nil) {
+                cell.hasVoted = YES;
+            } else {
+                cell.hasVoted = NO;
+            }
+            
+            [_textViews setObject:cell.messageBody forKey:indexPath];
+            
+            _showCell = NO;
             
         }
         
