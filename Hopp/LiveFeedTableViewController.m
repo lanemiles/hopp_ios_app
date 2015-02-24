@@ -9,12 +9,16 @@
 #import "LiveFeedTableViewController.h"
 #import "NewsFeed.h"
 #import "MessageTableViewCell.h"
+#import "UserDetails.h"
 
 @interface LiveFeedTableViewController ()
 
 //we keep track of our UITextViews as we create them, so we can get their heights
 //although all we really need is their attributed strings
 @property (strong, nonatomic) NSMutableDictionary *textViews;
+
+//for showing points
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *hoppPoints;
 
 @end
 
@@ -56,7 +60,7 @@
     [[NewsFeed currentFeed] getMessages];
     
     //we would like our table to have a gray background
-    [[[UIApplication sharedApplication] keyWindow] setBackgroundColor:[UIColor lightGrayColor]];
+    [[[UIApplication sharedApplication] keyWindow] setBackgroundColor:[UIColor colorWithRed:.8 green:.8 blue:.8 alpha:1.0]];
     self.tableView.backgroundColor = [UIColor clearColor];
     
 }
@@ -64,10 +68,7 @@
 //more things to do here
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    
-    
 
-   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,6 +83,9 @@
 
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
+    
+    //set the points
+    _hoppPoints.title = [[UserDetails currentUser] points];
     
 }
 
@@ -131,7 +135,7 @@
 //TODO: Matt, we want to style these messages like the designer had mocked-up in her most recent PDFs.
 //Some notes that may be helpful:
     //The data source of this TVC is the "NewsFeed" singleton. When this class calls [[NewsFeed currentFeed] getMessages] it tells the NewsFeed to send an asynch request to our server and retrieve the newest JSON. When that's back, it sends a notification that is caught here in the didUpdateMessages method which calls [self.tableView reloadData].
-    //The news feed contains an NSArray, called messages, that is a list of NSDictionary's (one dictionary for each comment). The keys for the dictionary are "location", "messageBody", "time", and "voteCount." They return strings that do what you might expect. To get the voteCount, you may need to call the intValue NSString class method.
+    //The news feed contains an NSArray, called messages, that is a list of NSDictionary's (one dictionary for each comment). The keys for the dictionary are "messageID", "location", "messageBody", "time", and "voteCount." They return strings that do what you might expect. To get the voteCount, you may need to call the intValue NSString class method.
     //In the storyboard for this class, I have the reuseable cell with the identifier "TestMessageCell", which is referenced below. I've created a subclass of UITableView called MessageTableViewCell, which takes care of making itself narrow, and controls the UITextView for the message and the other controls. If you would rather use a different approach to make the custom cells, that's totally fine with me.
     //Please let me know if you have other questions!
 
@@ -149,8 +153,39 @@
     //set the location
     cell.location.text = [[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"location"];
     
+    //set the voute count
+    cell.pointLabel.text = [[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"voteCount"];
+    
+    //and give it the ID
+    cell.messageID = [[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"messageID"];
+    
+    //[cell.contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+   // [cell.contentView.layer setBorderWidth:.250f];
+    
+    NSString *hasVoted = [[[UserDetails currentUser] voteHistory] objectForKey:cell.messageID];
+    
+    if (hasVoted != nil) {
+        cell.hasVoted = YES;
+    } else {
+        cell.hasVoted = NO;
+    }
+    
     [_textViews setObject:cell.messageBody forKey:indexPath];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 16.0;
+    }
+    
+    return 10.0;
+}
+
+- (CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 5.0;
 }
 
 

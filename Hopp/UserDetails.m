@@ -152,6 +152,8 @@ static UserDetails *currentUser = nil;
                 _longitude = [json objectForKey:@"longitude"];
                 _lastUpdated = [json objectForKey:@"time"];
                 _gender = [json objectForKey:@"gender"];
+                _points = [json objectForKey:@"points"];
+                _voteHistory = [json objectForKey:@"voteHistory"];
                 
             }
     }

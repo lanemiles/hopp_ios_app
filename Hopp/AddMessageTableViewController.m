@@ -101,7 +101,7 @@
     }
     
     if ([text isEqualToString:@"What's Hoppin'...?"]) {
-        [self.tableView headerViewForSection:1].textLabel.text = @"Message (0/140)";
+        [self.tableView headerViewForSection:1].textLabel.text = @"Message  (0/140)";
     } else {
         [self.tableView headerViewForSection:1].textLabel.text = [self tableView:self.tableView titleForHeaderInSection:1];
         
@@ -146,7 +146,7 @@
 }
 */
 
-#pragma mark - UITableView Delegat Methods
+#pragma mark - UITableView Delegate Methods
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionName;
@@ -157,7 +157,7 @@
             break;
         case 1:
             if ([_messageBodyTextField.text isEqualToString:@"What's Hoppin'...?"]) {
-              sectionName = [NSString stringWithFormat:@"MESSAGE (0/140)"];
+              sectionName = [NSString stringWithFormat:@"MESSAGE (0/140)  "];
             } else {
                 sectionName = [NSString stringWithFormat:@"MESSAGE (%lu/140)", (unsigned long)_messageBodyTextField.text.length+1];
             }
@@ -165,7 +165,7 @@
             break;
             // ...
         default:
-            sectionName = @"";
+            sectionName = nil;
             break;
     }
     return sectionName;

@@ -16,6 +16,8 @@
 //network methods
 - (void) getMessages;
 - (void) postMessageWithMessageBody: (NSString *)body;
+- (void) upvoteMessageWithID: (NSString *)messageID;
+- (void) downvoteMessageWithID: (NSString *)messageID;
 
 //static getter
 + (NewsFeed *)currentFeed;

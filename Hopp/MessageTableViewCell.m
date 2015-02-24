@@ -7,6 +7,7 @@
 //
 
 #import "MessageTableViewCell.h"
+#import "NewsFeed.h"
 
 @implementation MessageTableViewCell
 
@@ -24,6 +25,25 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+#pragma mark - Voting Methods
+- (IBAction)upVotePressed:(UIButton *)sender {
+    
+    if (!_hasVoted) {
+        _hasVoted = YES;
+        [[NewsFeed currentFeed] upvoteMessageWithID:_messageID];
+    }
+    
+}
+
+- (IBAction)downVotePressed:(UIButton *)sender {
+    
+    if (!_hasVoted) {
+        _hasVoted = YES;
+        [[NewsFeed currentFeed] downvoteMessageWithID:_messageID];
+    }
+    
 }
 
 @end

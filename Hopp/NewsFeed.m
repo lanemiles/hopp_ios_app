@@ -66,6 +66,26 @@ static NewsFeed *currentFeed = nil;
     // Create the request.
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"http://www.lanemiles.com/Hopp/addMessage.php?userID=%@&messageID=%f&messageBody=%@", [[UserDetails currentUser] userID], CFAbsoluteTimeGetCurrent(), body]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     
+    // Create url connection and fire request
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+}
+
+- (void) downvoteMessageWithID: (NSString *)messageID {
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"http://www.lanemiles.com/Hopp/downvoteMessage.php?userID=%@&messageID=%@", [[UserDetails currentUser] userID], messageID]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    
+    NSLog(@"%@", request.URL.absoluteString);
+    
+    // Create url connection and fire request
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+}
+
+- (void) upvoteMessageWithID: (NSString *)messageID {
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"http://www.lanemiles.com/Hopp/upvoteMessage.php?userID=%@&messageID=%@", [[UserDetails currentUser] userID], messageID]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    
     NSLog(@"%@", request.URL.absoluteString);
     
     // Create url connection and fire request
@@ -87,6 +107,13 @@ static NewsFeed *currentFeed = nil;
 - (void) notifyThatMessageDidSend {
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NewsFeedDidSendMessage"
+                                                        object:nil userInfo:nil];
+    
+}
+
+- (void) notifyThatVoteWasCounted {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NewsFeedDidCountMessage"
                                                         object:nil userInfo:nil];
     
 }
@@ -149,8 +176,14 @@ static NewsFeed *currentFeed = nil;
     //if not, we must be adding a message, so we should get again after
     else {
         
+        //TODO: need this?
         [self notifyThatMessageDidSend];
+        
+        //update the messages with the new data
         [self getMessages];
+        
+        //and because we want to reupdate our vote history, we need to get user details again
+        [[UserDetails currentUser] getUserDetails];
         
     }
     

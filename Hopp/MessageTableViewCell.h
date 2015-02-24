@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @interface MessageTableViewCell : UITableViewCell
+
+//labels set from the table view class
 @property (strong, nonatomic) IBOutlet UITextView *messageBody;
-@property (strong, nonatomic) IBOutlet UIImageView *leftImageView;
 @property (strong, nonatomic) IBOutlet UILabel *time;
 @property (strong, nonatomic) IBOutlet UILabel *location;
+@property (strong, nonatomic) IBOutlet UILabel *pointLabel;
+@property (strong, nonatomic) NSString *messageID;
+
+//booleans to only allow voting once
+@property BOOL hasVoted;
 
 @end

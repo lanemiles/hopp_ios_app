@@ -30,6 +30,9 @@
 @property (strong, nonatomic) NSString *latitude;
 @property (strong, nonatomic) NSString *longitude;
 @property (strong, nonatomic) NSString *lastUpdated;
+@property (strong, nonatomic) NSString *points;
+@property (strong, nonatomic) NSDictionary *voteHistory;
+
 
 
 @end
