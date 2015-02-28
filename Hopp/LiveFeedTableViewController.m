@@ -164,6 +164,8 @@
     
     NSString *hasVoted = [[[UserDetails currentUser] voteHistory] objectForKey:cell.messageID];
     
+    
+    //check if the user has already voted on this message
     if (hasVoted != nil) {
         cell.hasVoted = YES;
     } else {

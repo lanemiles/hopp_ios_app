@@ -38,6 +38,9 @@
 //so we can go from outline to marker tap
 @property (nonatomic, strong) NSMutableDictionary *overlayToMarker;
 
+//so we have all of our information about our parties
+@property (nonatomic, strong) NSMutableDictionary *partyInformation;
+
 
 @end
 
@@ -94,6 +97,9 @@
     
     //instantiate our user singleton
     [UserDetails currentUser];
+    
+    //initialize party infomation dictionary
+    _partyInformation = [[NSMutableDictionary alloc] init];
     
 }
 
@@ -217,7 +223,7 @@
     
     
 }
-#pragma mark - Map Display Methods
+#pragma mark - GMS Delegate / Map Display Methods
 
 - (void) stopRefreshControl {
     [_spinnerView stopAnimating];
@@ -336,6 +342,17 @@
 }
 
 
+//TODO: Matt, here is another place we want you to get started implementing the design.
+    //We want to override the custom markerInfoWindow (the view that appears when you tap on a marker on the map)
+    //I'm not sure what the best way to do this is, but I did it last time by initializing a UIView from a XIB I created
+    //To get information about a party (num people, etc), you can get a dictionary of data by accessing _partyInformation where the key is marker.title.
+/*
+-(UIView *)mapView:(GMSMapView *) aMapView markerInfoWindow:(GMSMarker*) marker {
+
+ 
+}
+*/
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -343,8 +360,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark-
-#pragma mark NSURLConnection Delegate Methods
+#pragma mark - NSURLConnection Delegate Methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     // A response has been received, this is where we initialize the instance var you created
@@ -411,6 +427,9 @@
                     marker.map = _mapView;
                     //marker.infoWindowAnchor = CGPointMake(.44f, -0.075f);
                     
+                    //add this information to party information
+                    [_partyInformation setObject:dict forKey:marker.title];
+                    
                     //make the building outline
                     GMSMutablePath *path = [GMSMutablePath path];
                     NSArray *locs = [dict valueForKey:@"Outline"];
@@ -442,6 +461,8 @@
                     
                     //and we want to stop spinning
                     [self performSelector:@selector(stopRefreshControl) withObject:nil afterDelay:.75];
+                    
+                    
                     
                     
                 }
@@ -480,8 +501,7 @@
 }
 
 
-#pragma mark-
-#pragma mark Navigation Methods
+#pragma mark - Navigation Methods
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
