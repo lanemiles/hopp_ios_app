@@ -162,6 +162,7 @@
     //[cell.contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
    // [cell.contentView.layer setBorderWidth:.250f];
     
+    //TODO: Matt look here too! This returns nil if the user hasn't voted on the message (by ID) yet and the vote if they have.
     NSString *hasVoted = [[[UserDetails currentUser] voteHistory] objectForKey:cell.messageID];
     
     

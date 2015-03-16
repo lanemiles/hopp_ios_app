@@ -346,9 +346,15 @@
     //We want to override the custom markerInfoWindow (the view that appears when you tap on a marker on the map)
     //I'm not sure what the best way to do this is, but I did it last time by initializing a UIView from a XIB I created
     //To get information about a party (num people, etc), you can get a dictionary of data by accessing _partyInformation where the key is marker.title.
+    //The values in the party information dictionary are:
+        //name
+        //numPeople
+        //message (not important for this)
 /*
 -(UIView *)mapView:(GMSMapView *) aMapView markerInfoWindow:(GMSMarker*) marker {
 
+ //marker.title
+ 
  
 }
 */
@@ -407,6 +413,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 //remove all of the map overlays
+                //TODO: Need to update the markers, but not clear the map, since that hides the InfoWindow if tapped
                 [self.mapView clear];
                 
                 //add back school outlines

@@ -32,6 +32,8 @@
     
     if (!_hasVoted) {
         _hasVoted = YES;
+        
+        //TODO: Matt this is one of the API methods
         [[NewsFeed currentFeed] upvoteMessageWithID:_messageID];
     }
     
@@ -41,6 +43,8 @@
     
     if (!_hasVoted) {
         _hasVoted = YES;
+        
+        //TODO: Matt this is one of the API methods
         [[NewsFeed currentFeed] downvoteMessageWithID:_messageID];
     }
     
