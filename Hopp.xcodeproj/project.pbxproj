@@ -14,7 +14,6 @@
 		1D396E141A92895E0040382E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D396E131A92895E0040382E /* StoreKit.framework */; };
 		1D7600B71A995D3F00E30766 /* PartyDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600B61A995D3F00E30766 /* PartyDetailsTableViewController.m */; };
 		1D7600BA1A995EAA00E30766 /* PartyDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600B91A995EAA00E30766 /* PartyDetails.m */; };
-		1D7600BD1A998A6300E30766 /* PartyListViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600BC1A998A6300E30766 /* PartyListViewTableViewController.m */; };
 		1D7600C01A99927400E30766 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600BF1A99927400E30766 /* MessageTableViewCell.m */; };
 		1DA6A73F1A97159E00BD4420 /* AddMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA6A73E1A97159E00BD4420 /* AddMessageTableViewController.m */; };
 		1DBCBD781A9C4A3600C7886A /* Vacaciones-font-ffp-defharo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1DBCBD761A9C49E500C7886A /* Vacaciones-font-ffp-defharo.otf */; };
@@ -41,7 +40,6 @@
 		1DFC2C451A8C0BBC00ADEA1B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C441A8C0BBC00ADEA1B /* SystemConfiguration.framework */; };
 		1DFC2C471A8C0BC100ADEA1B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C461A8C0BC100ADEA1B /* libz.dylib */; };
 		1DFC2C491A8C0BC700ADEA1B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C481A8C0BC700ADEA1B /* libsqlite3.dylib */; };
-		1DFC2C4B1A8C51A900ADEA1B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C4A1A8C51A900ADEA1B /* FacebookSDK.framework */; };
 		1DFC2C5F1A8C575400ADEA1B /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C5E1A8C575400ADEA1B /* GoogleMaps.framework */; };
 		1DFC2C611A8C576000ADEA1B /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1DFC2C601A8C576000ADEA1B /* GoogleMaps.bundle */; };
 		1DFC2C631A8C57AD00ADEA1B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C621A8C57AD00ADEA1B /* AVFoundation.framework */; };
@@ -52,6 +50,12 @@
 		1DFC2C6D1A8C57CD00ADEA1B /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C6C1A8C57CD00ADEA1B /* libc++.dylib */; };
 		1DFC2C6F1A8C57D300ADEA1B /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C6E1A8C57D300ADEA1B /* libicucore.dylib */; };
 		1DFC2C711A8C57DE00ADEA1B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C701A8C57DE00ADEA1B /* OpenGLES.framework */; };
+		342D1D731ABFB2D600FDA67C /* PartyListViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D1D721ABFB2D600FDA67C /* PartyListViewTableViewController.m */; };
+		342D1D771ABFB37300FDA67C /* PartyListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D1D761ABFB37300FDA67C /* PartyListTableViewCell.m */; };
+		3491F0841ABF3C61001FBBC6 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3491F0831ABF3C61001FBBC6 /* FacebookSDK.framework */; };
+		3491F0871ABF3E9A001FBBC6 /* CustomInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3491F0861ABF3E9A001FBBC6 /* CustomInfoWindow.m */; };
+		34B3A5751ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34B3A5731ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf */; };
+		34B3A5761ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34B3A5741ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,8 +82,6 @@
 		1D7600B61A995D3F00E30766 /* PartyDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyDetailsTableViewController.m; sourceTree = "<group>"; };
 		1D7600B81A995EAA00E30766 /* PartyDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyDetails.h; sourceTree = "<group>"; };
 		1D7600B91A995EAA00E30766 /* PartyDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyDetails.m; sourceTree = "<group>"; };
-		1D7600BB1A998A6300E30766 /* PartyListViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyListViewTableViewController.h; sourceTree = "<group>"; };
-		1D7600BC1A998A6300E30766 /* PartyListViewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyListViewTableViewController.m; sourceTree = "<group>"; };
 		1D7600BE1A99927400E30766 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
 		1D7600BF1A99927400E30766 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
 		1DA6A73D1A97159E00BD4420 /* AddMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMessageTableViewController.h; sourceTree = "<group>"; };
@@ -116,7 +118,6 @@
 		1DFC2C441A8C0BBC00ADEA1B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1DFC2C461A8C0BC100ADEA1B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		1DFC2C481A8C0BC700ADEA1B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		1DFC2C4A1A8C51A900ADEA1B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		1DFC2C5E1A8C575400ADEA1B /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		1DFC2C601A8C576000ADEA1B /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		1DFC2C621A8C57AD00ADEA1B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -127,6 +128,15 @@
 		1DFC2C6C1A8C57CD00ADEA1B /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		1DFC2C6E1A8C57D300ADEA1B /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		1DFC2C701A8C57DE00ADEA1B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		342D1D721ABFB2D600FDA67C /* PartyListViewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyListViewTableViewController.m; sourceTree = "<group>"; };
+		342D1D741ABFB2DC00FDA67C /* PartyListViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyListViewTableViewController.h; sourceTree = "<group>"; };
+		342D1D751ABFB37300FDA67C /* PartyListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyListTableViewCell.h; sourceTree = "<group>"; };
+		342D1D761ABFB37300FDA67C /* PartyListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyListTableViewCell.m; sourceTree = "<group>"; };
+		3491F0831ABF3C61001FBBC6 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK.framework; sourceTree = "<group>"; };
+		3491F0851ABF3E9A001FBBC6 /* CustomInfoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInfoWindow.h; sourceTree = "<group>"; };
+		3491F0861ABF3E9A001FBBC6 /* CustomInfoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoWindow.m; sourceTree = "<group>"; };
+		34B3A5731ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = SOURCE_ROOT; };
+		34B3A5741ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +149,7 @@
 				1DFC2C451A8C0BBC00ADEA1B /* SystemConfiguration.framework in Frameworks */,
 				1D396E141A92895E0040382E /* StoreKit.framework in Frameworks */,
 				1DFC2C3F1A8C0BAE00ADEA1B /* QuartzCore.framework in Frameworks */,
+				3491F0841ABF3C61001FBBC6 /* FacebookSDK.framework in Frameworks */,
 				1DFC2C711A8C57DE00ADEA1B /* OpenGLES.framework in Frameworks */,
 				1DFC2C471A8C0BC100ADEA1B /* libz.dylib in Frameworks */,
 				1DFC2C6F1A8C57D300ADEA1B /* libicucore.dylib in Frameworks */,
@@ -157,7 +168,6 @@
 				1DFC2C371A8C0B9800ADEA1B /* CFNetwork.framework in Frameworks */,
 				1DFC2C351A8C0B9400ADEA1B /* AudioToolbox.framework in Frameworks */,
 				1DFC2C331A8C0B6B00ADEA1B /* Parse.framework in Frameworks */,
-				1DFC2C4B1A8C51A900ADEA1B /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +195,7 @@
 		1DFC2BFE1A8C080800ADEA1B = {
 			isa = PBXGroup;
 			children = (
+				3491F0831ABF3C61001FBBC6 /* FacebookSDK.framework */,
 				1D396E131A92895E0040382E /* StoreKit.framework */,
 				1DE452ED1A9080F7009EF986 /* Social.framework */,
 				1DE452EB1A9080C8009EF986 /* Accounts.framework */,
@@ -198,7 +209,6 @@
 				1DFC2C621A8C57AD00ADEA1B /* AVFoundation.framework */,
 				1DFC2C601A8C576000ADEA1B /* GoogleMaps.bundle */,
 				1DFC2C5E1A8C575400ADEA1B /* GoogleMaps.framework */,
-				1DFC2C4A1A8C51A900ADEA1B /* FacebookSDK.framework */,
 				1DFC2C481A8C0BC700ADEA1B /* libsqlite3.dylib */,
 				1DFC2C461A8C0BC100ADEA1B /* libz.dylib */,
 				1DFC2C441A8C0BBC00ADEA1B /* SystemConfiguration.framework */,
@@ -231,6 +241,8 @@
 				1D0E137A1A932DDF0006D292 /* Circular Button Classes */,
 				1DBCBD761A9C49E500C7886A /* Vacaciones-font-ffp-defharo.otf */,
 				1DBCBD771A9C49E500C7886A /* Vacaciones-font-ffp-defharo.ttf */,
+				34B3A5731ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf */,
+				34B3A5741ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf */,
 				1DFC2C0E1A8C080800ADEA1B /* AppDelegate.h */,
 				1DFC2C0F1A8C080800ADEA1B /* AppDelegate.m */,
 				1D7600B81A995EAA00E30766 /* PartyDetails.h */,
@@ -240,8 +252,10 @@
 				1DC511D91A91D03B00947C20 /* UserDetails.h */,
 				1DC511DA1A91D03B00947C20 /* UserDetails.m */,
 				1DFC2C141A8C080900ADEA1B /* Main.storyboard */,
-				1D7600BB1A998A6300E30766 /* PartyListViewTableViewController.h */,
-				1D7600BC1A998A6300E30766 /* PartyListViewTableViewController.m */,
+				342D1D741ABFB2DC00FDA67C /* PartyListViewTableViewController.h */,
+				342D1D721ABFB2D600FDA67C /* PartyListViewTableViewController.m */,
+				342D1D751ABFB37300FDA67C /* PartyListTableViewCell.h */,
+				342D1D761ABFB37300FDA67C /* PartyListTableViewCell.m */,
 				1D7600B51A995D3F00E30766 /* PartyDetailsTableViewController.h */,
 				1D7600B61A995D3F00E30766 /* PartyDetailsTableViewController.m */,
 				1DA6A73D1A97159E00BD4420 /* AddMessageTableViewController.h */,
@@ -254,6 +268,8 @@
 				1DC511DD1A91DFCF00947C20 /* LoginViewController.m */,
 				1DE452E81A907D87009EF986 /* MapViewController.h */,
 				1DE452E91A907D87009EF986 /* MapViewController.m */,
+				3491F0851ABF3E9A001FBBC6 /* CustomInfoWindow.h */,
+				3491F0861ABF3E9A001FBBC6 /* CustomInfoWindow.m */,
 				1DFC2C171A8C080900ADEA1B /* Images.xcassets */,
 				1DFC2C191A8C080900ADEA1B /* LaunchScreen.xib */,
 				1DFC2C0A1A8C080800ADEA1B /* Supporting Files */,
@@ -336,7 +352,7 @@
 				TargetAttributes = {
 					1DFC2C061A8C080800ADEA1B = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 2DW23XF3GV;
+						DevelopmentTeam = UMN5N5RD43;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -345,7 +361,7 @@
 					};
 					1DFC2C1F1A8C080900ADEA1B = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 2DW23XF3GV;
+						DevelopmentTeam = UMN5N5RD43;
 						TestTargetID = 1DFC2C061A8C080800ADEA1B;
 					};
 				};
@@ -377,8 +393,10 @@
 				1DBCBD781A9C4A3600C7886A /* Vacaciones-font-ffp-defharo.otf in Resources */,
 				1DBCBD791A9C4A3700C7886A /* Vacaciones-font-ffp-defharo.ttf in Resources */,
 				1DFC2C161A8C080900ADEA1B /* Main.storyboard in Resources */,
+				34B3A5761ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf in Resources */,
 				1DFC2C1B1A8C080900ADEA1B /* LaunchScreen.xib in Resources */,
 				1DFC2C181A8C080900ADEA1B /* Images.xcassets in Resources */,
+				34B3A5751ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf in Resources */,
 				1DFC2C611A8C576000ADEA1B /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,16 +417,18 @@
 			files = (
 				1D014A541A93EEB80052E4FC /* NewsFeed.m in Sources */,
 				1DFC2C101A8C080800ADEA1B /* AppDelegate.m in Sources */,
+				342D1D771ABFB37300FDA67C /* PartyListTableViewCell.m in Sources */,
 				1D7600B71A995D3F00E30766 /* PartyDetailsTableViewController.m in Sources */,
+				3491F0871ABF3E9A001FBBC6 /* CustomInfoWindow.m in Sources */,
 				1D0E13761A932DD10006D292 /* OBShapedButton.m in Sources */,
 				1DC511DB1A91D03B00947C20 /* UserDetails.m in Sources */,
+				342D1D731ABFB2D600FDA67C /* PartyListViewTableViewController.m in Sources */,
 				1D0E137D1A9344BF0006D292 /* LiveFeedTableViewController.m in Sources */,
 				1DFC2C0D1A8C080800ADEA1B /* main.m in Sources */,
 				1DE452EA1A907D87009EF986 /* MapViewController.m in Sources */,
 				1D0E13791A932DD90006D292 /* UIImage+ColorAtPixel.m in Sources */,
 				1D7600C01A99927400E30766 /* MessageTableViewCell.m in Sources */,
 				1DC511DE1A91DFCF00947C20 /* LoginViewController.m in Sources */,
-				1D7600BD1A998A6300E30766 /* PartyListViewTableViewController.m in Sources */,
 				1DA6A73F1A97159E00BD4420 /* AddMessageTableViewController.m in Sources */,
 				1D7600BA1A995EAA00E30766 /* PartyDetails.m in Sources */,
 			);
@@ -545,6 +565,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/lanemiles/Documents/FacebookSDK,
+					/Users/matthew/Documents,
 				);
 				INFOPLIST_FILE = Hopp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -566,6 +587,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/lanemiles/Documents/FacebookSDK,
+					/Users/matthew/Documents,
 				);
 				INFOPLIST_FILE = Hopp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;

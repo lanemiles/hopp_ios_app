@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "OBShapedButton.h"
 #import "PartyDetailsTableViewController.h"
+#import "CustomInfoWindow.h"
 
 @interface MapViewController () <GMSMapViewDelegate, CLLocationManagerDelegate, NSURLConnectionDelegate>
 
@@ -350,14 +351,10 @@
         //name
         //numPeople
         //message (not important for this)
-/*
--(UIView *)mapView:(GMSMapView *) aMapView markerInfoWindow:(GMSMarker*) marker {
 
- //marker.title
- 
- 
+-(UIView *)mapView:(GMSMapView *) aMapView markerInfoWindow:(GMSMarker*) marker {
+    return [[CustomInfoWindow alloc] initForMarker:marker];
 }
-*/
 
 
 
@@ -419,6 +416,8 @@
                 //add back school outlines
                 [self addDarkOverlay];
                 
+                NSLog(@"%@", json);
+                
                 //iterate through locations
                 for (NSDictionary *dict in json) {
                     
@@ -432,7 +431,8 @@
                     marker.title = name;
                     marker.snippet = numPeople;
                     marker.map = _mapView;
-                    //marker.infoWindowAnchor = CGPointMake(.44f, -0.075f);
+                    marker.userData = [dict valueForKey:@"Hopp Level"];
+                    marker.infoWindowAnchor = CGPointMake(-0.40f, 0.25f);
                     
                     //add this information to party information
                     [_partyInformation setObject:dict forKey:marker.title];
@@ -445,17 +445,35 @@
                         [path addCoordinate:position];
                     }
                     GMSPolygon *outline = [GMSPolygon polygonWithPath:path];
-                    outline.strokeWidth = 2;
+                    outline.strokeWidth = 0;
                     outline.map = _mapView;
                     
                     
                     //set the marker and outline color properties
-                    if ([[dict valueForKey:@"NumPeople"] doubleValue] > 0) {
-                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:1.0 green:0 blue:0.0 alpha:1.0]];
+                    if ([[dict valueForKey:@"Hopp Level"]  isEqual: @""]) {
+                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0 blue:1.0 alpha:1.0]];
                         marker.zIndex = 100;
-                        outline.fillColor = [UIColor colorWithRed:1.0 green:0 blue:0 alpha:.3];
-                        outline.strokeColor = [UIColor colorWithRed:1.00 green:0 blue:0 alpha:1];
+                        outline.fillColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:.3];
+                        outline.strokeColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:1];
                         
+                    } else if ([[dict valueForKey:@"Hopp Level"] intValue] == 0) {
+                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0 blue:1.0 alpha:1.0]];
+                        marker.zIndex = 100;
+                        outline.fillColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:.3];
+                        outline.strokeColor = [UIColor colorWithRed:0.00 green:0 blue:1.0 alpha:1];
+                        
+                    }
+                    // NOT FINISHED!!!!
+                    else if ([[dict valueForKey:@"Hopp Level"] intValue] == 1) {
+                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0 blue:1.0 alpha:1.0]];
+                        marker.zIndex=10;
+                        outline.fillColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.3];
+                        outline.strokeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1];
+                    } else if ([[dict valueForKey:@"Hopp Level"] intValue] == 2) {
+                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0 blue:1.0 alpha:1.0]];
+                        marker.zIndex=10;
+                        outline.fillColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.3];
+                        outline.strokeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1];
                     } else {
                         marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0 blue:1.0 alpha:1.0]];
                         marker.zIndex=10;

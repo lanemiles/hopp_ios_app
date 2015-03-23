@@ -53,7 +53,7 @@
     [FBLoginView class];
     
     //setup google maps SDK
-    [GMSServices provideAPIKey:@"AIzaSyCKGZDYbNxEs2y7ch7pKtIq5MtUA5mIWuI"];
+    [GMSServices provideAPIKey:@"AIzaSyBN_Z1R0jbc2Vf6G0jdY-K8BRGsYWumEwM"];
     
     
     return YES;
@@ -141,5 +141,7 @@
     
     return wasHandled;
 }
+
+
 
 @end

@@ -172,7 +172,7 @@
     } else {
         cell.hasVoted = NO;
     }
-    
+    [cell awakeFromNib];
     [_textViews setObject:cell.messageBody forKey:indexPath];
     return cell;
 }
@@ -183,12 +183,12 @@
         return 16.0;
     }
     
-    return 10.0;
+    return 2.0;
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 5.0;
+    return 2.0;
 }
 
 

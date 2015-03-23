@@ -8,6 +8,8 @@
 
 #import "PartyListViewTableViewController.h"
 #import "PartyDetailsTableViewController.h"
+#import "PartyListTableViewCell.h"
+#import "UserDetails.h"
 
 @interface PartyListViewTableViewController () <NSURLConnectionDelegate>
 
@@ -80,9 +82,18 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PartyListCell" forIndexPath:indexPath];
+
+    PartyListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PartyListTableViewCell" forIndexPath:indexPath];
     
-    cell.textLabel.text = [_partyList[indexPath.row] objectForKey: @"Name"];
+    [cell.locationLabel setText:[_partyList[indexPath.row] objectForKey: @"Name"]];
+    [cell.locationLabel setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:14]];
+    
+    CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:[[[UserDetails currentUser] latitude] floatValue] longitude:[[[UserDetails currentUser] longitude] floatValue]];
+    CLLocation *partyLocation = [[CLLocation alloc] initWithLatitude:[[_partyList[indexPath.row] objectForKey: @"Latitude"] floatValue] longitude:[[_partyList[indexPath.row] objectForKey: @"Longitude"] floatValue]];
+    CLLocationDistance meters = [partyLocation distanceFromLocation:currentLocation];
+
+    [cell.distanceLabel setText:[NSString stringWithFormat:@"%.2f miles", (meters/ 1600)]];
+    [cell.distanceLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14]];
     
     return cell;
 }
@@ -106,6 +117,23 @@
 }
 - (void) styleTabBarController {
     self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:.85 green:.1 blue:0 alpha:1];
+}
+
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
+{
+    
+    return 1.0;
+}
+
+- (CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 1.0;
+}
+
+//we want to have the cells have dynamic height based on how much text they have in the message
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50.0;
+    
 }
 
 #pragma mark - NSURLConnection Delegate Methods
@@ -179,19 +207,21 @@
     
     //check if seguing to a party detail TVC
     if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
-        
+
         UINavigationController *navController = [segue destinationViewController];
         PartyDetailsTableViewController *new = (PartyDetailsTableViewController *)([navController viewControllers][0]);
 
-        UITableViewCell *senderCell = (UITableViewCell *)sender;
-        new.seguePartyName = senderCell.textLabel.text;
+        PartyListTableViewCell *senderCell = (PartyListTableViewCell *)sender;
+
+        new.seguePartyName = senderCell.locationLabel.text;
         
     } else {
-        
+      
         PartyDetailsTableViewController *new = (PartyDetailsTableViewController *)segue.destinationViewController;
         
-        UITableViewCell *senderCell = (UITableViewCell *)sender;
-        new.seguePartyName = senderCell.textLabel.text;    }
+        PartyListTableViewCell *senderCell = (PartyListTableViewCell *)sender;
+  
+        new.seguePartyName = senderCell.locationLabel.text;   }
     
 }
 

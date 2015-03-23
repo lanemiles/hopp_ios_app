@@ -15,6 +15,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *time;
 @property (strong, nonatomic) IBOutlet UILabel *location;
 @property (strong, nonatomic) IBOutlet UILabel *pointLabel;
+@property (strong, nonatomic) IBOutlet UIButton *upvoteButton;
+@property (strong, nonatomic) IBOutlet UIButton *downvoteButton;
+@property (strong, nonatomic) IBOutlet UILabel *locationLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *markerImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *heatImageView;
 @property (strong, nonatomic) NSString *messageID;
 
 //booleans to only allow voting once

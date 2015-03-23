@@ -13,11 +13,13 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [self.upvoteButton setBackgroundImage:[UIImage imageNamed:@"thumbsUp.png"] forState:UIControlStateNormal];
+    [self.downvoteButton setBackgroundImage:[UIImage imageNamed:@"thumbsDown.png"] forState:UIControlStateNormal];
 }
 
 -(void) setFrame:(CGRect) frame {
-    frame.origin.x += 10;
-    frame.size.width = self.superview.frame.size.width - (2.0f * 10);
+    // frame.origin.x += 10;
+    // frame.size.width = self.superview.frame.size.width - (2.0f * 10);
     [super setFrame: frame];
 }
 

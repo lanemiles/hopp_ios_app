@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.example.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>com.example.$(PRODUCT_NAME:rfc1034identifier)Matt</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -25,18 +25,20 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb808615315880166</string>
+				<string>fb1565066263779063</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>808615315880166</string>
+	<string>1565066263779063</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Vacaciones-font-ffp-defharo.otf</string>
 		<string>Vacaciones-font-ffp-defharo.ttf</string>
+		<string>SourceSansPro-Bold.ttf</string>
+		<string>SourceSansPro-Regular.ttf</string>
 	</array>
 	<key>FacebookDisplayName</key>
 	<string>Hopp</string>

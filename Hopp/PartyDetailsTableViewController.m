@@ -61,6 +61,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - Notification Methods
 - (void) didLoadData: (NSNotification *) notification {
     
@@ -87,6 +88,8 @@
     
     //start the spinner
     [self.refreshControl beginRefreshing];
+    
+     NSLog(@"%@", [[PartyDetails currentParty] partyMessages]);
     
 }
 
@@ -129,13 +132,10 @@
     //we're showing messages
     else {
         
-         MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TestMessageCell" forIndexPath:indexPath];
+        MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TestMessageCell" forIndexPath:indexPath];
         
         //we want to display the real cell
-        if (_showCell) {
-        
-            //dequeue our cell
-            MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TestMessageCell" forIndexPath:indexPath];
+        if (_showCell && indexPath.row % 2 == 0) {
             
             //set the message
             cell.messageBody.text = [[[[PartyDetails currentParty] partyMessages] objectAtIndex:indexPath.row/2] objectForKey:@"messageBody"];
@@ -165,13 +165,13 @@
             
             [_textViews setObject:cell.messageBody forKey:indexPath];
             
-            _showCell = NO;
-            
-        }
-        
+        _showCell = NO;
+    }
+    
         //we want to be blank
         else {
             
+            NSLog(@"yolo");
             cell.messageBody.text = @"BLANK CELL";
             [_textViews setObject:cell.messageBody forKey:indexPath];
             
@@ -179,7 +179,6 @@
             cell.hidden = YES;
             
             _showCell = YES;
-            
             
         }
         
