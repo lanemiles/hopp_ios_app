@@ -74,6 +74,14 @@
     [self.refreshControl endRefreshing];
 }
 
+//when we receive this message, the News Feed has gotten new messages, so we want to update our table
+- (void) didUpdateMessages: (NSNotification *) notification {
+    
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+    
+}
+
 #pragma mark - Pull To Refresh Methods
 -(void) setUpPullToRefresh {
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -146,7 +154,7 @@
             //set the location
             cell.location.text = [[[[PartyDetails currentParty] partyMessages]  objectAtIndex:indexPath.row/2] objectForKey:@"location"];
             
-            //set the voute count
+            //set the vote count
             cell.pointLabel.text = [[[[PartyDetails currentParty] partyMessages]  objectAtIndex:indexPath.row/2] objectForKey:@"voteCount"];
             
             //and give it the ID
@@ -155,7 +163,35 @@
             //[cell.contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
             // [cell.contentView.layer setBorderWidth:.250f];
             
+//            NSLog(@"%@", [[PartyDetails currentParty] partyMessages]);
+            
+            if ([[[[[PartyDetails currentParty] partyMessages]  objectAtIndex:indexPath.row/2] objectForKey:@"Hopp Level"] intValue] == 0){
+                [cell.heatImageView setImage:[UIImage imageNamed:@"blueHotness"]];
+                [cell.markerImageView setImage:[UIImage imageNamed:@"blueMarker"]];
+                [cell.location setTextColor:[UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1.0]];
+            } else if ([[[[[PartyDetails currentParty] partyMessages]  objectAtIndex:indexPath.row/2] objectForKey:@"Hopp Level"]  intValue] == 1){
+                [cell.heatImageView setImage:[UIImage imageNamed:@"yellowHotness"]];
+                [cell.markerImageView setImage:[UIImage imageNamed:@"yellowMarker"]];
+                [cell.location setTextColor:[UIColor colorWithRed:252.0/255.0 green:176.0/255.0 blue:60.0/255.0 alpha:1]];
+            } else if ([[[[[PartyDetails currentParty] partyMessages]  objectAtIndex:indexPath.row/2] objectForKey:@"Hopp Level"] intValue] == 2){
+                [cell.heatImageView setImage:[UIImage imageNamed:@"orangeHotness"]];
+                [cell.markerImageView setImage:[UIImage imageNamed:@"orangeMarker"]];
+                [cell.location setTextColor:[UIColor colorWithRed:241.0/255.0 green:91.0/255.0 blue:40.0/255.0 alpha:1]];
+            } else {
+                [cell.heatImageView setImage:[UIImage imageNamed:@"redHotness"]];
+                [cell.markerImageView setImage:[UIImage imageNamed:@"redMarker"]];
+                [cell.location setTextColor:[UIColor colorWithRed:223.0/255.0 green:60.0/255.0 blue:38.0/255.0 alpha:1]];
+            }
+            
             NSString *hasVoted = [[[UserDetails currentUser] voteHistory] objectForKey:cell.messageID];
+            
+            [cell awakeFromNib];
+            
+            if ([hasVoted isEqual:@"upVote"]){
+                [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"redThumbsUp.png"] forState:UIControlStateNormal];
+            } else if ([hasVoted isEqual:@"downVote"]){
+                [cell.downvoteButton setBackgroundImage:[UIImage imageNamed:@"redThumbsDown.png"] forState:UIControlStateNormal];
+            }
             
             if (hasVoted != nil) {
                 cell.hasVoted = YES;
@@ -170,12 +206,9 @@
     
         //we want to be blank
         else {
-            
-            NSLog(@"yolo");
             cell.messageBody.text = @"BLANK CELL";
             [_textViews setObject:cell.messageBody forKey:indexPath];
             
-            cell.userInteractionEnabled = NO;
             cell.hidden = YES;
             
             _showCell = YES;

@@ -416,8 +416,6 @@
                 //add back school outlines
                 [self addDarkOverlay];
                 
-                NSLog(@"%@", json);
-                
                 //iterate through locations
                 for (NSDictionary *dict in json) {
                     
@@ -451,34 +449,32 @@
                     
                     //set the marker and outline color properties
                     if ([[dict valueForKey:@"Hopp Level"]  isEqual: @""]) {
-                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0 blue:1.0 alpha:1.0]];
+                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1.0]];
                         marker.zIndex = 100;
-                        outline.fillColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:.3];
-                        outline.strokeColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:1];
+                        outline.fillColor = [UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:.3];
+                        outline.strokeColor = [UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1];
                         
                     } else if ([[dict valueForKey:@"Hopp Level"] intValue] == 0) {
-                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0 blue:1.0 alpha:1.0]];
+                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1.0]];
                         marker.zIndex = 100;
-                        outline.fillColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:.3];
-                        outline.strokeColor = [UIColor colorWithRed:0.00 green:0 blue:1.0 alpha:1];
-                        
+                        outline.fillColor = [UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:.3];
+                        outline.strokeColor = [UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1];
                     }
-                    // NOT FINISHED!!!!
                     else if ([[dict valueForKey:@"Hopp Level"] intValue] == 1) {
-                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0 blue:1.0 alpha:1.0]];
+                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:252.0/255.0 green:176.0/255.0 blue:60.0/255.0 alpha:1.0]];
                         marker.zIndex=10;
-                        outline.fillColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.3];
-                        outline.strokeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1];
+                        outline.fillColor = [UIColor colorWithRed:252.0/255.0 green:176.0/255.0 blue:60.0/255.0 alpha:.3];
+                        outline.strokeColor = [UIColor colorWithRed:252.0/255.0 green:176.0/255.0 blue:60.0/255.0 alpha:1];
                     } else if ([[dict valueForKey:@"Hopp Level"] intValue] == 2) {
-                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0 blue:1.0 alpha:1.0]];
+                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:241.0/255.0 green:91.0/255.0 blue:40.0/255.0 alpha:1.0]];
                         marker.zIndex=10;
-                        outline.fillColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.3];
-                        outline.strokeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1];
+                        outline.fillColor = [UIColor colorWithRed:241.0/255.0 green:91.0/255.0 blue:40.0/255.0 alpha:.3];
+                        outline.strokeColor = [UIColor colorWithRed:241.0/255.0 green:91.0/255.0 blue:40.0/255.0 alpha:1];
                     } else {
-                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:0 green:0 blue:1.0 alpha:1.0]];
+                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:223.0/255.0 green:60.0/255.0 blue:38.0/255.0 alpha:1.0]];
                         marker.zIndex=10;
-                        outline.fillColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.3];
-                        outline.strokeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1];
+                        outline.fillColor = [UIColor colorWithRed:223.0/255.0 green:60.0/255.0 blue:38.0/255.0 alpha:.3];
+                        outline.strokeColor = [UIColor colorWithRed:223.0/255.0 green:60.0/255.0 blue:38.0/255.0 alpha:1];
                     }
                     outline.title = name;
                     [outline setTappable:YES];

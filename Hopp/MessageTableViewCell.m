@@ -31,10 +31,10 @@
 
 #pragma mark - Voting Methods
 - (IBAction)upVotePressed:(UIButton *)sender {
-    
+    NSLog(@"yes");
     if (!_hasVoted) {
         _hasVoted = YES;
-        
+        NSLog(@"yes and hadn't voted yet");
         //TODO: Matt this is one of the API methods
         [[NewsFeed currentFeed] upvoteMessageWithID:_messageID];
     }

@@ -14,12 +14,12 @@
 - (id)initForMarker:(GMSMarker*)marker;
 
 @property NSString *titleString;
-@property NSString *addressString1;
-@property NSString *addressString2;
+//@property NSString *addressString1;
+//@property NSString *addressString2;
 
 @property UILabel *titleLabel;
-@property UILabel *addressLabel1;
-@property UILabel *addressLabel2;
+//@property UILabel *addressLabel1;
+//@property UILabel *addressLabel2;
 
 @property UIImageView *hotnessLevel;
 

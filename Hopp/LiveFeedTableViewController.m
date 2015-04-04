@@ -159,12 +159,44 @@
     //and give it the ID
     cell.messageID = [[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"messageID"];
     
+    if ([[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"locationHotness"] == nil){
+        [cell.heatImageView setImage:[UIImage imageNamed:@"blueHotness"]];
+        [cell.markerImageView setImage:[UIImage imageNamed:@"blueMarker"]];
+        [cell.location setTextColor:[UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1.0]];
+    } else if ([[[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"locationHotness"] intValue] == -1){
+        // [cell.heatImageView setImage:[UIImage imageNamed:@"blueHotness"]];
+        [cell.markerImageView setImage:[UIImage imageNamed:@"marker"]];
+//        [cell.location setTextColor:[UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1.0]];
+    } else if ([[[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"locationHotness"] intValue] == 0){
+        [cell.heatImageView setImage:[UIImage imageNamed:@"blueHotness"]];
+        [cell.markerImageView setImage:[UIImage imageNamed:@"blueMarker"]];
+        [cell.location setTextColor:[UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1.0]];
+    } else if ([[[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"locationHotness"] intValue] == 1){
+        [cell.heatImageView setImage:[UIImage imageNamed:@"yellowHotness"]];
+        [cell.markerImageView setImage:[UIImage imageNamed:@"yellowMarker"]];
+        [cell.location setTextColor:[UIColor colorWithRed:252.0/255.0 green:176.0/255.0 blue:60.0/255.0 alpha:1]];
+    } else if ([[[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"locationHotness"] intValue] == 2){
+        [cell.heatImageView setImage:[UIImage imageNamed:@"orangeHotness"]];
+        [cell.markerImageView setImage:[UIImage imageNamed:@"orangeMarker"]];
+        [cell.location setTextColor:[UIColor colorWithRed:241.0/255.0 green:91.0/255.0 blue:40.0/255.0 alpha:1]];
+    } else {
+        [cell.heatImageView setImage:[UIImage imageNamed:@"redHotness"]];
+        [cell.markerImageView setImage:[UIImage imageNamed:@"redMarker"]];
+        [cell.location setTextColor:[UIColor colorWithRed:223.0/255.0 green:60.0/255.0 blue:38.0/255.0 alpha:1]];
+    }
+    
     //[cell.contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
    // [cell.contentView.layer setBorderWidth:.250f];
     
     //TODO: Matt look here too! This returns nil if the user hasn't voted on the message (by ID) yet and the vote if they have.
     NSString *hasVoted = [[[UserDetails currentUser] voteHistory] objectForKey:cell.messageID];
+    [cell awakeFromNib];
     
+    if ([hasVoted isEqual:@"upVote"]){
+        [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"redThumbsUp.png"] forState:UIControlStateNormal];
+    } else if ([hasVoted isEqual:@"downVote"]){
+        [cell.downvoteButton setBackgroundImage:[UIImage imageNamed:@"redThumbsDown.png"] forState:UIControlStateNormal];
+    }
     
     //check if the user has already voted on this message
     if (hasVoted != nil) {
@@ -172,7 +204,7 @@
     } else {
         cell.hasVoted = NO;
     }
-    [cell awakeFromNib];
+    
     [_textViews setObject:cell.messageBody forKey:indexPath];
     return cell;
 }
@@ -180,7 +212,7 @@
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 16.0;
+        return 4.0;
     }
     
     return 2.0;

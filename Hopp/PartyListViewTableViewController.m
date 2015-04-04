@@ -82,6 +82,8 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"%@", _partyList);
 
     PartyListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PartyListTableViewCell" forIndexPath:indexPath];
     
@@ -95,6 +97,19 @@
     [cell.distanceLabel setText:[NSString stringWithFormat:@"%.2f miles", (meters/ 1600)]];
     [cell.distanceLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14]];
     
+    if ([[_partyList[indexPath.row] objectForKey: @"Hopp Level"] isEqual:@""]) {
+        [cell.hotnessImageView setImage:[UIImage imageNamed:@"blueHotnessCircle"]];
+    } else if ([[_partyList[indexPath.row] objectForKey: @"Hopp Level"] intValue] == 0) {
+        [cell.hotnessImageView setImage:[UIImage imageNamed:@"blueHotnessCircle"]];
+    }
+    else if ([[_partyList[indexPath.row] objectForKey: @"Hopp Level"] intValue] == 1) {
+        [cell.hotnessImageView setImage:[UIImage imageNamed:@"yellowHotnessCircle"]];
+    } else if ([[_partyList[indexPath.row] objectForKey: @"Hopp Level"] intValue] == 2) {
+        [cell.hotnessImageView setImage:[UIImage imageNamed:@"orangeHotnessCircle"]];
+    } else {
+        [cell.hotnessImageView setImage:[UIImage imageNamed:@"redHotnessCircle"]];
+    }
+
     return cell;
 }
 

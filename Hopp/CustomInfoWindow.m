@@ -23,7 +23,7 @@
         [self setBackgroundColor:[UIColor colorWithPatternImage:image]];
         
         // set up hotness image
-        if ([marker.userData  isEqual: @"0"]) {
+        if ([marker.userData isEqual: @"0"] || [marker.userData isEqual: @""]) {
             self.hotnessLevel = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"blueHotnessCircle.png"]];
         } else if ([marker.userData  isEqual: @"1"]) {
             self.hotnessLevel = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"yellowHotnessCircle.png"]];
@@ -37,8 +37,8 @@
         
         // set label properties for info window -- eventually need to ensure that text fits in label
         self.titleString = [marker.title uppercaseString];
-        self.addressString1 = @"333 N College Way";
-        self.addressString2 = @"Claremont, CA 91711";
+//        self.addressString1 = @"333 N College Way";
+//        self.addressString2 = @"Claremont, CA 91711";
         
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 27.5, 80, 40)];
         [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
