@@ -15,6 +15,7 @@
 		1D7600B71A995D3F00E30766 /* PartyDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600B61A995D3F00E30766 /* PartyDetailsTableViewController.m */; };
 		1D7600BA1A995EAA00E30766 /* PartyDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600B91A995EAA00E30766 /* PartyDetails.m */; };
 		1D7600C01A99927400E30766 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600BF1A99927400E30766 /* MessageTableViewCell.m */; };
+		1D9EA9501AF86C0B0095EF0E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9EA94F1AF86C0B0095EF0E /* FacebookSDK.framework */; };
 		1DA6A73F1A97159E00BD4420 /* AddMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA6A73E1A97159E00BD4420 /* AddMessageTableViewController.m */; };
 		1DBCBD781A9C4A3600C7886A /* Vacaciones-font-ffp-defharo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1DBCBD761A9C49E500C7886A /* Vacaciones-font-ffp-defharo.otf */; };
 		1DBCBD791A9C4A3700C7886A /* Vacaciones-font-ffp-defharo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DBCBD771A9C49E500C7886A /* Vacaciones-font-ffp-defharo.ttf */; };
@@ -52,7 +53,6 @@
 		1DFC2C711A8C57DE00ADEA1B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2C701A8C57DE00ADEA1B /* OpenGLES.framework */; };
 		342D1D731ABFB2D600FDA67C /* PartyListViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D1D721ABFB2D600FDA67C /* PartyListViewTableViewController.m */; };
 		342D1D771ABFB37300FDA67C /* PartyListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D1D761ABFB37300FDA67C /* PartyListTableViewCell.m */; };
-		3491F0841ABF3C61001FBBC6 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3491F0831ABF3C61001FBBC6 /* FacebookSDK.framework */; };
 		3491F0871ABF3E9A001FBBC6 /* CustomInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3491F0861ABF3E9A001FBBC6 /* CustomInfoWindow.m */; };
 		34B3A5751ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34B3A5731ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf */; };
 		34B3A5761ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34B3A5741ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf */; };
@@ -84,6 +84,7 @@
 		1D7600B91A995EAA00E30766 /* PartyDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyDetails.m; sourceTree = "<group>"; };
 		1D7600BE1A99927400E30766 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
 		1D7600BF1A99927400E30766 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		1D9EA94F1AF86C0B0095EF0E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		1DA6A73D1A97159E00BD4420 /* AddMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMessageTableViewController.h; sourceTree = "<group>"; };
 		1DA6A73E1A97159E00BD4420 /* AddMessageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMessageTableViewController.m; sourceTree = "<group>"; };
 		1DBCBD761A9C49E500C7886A /* Vacaciones-font-ffp-defharo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Vacaciones-font-ffp-defharo.otf"; sourceTree = "<group>"; };
@@ -132,7 +133,6 @@
 		342D1D741ABFB2DC00FDA67C /* PartyListViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyListViewTableViewController.h; sourceTree = "<group>"; };
 		342D1D751ABFB37300FDA67C /* PartyListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyListTableViewCell.h; sourceTree = "<group>"; };
 		342D1D761ABFB37300FDA67C /* PartyListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyListTableViewCell.m; sourceTree = "<group>"; };
-		3491F0831ABF3C61001FBBC6 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK.framework; sourceTree = "<group>"; };
 		3491F0851ABF3E9A001FBBC6 /* CustomInfoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInfoWindow.h; sourceTree = "<group>"; };
 		3491F0861ABF3E9A001FBBC6 /* CustomInfoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoWindow.m; sourceTree = "<group>"; };
 		34B3A5731ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = SOURCE_ROOT; };
@@ -149,7 +149,6 @@
 				1DFC2C451A8C0BBC00ADEA1B /* SystemConfiguration.framework in Frameworks */,
 				1D396E141A92895E0040382E /* StoreKit.framework in Frameworks */,
 				1DFC2C3F1A8C0BAE00ADEA1B /* QuartzCore.framework in Frameworks */,
-				3491F0841ABF3C61001FBBC6 /* FacebookSDK.framework in Frameworks */,
 				1DFC2C711A8C57DE00ADEA1B /* OpenGLES.framework in Frameworks */,
 				1DFC2C471A8C0BC100ADEA1B /* libz.dylib in Frameworks */,
 				1DFC2C6F1A8C57D300ADEA1B /* libicucore.dylib in Frameworks */,
@@ -165,6 +164,7 @@
 				1DFC2C411A8C0BB200ADEA1B /* Security.framework in Frameworks */,
 				1DFC2C3D1A8C0BA800ADEA1B /* MobileCoreServices.framework in Frameworks */,
 				1DFC2C391A8C0B9E00ADEA1B /* CoreGraphics.framework in Frameworks */,
+				1D9EA9501AF86C0B0095EF0E /* FacebookSDK.framework in Frameworks */,
 				1DFC2C371A8C0B9800ADEA1B /* CFNetwork.framework in Frameworks */,
 				1DFC2C351A8C0B9400ADEA1B /* AudioToolbox.framework in Frameworks */,
 				1DFC2C331A8C0B6B00ADEA1B /* Parse.framework in Frameworks */,
@@ -195,7 +195,7 @@
 		1DFC2BFE1A8C080800ADEA1B = {
 			isa = PBXGroup;
 			children = (
-				3491F0831ABF3C61001FBBC6 /* FacebookSDK.framework */,
+				1D9EA94F1AF86C0B0095EF0E /* FacebookSDK.framework */,
 				1D396E131A92895E0040382E /* StoreKit.framework */,
 				1DE452ED1A9080F7009EF986 /* Social.framework */,
 				1DE452EB1A9080C8009EF986 /* Accounts.framework */,
