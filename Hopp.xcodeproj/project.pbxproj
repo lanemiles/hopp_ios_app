@@ -352,7 +352,7 @@
 				TargetAttributes = {
 					1DFC2C061A8C080800ADEA1B = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = UMN5N5RD43;
+						DevelopmentTeam = 2DW23XF3GV;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -361,7 +361,7 @@
 					};
 					1DFC2C1F1A8C080900ADEA1B = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = UMN5N5RD43;
+						DevelopmentTeam = 2DW23XF3GV;
 						TestTargetID = 1DFC2C061A8C080800ADEA1B;
 					};
 				};
@@ -511,7 +511,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "8ea016e2-0b67-4f70-97bb-ba10694162af";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -548,7 +548,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "8ea016e2-0b67-4f70-97bb-ba10694162af";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
