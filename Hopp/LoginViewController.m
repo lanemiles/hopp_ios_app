@@ -43,7 +43,7 @@
 - (void) receivedNewLocation: (NSNotification *) notification {
     
     //we set logged in to true
-    NSLog(@"Got notification and value is: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"]);
+  //   NSLog(@"Got notification and value is: %d", [[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"]);
    
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"] == true) {
         
@@ -74,7 +74,7 @@
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     
-    NSLog(@"Logged in via FB");
+   //  NSLog(@"Logged in via FB");
     
     //if they successfully login via facebook, we want to get a location, register them, and never do that again
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MapViewControllerShouldPostNewLocation"

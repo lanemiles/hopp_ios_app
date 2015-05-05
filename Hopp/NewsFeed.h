@@ -14,7 +14,7 @@
 @property (strong, nonatomic) NSArray *messages;
 
 //network methods
-- (void) getMessages;
+- (void) getMessagesWithSort: (int) sort;
 - (void) postMessageWithMessageBody: (NSString *)body;
 - (void) upvoteMessageWithID: (NSString *)messageID;
 - (void) downvoteMessageWithID: (NSString *)messageID;
@@ -25,5 +25,8 @@
 //sorting methods
 - (void) sortMessagesByNewness;
 - (void) sortMessagesByHotness;
+
+//boolean
+@property BOOL sortByHotness;
 
 @end

@@ -10,6 +10,8 @@
 
 @interface MapViewController : UIViewController
 
+@property(strong, nonatomic) NSArray *jsonArray;
+
 //this is called by the app delegate on backgrounding
 - (void) stopConstantUpdates;
 

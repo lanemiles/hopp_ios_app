@@ -139,6 +139,30 @@
     [self styleNavigationController];
     [self styleTabBarController];
     
+    
+}
+
+
+- (void)doit {
+    [super viewDidAppear:YES];
+    //first, check on logged in status
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"disclaimerAccepted"] != 1) {
+       
+        [self.tabBarController performSegueWithIdentifier:@"tac_segue" sender:self.tabBarController];
+    }
+    else {
+        
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"] == false) {
+        [self.tabBarController performSegueWithIdentifier:@"Login" sender:self.tabBarController];
+    } else {
+        [[UserDetails currentUser] getUserDetails];
+    }
+    }
+    
+    
+    
+    //send off our request to get markers
+    [self getPartyLocationMarkers];
 }
 
 //we want to make our network calls here
@@ -146,19 +170,7 @@
 //get new pins
 //check if we are logged in (this cannot happen in VWA)
 - (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    
-    //first, check on logged in status
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"] == false) {
-        [self.tabBarController performSegueWithIdentifier:@"Login" sender:self.tabBarController];
-    } else {
-        [[UserDetails currentUser] getUserDetails];
-    }
-    
-    
-    
-    //send off our request to get markers
-    [self getPartyLocationMarkers];
+    [self performSelector:@selector(doit) withObject:nil afterDelay:0.1];
     
 }
 
@@ -230,13 +242,21 @@
     [_spinnerView stopAnimating];
 }
 
+
+- (void) mapView: (GMSMapView *) mapView didTapAtCoordinate: (CLLocationCoordinate2D) coordinate {
+    // start updating location again
+    [_locationManager startUpdatingLocation];
+}
+
+
 - (BOOL) mapView: (GMSMapView *) mapView  didTapMarker:(GMSMarker *)marker {
     CGPoint point = [_mapView.projection pointForCoordinate:marker.position];
     GMSCameraUpdate *camera =
     [GMSCameraUpdate setTarget:[_mapView.projection coordinateForPoint:point]];
     [_mapView animateWithCameraUpdate:camera];
     
-    
+    // temporarily stop updating location
+    [_locationManager stopUpdatingLocation];
     
     GMSCameraUpdate *update1 = [GMSCameraUpdate zoomTo:19];
     [_mapView animateWithCameraUpdate:update1];
@@ -280,11 +300,12 @@
     //to make our dark overlay, we just do a big overlay with a dark bg and medium opacity?
     //TODO: do this better
     GMSMutablePath *other = [GMSMutablePath path];
-    [other addCoordinate:CLLocationCoordinate2DMake(34.110484, -117.724027)];
-    [other addCoordinate:CLLocationCoordinate2DMake(34.111092, -117.689668)];
-    [other addCoordinate:CLLocationCoordinate2DMake(34.084754, -117.686852)];
-    [other addCoordinate:CLLocationCoordinate2DMake(34.085567, -117.732380)];
-    [other addCoordinate:CLLocationCoordinate2DMake(34.110484, -117.724027)];
+
+    [other addCoordinate:CLLocationCoordinate2DMake(50.243492, -127.288194)];
+    [other addCoordinate:CLLocationCoordinate2DMake(24.301762, -122.278429)];
+    [other addCoordinate:CLLocationCoordinate2DMake(24.221634, -72.004994)];
+    [other addCoordinate:CLLocationCoordinate2DMake(50.467795, -62.688588)];
+    [other addCoordinate:CLLocationCoordinate2DMake(50.243492, -127.288194)];
     // Create the polygon, and assign it to the map.
     GMSPolygon *otherPolygon = [GMSPolygon polygonWithPath:other];
     float valNum = (20.0/255);
@@ -404,8 +425,11 @@
                                                          options:kNilOptions
                                                            error:&error] objectForKey:@"Data"];
         if (error) {
-            NSLog(@"%@", error);
+           //  NSLog(@"%@", error);
         } else {
+            
+            // save the json
+            self.jsonArray = json;
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -471,10 +495,14 @@
                         outline.fillColor = [UIColor colorWithRed:241.0/255.0 green:91.0/255.0 blue:40.0/255.0 alpha:.3];
                         outline.strokeColor = [UIColor colorWithRed:241.0/255.0 green:91.0/255.0 blue:40.0/255.0 alpha:1];
                     } else {
-                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:223.0/255.0 green:60.0/255.0 blue:38.0/255.0 alpha:1.0]];
+//                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:223.0/255.0 green:60.0/255.0 blue:38.0/255.0 alpha:1.0]];
+//                        marker.zIndex=10;
+//                        outline.fillColor = [UIColor colorWithRed:223.0/255.0 green:60.0/255.0 blue:38.0/255.0 alpha:.3];
+//                        outline.strokeColor = [UIColor colorWithRed:223.0/255.0 green:60.0/255.0 blue:38.0/255.0 alpha:1];
+                        marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:247.0/255.0 green:4.0/255.0 blue:0.0/255.0 alpha:1.0]];
                         marker.zIndex=10;
-                        outline.fillColor = [UIColor colorWithRed:223.0/255.0 green:60.0/255.0 blue:38.0/255.0 alpha:.3];
-                        outline.strokeColor = [UIColor colorWithRed:223.0/255.0 green:60.0/255.0 blue:38.0/255.0 alpha:1];
+                        outline.fillColor = [UIColor colorWithRed:247.0/255.0 green:4.0/255.0 blue:0.0/255.0 alpha:.3];
+                        outline.strokeColor = [UIColor colorWithRed:247.0/255.0 green:4.0/255.0 blue:0.0/255.0 alpha:1];
                     }
                     outline.title = name;
                     [outline setTappable:YES];
@@ -499,7 +527,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     // The request has failed for some reason!
     // Check the error var
-    NSLog(@"%@", error);
+   // NSLog(@"%@", error);
 }
 
 #pragma mark - Tab and Nav Bar Styling
@@ -535,13 +563,19 @@
 
         UINavigationController *navController = [segue destinationViewController];
         PartyDetailsTableViewController *new = (PartyDetailsTableViewController *)([navController viewControllers][0]);
+            
         if ([sender isKindOfClass:[GMSMarker class]]) {
             
             GMSMarker *temp = (GMSMarker*) sender;
             new.seguePartyName = temp.title;
+            
+            // pass details of the party
+            for (NSDictionary *dict in self.jsonArray) {
+                if ([[dict valueForKey:@"Name"] isEqual:temp.title]){
+                    new.seguePartyDetails = dict;
+                }
+            }
         }
-        
-        
         
     } else {
         
@@ -551,6 +585,13 @@
             GMSMarker *temp = (GMSMarker*) sender;
             
             new.seguePartyName = temp.title;
+            
+            // pass details of the party
+            for (NSDictionary *dict in self.jsonArray) {
+                if ([[dict valueForKey:@"Name"] isEqual:temp.title]){
+                    new.seguePartyDetails = dict;
+                }
+            }
         }
     }
     

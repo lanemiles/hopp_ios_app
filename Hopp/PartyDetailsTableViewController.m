@@ -9,7 +9,9 @@
 #import "PartyDetailsTableViewController.h"
 #import "PartyDetails.h"
 #import "MessageTableViewCell.h"
+#import "DetailsTableViewCell.h"
 #import "UserDetails.h"
+#import "NewsFeed.h"
 
 @interface PartyDetailsTableViewController ()
 
@@ -29,10 +31,17 @@
     
     _showCell = YES;
     
+    self.tableView.contentInset = UIEdgeInsetsMake(-36.0f, 0.0f, 0.0f, 0.0f);
+    
     //register for the notifications we will receive from Party Details
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didLoadData:)
                                                  name:@"PartyDetailsDidLoadData"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didUpdateMessages:)
+                                                 name:@"NewsFeedDidUpdateMessages"
                                                object:nil];
     
     //initialize our textView dictionary
@@ -40,6 +49,9 @@
     
     //set up pull to refresh
     [self setUpPullToRefresh];
+    
+    // NSLog(@"%@", self.seguePartyDetails);
+    self.tableView.tableHeaderView = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -52,7 +64,7 @@
     [self.refreshControl beginRefreshing];
     
     //set our title
-    self.navigationItem.title = _seguePartyName;
+    self.navigationItem.title = @"PARTY DETAILS";
     
 }
 
@@ -97,34 +109,14 @@
     //start the spinner
     [self.refreshControl beginRefreshing];
     
-     NSLog(@"%@", [[PartyDetails currentParty] partyMessages]);
+    //  NSLog(@"%@", [[PartyDetails currentParty] partyMessages]);
     
 }
 
 #pragma mark - Table view data source
-
-//we have 2 sections: demographics and messsages
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 2;
-}
-
 //we have 1 for demographics (for now), and count of PartyDetails message's array
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    // Return the number of rows in the section.
-    switch (section) {
-        case 0:
-            return 1;
-            break;
-        case 1:
-            return [[PartyDetails currentParty] partyMessages].count*2-1;
-            break;
-            
-        default:
-            return 0;
-            break;
-    }
+    return 1;
 }
 
 
@@ -132,8 +124,115 @@
     
     //if we're doing the demographics
     if (indexPath.section == 0) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DetailsTestCell" forIndexPath:indexPath];
-        cell.textLabel.text = [NSString stringWithFormat:@"%d",[[PartyDetails currentParty] numPeople]];
+        DetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TestDetailsCell" forIndexPath:indexPath];
+        
+        int percent = [[self.seguePartyDetails objectForKey:@"Percent Girls"] intValue]/5;
+        NSString *femString = @"";
+        NSString *malString = @"";
+        
+        for (int i = 1; i <= percent; i++)
+        {
+            femString = [femString stringByAppendingString:@"ll"];
+        }
+        
+        int count = [femString length];
+        int otherCount = 40 - count;
+        
+        for (int i = 1; i <= otherCount; i++)
+        {
+            malString = [malString stringByAppendingString:@"l"];
+        }
+        
+        [cell.malesLabel setTextColor:[UIColor colorWithRed:37.0/255.0 green:170.0/255.0 blue:224.0/255.0 alpha:1]];
+        [cell.femalesLabel setTextColor:[UIColor colorWithRed:237.0/255.0 green:36.0/255.0 blue:123.0/255.0 alpha:1]];
+        
+        [cell.malesMeterLabel setText:malString];
+        [cell.malesMeterLabel setTextColor:[UIColor colorWithRed:37.0/255.0 green:170.0/255.0 blue:224.0/255.0 alpha:1]];
+        [cell.malesMeterLabel setBackgroundColor:[UIColor colorWithRed:37.0/255.0 green:170.0/255.0 blue:224.0/255.0 alpha:1]];
+        [cell.malesMeterLabel sizeToFit];
+        
+        [cell.femalesMeterLabel setText:femString];
+        [cell.femalesMeterLabel setTextColor:[UIColor colorWithRed:237.0/255.0 green:36.0/255.0 blue:123.0/255.0 alpha:1]];
+        [cell.femalesMeterLabel setBackgroundColor:[UIColor colorWithRed:237.0/255.0 green:36.0/255.0 blue:123.0/255.0 alpha:1]];
+        [cell.femalesMeterLabel sizeToFit];
+        
+        if ([[self.seguePartyDetails objectForKey:@"Dress Code"] isEqual: @"theme"]){
+            [cell.dressTypeImageView setImage:[UIImage imageNamed:@"theme.png"]];
+            [cell.dressTypeLabel setText:@"Theme"];
+        } else if ([[self.seguePartyDetails objectForKey:@"Dress Code"] isEqual: @"formal"]) {
+            [cell.dressTypeImageView setImage:[UIImage imageNamed:@"formal.png"]];
+            [cell.dressTypeLabel setText:@"Formal"];
+        } else { // casual
+            [cell.dressTypeImageView setImage:[UIImage imageNamed:@"casual.png"]];
+            [cell.dressTypeLabel setText:@"Casual"];
+        }
+        
+        // NSLog(@"%@", [[self.seguePartyDetails objectForKey:@"Party Types"] objectAtIndex:0]);
+        
+        // NSLog(@"sup");
+        // NSLog(@"%@", NSStringFromClass([[self.seguePartyDetails objectForKey:@"Party Types"] class]));
+        if (!([[self.seguePartyDetails objectForKey:@"Party Types"] isKindOfClass:[NSArray class]])){
+            // NSLog(@"yolo;");
+        }
+        else if ([[self.seguePartyDetails objectForKey:@"Party Types"] count] == 0){
+            [cell.partyTypeImageView setImage:[UIImage imageNamed:@"pregame.png"]];
+            [cell.partyTypeLabel setText:@"Pregame"];
+        } else if ([[[self.seguePartyDetails objectForKey:@"Party Types"] objectAtIndex:0] isEqual: @"pregame"]){
+            [cell.partyTypeImageView setImage:[UIImage imageNamed:@"pregame.png"]];
+            [cell.partyTypeLabel setText:@"Pregame"];
+        } else if ([[[self.seguePartyDetails objectForKey:@"Party Types"] objectAtIndex:0] isEqual: @"dorm"]) {
+            [cell.partyTypeImageView setImage:[UIImage imageNamed:@"dorm.png"]];
+            [cell.partyTypeLabel setText:@"Dorm Party"];
+        } else if ([[[self.seguePartyDetails objectForKey:@"Party Types"] objectAtIndex:0] isEqual: @"dance"]) {
+            [cell.partyTypeImageView setImage:[UIImage imageNamed:@"dance.png"]];
+            [cell.partyTypeLabel setText:@"Dance Party"];
+        } else { // after
+            [cell.partyTypeImageView setImage:[UIImage imageNamed:@"afterparty.png"]];
+            [cell.partyTypeLabel setText:@"After Party"];
+        }
+        
+        // NSLog(@"%@", [self.seguePartyDetails objectForKey:@"Drink List"]);
+        if (!([[self.seguePartyDetails objectForKey:@"Drink List"] isKindOfClass:[NSArray class]])){
+            // NSLog(@"yolo;");
+        }
+        else if ([[self.seguePartyDetails objectForKey:@"Drink List"] count] == 0){
+            [cell.noAlcoholImageView setImage:[UIImage imageNamed:@"none_highlighted.png"]];
+            [cell.noAlcoholLabel setTextColor:[UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1]];
+            [cell.noAlcoholLabel2 setTextColor:[UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1]];
+        }
+        else {
+            for (NSString *s in [self.seguePartyDetails objectForKey:@"Drink List"]) {
+                if ([s isEqual:@"beer"]){
+                    [cell.beerImageView setImage:[UIImage imageNamed:@"beer_highlighted.png"]];
+                    [cell.beerLabel setTextColor:[UIColor colorWithRed:252.0/255.0 green:176.0/255.0 blue:60.0/255.0 alpha:1]];
+                } else if ([s isEqual:@"wine"]){
+                    [cell.wineImageView setImage:[UIImage imageNamed:@"wine_highlighted.png"]];
+                    [cell.wineLabel setTextColor:[UIColor colorWithRed:223.0/255.0 green:60.0/255.0 blue:38.0/255.0 alpha:1]];
+                } else if ([s isEqual:@"hard"]){
+                    [cell.liquorImageView setImage:[UIImage imageNamed:@"liquor_highlighted.png"]];
+                    [cell.liquorLabel setTextColor:[UIColor colorWithRed:241.0/255.0 green:91.0/255.0 blue:40.0/255.0 alpha:1]];
+                    [cell.liquorLabel2 setTextColor:[UIColor colorWithRed:241.0/255.0 green:91.0/255.0 blue:40.0/255.0 alpha:1]];
+                } else if ([s isEqual:@"none"]){
+                    [cell.noAlcoholImageView setImage:[UIImage imageNamed:@"none_highlighted.png"]];
+                    [cell.noAlcoholLabel setTextColor:[UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1]];
+                    [cell.noAlcoholLabel2 setTextColor:[UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1]];
+                }
+            }
+        }
+        
+        if ([[self.seguePartyDetails objectForKey:@"Hopp Level"] intValue] == 0){
+            [cell.hotnessImageView setImage:[UIImage imageNamed:@"blueHotness.png"]];
+        } else if ([[self.seguePartyDetails objectForKey:@"Hopp Level"] intValue] == 1){
+            [cell.hotnessImageView setImage:[UIImage imageNamed:@"yellowHotness.png"]];
+        } else if ([[self.seguePartyDetails objectForKey:@"Hopp Level"] intValue] == 2){
+            [cell.hotnessImageView setImage:[UIImage imageNamed:@"orangeHotness.png"]];
+        } else { // 3
+            [cell.hotnessImageView setImage:[UIImage imageNamed:@"redHotness.png"]];
+        }
+        
+        [cell.locationLabel setText:[self.seguePartyDetails objectForKey:@"Name"]];
+        
+        
          return cell;
     }
     
@@ -225,7 +324,7 @@
     
     //if we're doing demographcs
     if (indexPath.section == 0) {
-        return 44;
+        return 590;
     }
     
     //else, we're doing messages
@@ -264,22 +363,42 @@
     return size.height;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    NSString *sectionName;
+//    switch (section)
+//    {
+//        case 0:
+//            sectionName = nil;
+//            break;
+//        case 1:
+//            sectionName = [NSString stringWithFormat:@"MESSAGES FROM %@", [[PartyDetails currentParty] partyName]];
+//            break;
+//        default:
+//            sectionName = @"";
+//            break;
+//    }
+//    return sectionName;
+//}
+
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UIView *headerView;
+//    if (section == 0){
+//        headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,0,0)];
+//    } else {
+//        UILabel *objLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,320,40)];
+//        objLabel.text = @"Post";
+//        objLabel.textColor = [UIColor blackColor];
+//        [headerView addSubview:objLabel];
+//    }
+//    return headerView;
+//}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    NSString *sectionName;
-    switch (section)
-    {
-        case 0:
-            sectionName = @"DEMOGRAPHICS";
-            break;
-        case 1:
-            sectionName = [NSString stringWithFormat:@"MESSAGES FROM %@", [[PartyDetails currentParty] partyName]];
-            break;
-        default:
-            sectionName = @"";
-            break;
-    }
-    return sectionName;
+    return 0;
 }
 
 

@@ -11,6 +11,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import "MapViewController.h"
+#import "TermsAndConditionsViewController.h"
 
 
 @interface AppDelegate ()
@@ -53,7 +54,7 @@
     [FBLoginView class];
     
     //setup google maps SDK
-    [GMSServices provideAPIKey:@"AIzaSyBN_Z1R0jbc2Vf6G0jdY-K8BRGsYWumEwM"];
+    [GMSServices provideAPIKey:@"AIzaSyAvPVcbsTdQorBKOPnxWXRvp1iHMW81Hjk"];
     
     
     return YES;
@@ -79,9 +80,17 @@
 {
     //to handle the silent notification, we do things not asynch, but sync because of time constraints and the handler
 
-    //so we get our controller
-    MapViewController* mainController = (MapViewController*)  [[[[((UITabBarController *)self.window.rootViewController) viewControllers] objectAtIndex:0] viewControllers] objectAtIndex:0];
-    [mainController fetchNewDataWithCompletionHandler:handler];
+//    int disclaimerAccepted = [[NSUserDefaults standardUserDefaults] integerForKey:@"disclaimerAccepted"];
+//    
+//    if (disclaimerAccepted == 1){
+//    //so we get our controller
+    
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tac_approved"];
+    
+        MapViewController* mainController = (MapViewController*)  [[[[((UITabBarController *)self.window.rootViewController) viewControllers] objectAtIndex:0] viewControllers] objectAtIndex:0];
+        [mainController fetchNewDataWithCompletionHandler:handler];
+  //  }
     
     //Success
     
@@ -95,10 +104,17 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    int disclaimerAccepted = [[NSUserDefaults standardUserDefaults] integerForKey:@"disclaimerAccepted"];
     
-    //we want to stop the constant GPS updating if this happens from the MapViewController
-    MapViewController* mapVC = (MapViewController*)  [[[[((UITabBarController *)self.window.rootViewController) viewControllers] objectAtIndex:0] viewControllers] objectAtIndex:0];
-    [mapVC stopConstantUpdates];
+//    if (disclaimerAccepted == 1){
+//        
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tac_approved"];
+    
+        //we want to stop the constant GPS updating if this happens from the MapViewController
+        MapViewController* mapVC = (MapViewController*)  [[[[((UITabBarController *)self.window.rootViewController) viewControllers] objectAtIndex:0] viewControllers] objectAtIndex:0];
+        [mapVC stopConstantUpdates];
+  //  }
     
     
 }
@@ -106,17 +122,24 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
+    int disclaimerAccepted = [[NSUserDefaults standardUserDefaults] integerForKey:@"disclaimerAccepted"];
+    
     //when we enter the foreground, let's make sure if we are going back to the mapview we turn back on constant updating
     //if we are loading into the mapVC, turn it back on
+//    if (disclaimerAccepted == 1){
+//        //get map VC
+        
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"tac_approved"];
     
-    //get map VC
-     MapViewController* mapVC = (MapViewController*)  [[[[((UITabBarController *)self.window.rootViewController) viewControllers] objectAtIndex:0] viewControllers] objectAtIndex:0];
+        MapViewController* mapVC = (MapViewController*)  [[[[((UITabBarController *)self.window.rootViewController) viewControllers] objectAtIndex:0] viewControllers] objectAtIndex:0];
     
-    //start the spinner, which we can accomplish by making this as if its a regular view will appear
-    if (mapVC.isViewLoaded && mapVC.view.window) {
-        [mapVC viewWillAppear:YES];
-        [mapVC viewDidAppear:YES];
-    }
+        //start the spinner, which we can accomplish by making this as if its a regular view will appear
+        if (mapVC.isViewLoaded && mapVC.view.window) {
+            [mapVC viewWillAppear:YES];
+            [mapVC viewDidAppear:YES];
+        }
+    //}
 
 }
 

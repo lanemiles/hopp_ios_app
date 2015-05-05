@@ -20,6 +20,8 @@
 //for showing points
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *hoppPoints;
 
+@property int segValue;
+
 @end
 
 @implementation LiveFeedTableViewController
@@ -30,6 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //init seg control
+    _segValue = 1;
+    
     //register for the notifications we will receive from the News Feed
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didUpdateMessages:)
@@ -38,6 +43,7 @@
     
     //set up pull to refresh
     [self setUpPullToRefresh];
+    
     
     //initialize our text view dictionary
     _textViews = [[NSMutableDictionary alloc] init];
@@ -57,7 +63,9 @@
     [self.refreshControl beginRefreshing];
     
     //get news feed messages
-    [[NewsFeed currentFeed] getMessages];
+    [[NewsFeed currentFeed] getMessagesWithSort:_segValue];
+    
+
     
     //we would like our table to have a gray background
     [[[UIApplication sharedApplication] keyWindow] setBackgroundColor:[UIColor colorWithRed:.8 green:.8 blue:.8 alpha:1.0]];
@@ -65,9 +73,16 @@
     
 }
 
+
+- (void)doit {
+    [self.tableView reloadData];
+}
+
+
 //more things to do here
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
+    [self performSelector:@selector(doit) withObject:nil afterDelay:1];
 
 }
 
@@ -80,12 +95,12 @@
 
 //when we receive this message, the News Feed has gotten new messages, so we want to update our table
 - (void) didUpdateMessages: (NSNotification *) notification {
-
+    
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
     
     //set the points
-    _hoppPoints.title = [[UserDetails currentUser] points];
+//    _hoppPoints.title = [[UserDetails currentUser] points];
     
 }
 
@@ -162,11 +177,11 @@
     if ([[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"locationHotness"] == nil){
         [cell.heatImageView setImage:[UIImage imageNamed:@"blueHotness"]];
         [cell.markerImageView setImage:[UIImage imageNamed:@"blueMarker"]];
-        [cell.location setTextColor:[UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1.0]];
+        [cell.location setTextColor:[UIColor grayColor]];
     } else if ([[[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"locationHotness"] intValue] == -1){
-        // [cell.heatImageView setImage:[UIImage imageNamed:@"blueHotness"]];
+        [cell.heatImageView setImage:nil];
         [cell.markerImageView setImage:[UIImage imageNamed:@"marker"]];
-//        [cell.location setTextColor:[UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1.0]];
+        [cell.location setTextColor:[UIColor colorWithRed:160.0/255.0 green:160.0/255.0 blue:160.0/240.0 alpha:1.0]];
     } else if ([[[[[NewsFeed currentFeed] messages] objectAtIndex:indexPath.section] objectForKey:@"locationHotness"] intValue] == 0){
         [cell.heatImageView setImage:[UIImage imageNamed:@"blueHotness"]];
         [cell.markerImageView setImage:[UIImage imageNamed:@"blueMarker"]];
@@ -233,10 +248,12 @@
     
     //this is new
     if (selectedSegment == 0) {
+        _segValue = 0;
         [[NewsFeed currentFeed] sortMessagesByNewness];
     }
     
     else{
+        _segValue = 1;
         [[NewsFeed currentFeed] sortMessagesByHotness];
     }
     
@@ -261,7 +278,7 @@
 
 -(void) refreshInvoked:(id)sender forState:(UIControlState)state {
     //ask for new messages
-    [[NewsFeed currentFeed] getMessages];
+    [[NewsFeed currentFeed] getMessagesWithSort:_segValue];
     
     //start the spinner
     [self.refreshControl beginRefreshing];
