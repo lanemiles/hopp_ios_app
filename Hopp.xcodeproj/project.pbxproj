@@ -56,6 +56,11 @@
 		3491F0871ABF3E9A001FBBC6 /* CustomInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3491F0861ABF3E9A001FBBC6 /* CustomInfoWindow.m */; };
 		34B3A5751ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34B3A5731ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf */; };
 		34B3A5761ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34B3A5741ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf */; };
+		34C697E81AEB03470031350E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C697E71AEB03470031350E /* FacebookSDK.framework */; };
+		34E8C67E1AE75307000F3455 /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E8C67D1AE75307000F3455 /* TermsAndConditionsViewController.m */; };
+		34E8C6811AE75BE0000F3455 /* LogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E8C6801AE75BE0000F3455 /* LogoutViewController.m */; };
+		34E8C6841AE8429D000F3455 /* DetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E8C6831AE8429D000F3455 /* DetailsTableViewCell.m */; };
+		34E8C6861AE86B72000F3455 /* BebasNeue.otf in Resources */ = {isa = PBXBuildFile; fileRef = 34E8C6851AE86B72000F3455 /* BebasNeue.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +142,14 @@
 		3491F0861ABF3E9A001FBBC6 /* CustomInfoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoWindow.m; sourceTree = "<group>"; };
 		34B3A5731ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		34B3A5741ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = SOURCE_ROOT; };
+		34C697E71AEB03470031350E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK.framework; sourceTree = "<group>"; };
+		34E8C67C1AE75307000F3455 /* TermsAndConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndConditionsViewController.h; sourceTree = "<group>"; };
+		34E8C67D1AE75307000F3455 /* TermsAndConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndConditionsViewController.m; sourceTree = "<group>"; };
+		34E8C67F1AE75BE0000F3455 /* LogoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutViewController.h; sourceTree = "<group>"; };
+		34E8C6801AE75BE0000F3455 /* LogoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoutViewController.m; sourceTree = "<group>"; };
+		34E8C6821AE8429D000F3455 /* DetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsTableViewCell.h; sourceTree = "<group>"; };
+		34E8C6831AE8429D000F3455 /* DetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsTableViewCell.m; sourceTree = "<group>"; };
+		34E8C6851AE86B72000F3455 /* BebasNeue.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = BebasNeue.otf; path = ../../../../Downloads/bebas_neue/BebasNeue.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +254,7 @@
 				1D0E137A1A932DDF0006D292 /* Circular Button Classes */,
 				1DBCBD761A9C49E500C7886A /* Vacaciones-font-ffp-defharo.otf */,
 				1DBCBD771A9C49E500C7886A /* Vacaciones-font-ffp-defharo.ttf */,
+				34E8C6851AE86B72000F3455 /* BebasNeue.otf */,
 				34B3A5731ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf */,
 				34B3A5741ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf */,
 				1DFC2C0E1A8C080800ADEA1B /* AppDelegate.h */,
@@ -252,6 +266,8 @@
 				1DC511D91A91D03B00947C20 /* UserDetails.h */,
 				1DC511DA1A91D03B00947C20 /* UserDetails.m */,
 				1DFC2C141A8C080900ADEA1B /* Main.storyboard */,
+				34E8C67C1AE75307000F3455 /* TermsAndConditionsViewController.h */,
+				34E8C67D1AE75307000F3455 /* TermsAndConditionsViewController.m */,
 				342D1D741ABFB2DC00FDA67C /* PartyListViewTableViewController.h */,
 				342D1D721ABFB2D600FDA67C /* PartyListViewTableViewController.m */,
 				342D1D751ABFB37300FDA67C /* PartyListTableViewCell.h */,
@@ -264,8 +280,12 @@
 				1D0E137C1A9344BF0006D292 /* LiveFeedTableViewController.m */,
 				1D7600BE1A99927400E30766 /* MessageTableViewCell.h */,
 				1D7600BF1A99927400E30766 /* MessageTableViewCell.m */,
+				34E8C6821AE8429D000F3455 /* DetailsTableViewCell.h */,
+				34E8C6831AE8429D000F3455 /* DetailsTableViewCell.m */,
 				1DC511DC1A91DFCF00947C20 /* LoginViewController.h */,
 				1DC511DD1A91DFCF00947C20 /* LoginViewController.m */,
+				34E8C67F1AE75BE0000F3455 /* LogoutViewController.h */,
+				34E8C6801AE75BE0000F3455 /* LogoutViewController.m */,
 				1DE452E81A907D87009EF986 /* MapViewController.h */,
 				1DE452E91A907D87009EF986 /* MapViewController.m */,
 				3491F0851ABF3E9A001FBBC6 /* CustomInfoWindow.h */,
@@ -392,6 +412,7 @@
 			files = (
 				1DBCBD781A9C4A3600C7886A /* Vacaciones-font-ffp-defharo.otf in Resources */,
 				1DBCBD791A9C4A3700C7886A /* Vacaciones-font-ffp-defharo.ttf in Resources */,
+				34E8C6861AE86B72000F3455 /* BebasNeue.otf in Resources */,
 				1DFC2C161A8C080900ADEA1B /* Main.storyboard in Resources */,
 				34B3A5761ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf in Resources */,
 				1DFC2C1B1A8C080900ADEA1B /* LaunchScreen.xib in Resources */,
@@ -415,12 +436,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34E8C67E1AE75307000F3455 /* TermsAndConditionsViewController.m in Sources */,
 				1D014A541A93EEB80052E4FC /* NewsFeed.m in Sources */,
 				1DFC2C101A8C080800ADEA1B /* AppDelegate.m in Sources */,
 				342D1D771ABFB37300FDA67C /* PartyListTableViewCell.m in Sources */,
+				34E8C6811AE75BE0000F3455 /* LogoutViewController.m in Sources */,
 				1D7600B71A995D3F00E30766 /* PartyDetailsTableViewController.m in Sources */,
 				3491F0871ABF3E9A001FBBC6 /* CustomInfoWindow.m in Sources */,
 				1D0E13761A932DD10006D292 /* OBShapedButton.m in Sources */,
+				34E8C6841AE8429D000F3455 /* DetailsTableViewCell.m in Sources */,
 				1DC511DB1A91D03B00947C20 /* UserDetails.m in Sources */,
 				342D1D731ABFB2D600FDA67C /* PartyListViewTableViewController.m in Sources */,
 				1D0E137D1A9344BF0006D292 /* LiveFeedTableViewController.m in Sources */,
@@ -566,6 +590,8 @@
 					"$(PROJECT_DIR)",
 					/Users/lanemiles/Documents/FacebookSDK,
 					/Users/matthew/Documents,
+					/Users/matthew/Documents/FacebookSDK,
+					/Users/matthew/.Trash,
 				);
 				INFOPLIST_FILE = Hopp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -588,6 +614,8 @@
 					"$(PROJECT_DIR)",
 					/Users/lanemiles/Documents/FacebookSDK,
 					/Users/matthew/Documents,
+					/Users/matthew/Documents/FacebookSDK,
+					/Users/matthew/.Trash,
 				);
 				INFOPLIST_FILE = Hopp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;

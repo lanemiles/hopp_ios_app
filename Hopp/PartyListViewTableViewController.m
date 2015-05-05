@@ -82,8 +82,6 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSLog(@"%@", _partyList);
 
     PartyListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PartyListTableViewCell" forIndexPath:indexPath];
     
@@ -184,7 +182,7 @@
                                                           options:kNilOptions
                                                             error:&error] objectForKey:@"Data"];
     if (error) {
-        NSLog(@"%@", error);
+        // NSLog(@"%@", error);
     } else {
         
         //if we don't have an error in reading the JSON, let's set our instance variables
@@ -208,7 +206,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     // The request has failed for some reason!
     // Check the error var
-    NSLog(@"%@", error);
+    // NSLog(@"%@", error);
 }
 
 
@@ -230,13 +228,28 @@
 
         new.seguePartyName = senderCell.locationLabel.text;
         
+        // pass details of the party
+        for (NSDictionary *dict in _partyList) {
+            if ([[dict valueForKey:@"Name"] isEqual:senderCell.locationLabel.text]){
+                new.seguePartyDetails = dict;
+            }
+        }
+        
     } else {
       
         PartyDetailsTableViewController *new = (PartyDetailsTableViewController *)segue.destinationViewController;
         
         PartyListTableViewCell *senderCell = (PartyListTableViewCell *)sender;
   
-        new.seguePartyName = senderCell.locationLabel.text;   }
+        new.seguePartyName = senderCell.locationLabel.text;
+        
+        // pass details of the party
+        for (NSDictionary *dict in _partyList) {
+            if ([[dict valueForKey:@"Name"] isEqual:senderCell.locationLabel.text]){
+                new.seguePartyDetails = dict;
+            }
+        }
+    }
     
 }
 

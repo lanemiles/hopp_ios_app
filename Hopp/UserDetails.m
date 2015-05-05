@@ -73,7 +73,7 @@ static UserDetails *currentUser = nil;
     NSError *error = nil;
     [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
     if (error != nil) {
-        NSLog(@"ERROR");
+        // NSLog(@"ERROR");
     }
     
 }
@@ -141,7 +141,7 @@ static UserDetails *currentUser = nil;
                                                                   options:kNilOptions
                                                                     error:&error] objectForKey:@"Data"];
             if (error) {
-                NSLog(@"%@", error);
+                // NSLog(@"%@", error);
             } else {
                 
                 //if we don't have an error in reading the JSON, let's set our instance variables
@@ -167,7 +167,7 @@ static UserDetails *currentUser = nil;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     // The request has failed for some reason!
     // Check the error var
-    NSLog(@"%@", error);
+    // NSLog(@"%@", error);
 }
 
 @end

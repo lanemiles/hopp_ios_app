@@ -12,12 +12,17 @@
 
 @interface NewsFeed () <NSURLConnectionDelegate>
 
+
 //this is what we use to store the results of our asynch url request
 @property (strong, nonatomic) NSMutableData *responseData;
+
+
 
 @end
 
 @implementation NewsFeed
+
+// BOOL hotness = TRUE;
 
 #pragma mark - Static Getter
 static NewsFeed *currentFeed = nil;
@@ -34,8 +39,7 @@ static NewsFeed *currentFeed = nil;
 - (void) sortMessagesByHotness {
     NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"voteCount"  ascending:NO];
     _messages = [_messages sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
-    
-    
+    _sortByHotness = YES;
     [self notifyThatMessagesHaveLoaded];
     
 }
@@ -43,15 +47,20 @@ static NewsFeed *currentFeed = nil;
 - (void) sortMessagesByNewness {
     NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"messageID"  ascending:NO];
     _messages = [_messages sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
-    
-    
+    _sortByHotness = NO;
     [self notifyThatMessagesHaveLoaded];
     
 }
 
 #pragma mark - Network Methods
 //get user details from server
-- (void) getMessages {
+- (void) getMessagesWithSort: (int) sort {
+    
+    if (sort == 1) {
+        _sortByHotness = YES;
+    } else {
+        _sortByHotness = NO;
+    }
     
     // Create the request.
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.lanemiles.com/Hopp/getMessages.php"]];
@@ -75,7 +84,7 @@ static NewsFeed *currentFeed = nil;
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"http://www.lanemiles.com/Hopp/downvoteMessage.php?userID=%@&messageID=%@", [[UserDetails currentUser] userID], messageID]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     
-    NSLog(@"%@", request.URL.absoluteString);
+    // NSLog(@"%@", request.URL.absoluteString);
     
     // Create url connection and fire request
     [NSURLConnection connectionWithRequest:request delegate:self];
@@ -86,7 +95,7 @@ static NewsFeed *currentFeed = nil;
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"http://www.lanemiles.com/Hopp/upvoteMessage.php?userID=%@&messageID=%@", [[UserDetails currentUser] userID], messageID]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     
-    NSLog(@"%@", request.URL.absoluteString);
+    // NSLog(@"%@", request.URL.absoluteString);
     
     // Create url connection and fire request
     [NSURLConnection connectionWithRequest:request delegate:self];
@@ -156,7 +165,7 @@ static NewsFeed *currentFeed = nil;
                                                               options:kNilOptions
                                                                 error:&error] objectForKey:@"Data"];
         if (error) {
-            NSLog(@"%@", error);
+           //  NSLog(@"%@", error);
         } else {
             
             //if we don't have an error in reading the JSON, let's set our instance variables
@@ -164,7 +173,12 @@ static NewsFeed *currentFeed = nil;
             
             //default sort by hotness
             //TODO: should this be here?
-            [self sortMessagesByHotness];
+            if (_sortByHotness){
+                [self sortMessagesByHotness];
+           } else {
+                [self sortMessagesByNewness];
+            }
+            
             
             //and notify that messages have loaded
             [self notifyThatMessagesHaveLoaded];
@@ -180,7 +194,12 @@ static NewsFeed *currentFeed = nil;
         [self notifyThatMessageDidSend];
         
         //update the messages with the new data
-        [self getMessages];
+        if (_sortByHotness){
+            [self getMessagesWithSort:0];
+        } else {
+            [self getMessagesWithSort:1];
+        }
+        
         
         //and because we want to reupdate our vote history, we need to get user details again
         [[UserDetails currentUser] getUserDetails];
@@ -196,7 +215,7 @@ static NewsFeed *currentFeed = nil;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     // The request has failed for some reason!
     // Check the error var
-    NSLog(@"%@", error);
+    // NSLog(@"%@", error);
 }
 
 

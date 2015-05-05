@@ -112,7 +112,7 @@ static PartyDetails *currentParty = nil;
                                                          options:kNilOptions
                                                            error:&error] objectForKey:@"Data"];
         if (error) {
-            NSLog(@"%@", error);
+           // NSLog(@"%@", error);
         } else {
             
             //if we don't have an error in reading the JSON, let's set our instance variables
@@ -153,7 +153,7 @@ static PartyDetails *currentParty = nil;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     // The request has failed for some reason!
     // Check the error var
-    NSLog(@"%@", error);
+    // NSLog(@"%@", error);
 }
 
 

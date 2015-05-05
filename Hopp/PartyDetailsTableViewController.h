@@ -12,5 +12,6 @@
 
 //this is set by the segue
 @property (strong,nonatomic) NSString *seguePartyName;
+@property (strong,nonatomic) NSDictionary *seguePartyDetails;
 
 @end
