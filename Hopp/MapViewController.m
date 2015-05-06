@@ -116,8 +116,8 @@
     [super viewWillAppear:YES];
     
     //center the 5Cs
-    CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(34.094764, -117.716715);
-    CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(34.106765, -117.703073);
+    CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(32.76541,  -117.251013);
+    CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(32.789791, -117.254410);
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:sw coordinate:ne];
     GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:15.0f];
     [_mapView animateWithCameraUpdate:update];
@@ -278,8 +278,8 @@
 
 
 - (IBAction)wasTapped:(OBShapedButton *)sender {
-    CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(34.094764, -117.716715);
-    CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(34.106765, -117.703073);
+    CLLocationCoordinate2D sw = CLLocationCoordinate2DMake(32.76541,  -117.251013);
+    CLLocationCoordinate2D ne = CLLocationCoordinate2DMake(32.789791, -117.254410);
     GMSCoordinateBounds *bounds =
     [[GMSCoordinateBounds alloc] initWithCoordinate:sw coordinate:ne];
     
@@ -443,6 +443,10 @@
                 //iterate through locations
                 for (NSDictionary *dict in json) {
                     
+                    if ([[dict valueForKey:@"Hopp Level"] intValue] == -1) {
+                        
+                    } else {
+                    
                     //get properties from JSON
                     NSString *name = [dict valueForKey:@"Name"];
                     NSString *numPeople = [dict valueForKey:@"NumPeople"];
@@ -484,6 +488,8 @@
                         outline.fillColor = [UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:.3];
                         outline.strokeColor = [UIColor colorWithRed:9.0/255.0 green:115.0/255.0 blue:186.0/255.0 alpha:1];
                     }
+                    
+                    
                     else if ([[dict valueForKey:@"Hopp Level"] intValue] == 1) {
                         marker.icon = [GMSMarker markerImageWithColor:[UIColor colorWithRed:252.0/255.0 green:176.0/255.0 blue:60.0/255.0 alpha:1.0]];
                         marker.zIndex=10;
@@ -512,8 +518,8 @@
                     [self performSelector:@selector(stopRefreshControl) withObject:nil afterDelay:.75];
                     
                     
-                    
-                    
+                    }
+                
                 }
                 
             });

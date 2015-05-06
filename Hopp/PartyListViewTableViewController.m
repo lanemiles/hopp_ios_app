@@ -100,6 +100,10 @@
     } else if ([[_partyList[indexPath.row] objectForKey: @"Hopp Level"] intValue] == 0) {
         [cell.hotnessImageView setImage:[UIImage imageNamed:@"blueHotnessCircle"]];
     }
+    else if ([[_partyList[indexPath.row] objectForKey: @"Hopp Level"] intValue] == -1) {
+        [cell.hotnessImageView setImage:[UIImage imageNamed:@"blueHotnessCircle"]];
+    }
+    
     else if ([[_partyList[indexPath.row] objectForKey: @"Hopp Level"] intValue] == 1) {
         [cell.hotnessImageView setImage:[UIImage imageNamed:@"yellowHotnessCircle"]];
     } else if ([[_partyList[indexPath.row] objectForKey: @"Hopp Level"] intValue] == 2) {

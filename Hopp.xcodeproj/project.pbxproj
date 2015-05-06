@@ -15,6 +15,7 @@
 		1D7600B71A995D3F00E30766 /* PartyDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600B61A995D3F00E30766 /* PartyDetailsTableViewController.m */; };
 		1D7600BA1A995EAA00E30766 /* PartyDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600B91A995EAA00E30766 /* PartyDetails.m */; };
 		1D7600C01A99927400E30766 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7600BF1A99927400E30766 /* MessageTableViewCell.m */; };
+		1D7DEADB1AF9CE1700C0E4AF /* BebasNeue.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1D7DEADA1AF9CDC000C0E4AF /* BebasNeue.otf */; };
 		1D9EA9501AF86C0B0095EF0E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9EA94F1AF86C0B0095EF0E /* FacebookSDK.framework */; };
 		1DA6A73F1A97159E00BD4420 /* AddMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA6A73E1A97159E00BD4420 /* AddMessageTableViewController.m */; };
 		1DBCBD781A9C4A3600C7886A /* Vacaciones-font-ffp-defharo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1DBCBD761A9C49E500C7886A /* Vacaciones-font-ffp-defharo.otf */; };
@@ -56,11 +57,9 @@
 		3491F0871ABF3E9A001FBBC6 /* CustomInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3491F0861ABF3E9A001FBBC6 /* CustomInfoWindow.m */; };
 		34B3A5751ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34B3A5731ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf */; };
 		34B3A5761ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34B3A5741ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf */; };
-		34C697E81AEB03470031350E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C697E71AEB03470031350E /* FacebookSDK.framework */; };
 		34E8C67E1AE75307000F3455 /* TermsAndConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E8C67D1AE75307000F3455 /* TermsAndConditionsViewController.m */; };
 		34E8C6811AE75BE0000F3455 /* LogoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E8C6801AE75BE0000F3455 /* LogoutViewController.m */; };
 		34E8C6841AE8429D000F3455 /* DetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E8C6831AE8429D000F3455 /* DetailsTableViewCell.m */; };
-		34E8C6861AE86B72000F3455 /* BebasNeue.otf in Resources */ = {isa = PBXBuildFile; fileRef = 34E8C6851AE86B72000F3455 /* BebasNeue.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +88,7 @@
 		1D7600B91A995EAA00E30766 /* PartyDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyDetails.m; sourceTree = "<group>"; };
 		1D7600BE1A99927400E30766 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
 		1D7600BF1A99927400E30766 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		1D7DEADA1AF9CDC000C0E4AF /* BebasNeue.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BebasNeue.otf; sourceTree = "<group>"; };
 		1D9EA94F1AF86C0B0095EF0E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		1DA6A73D1A97159E00BD4420 /* AddMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMessageTableViewController.h; sourceTree = "<group>"; };
 		1DA6A73E1A97159E00BD4420 /* AddMessageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMessageTableViewController.m; sourceTree = "<group>"; };
@@ -142,14 +142,12 @@
 		3491F0861ABF3E9A001FBBC6 /* CustomInfoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoWindow.m; sourceTree = "<group>"; };
 		34B3A5731ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		34B3A5741ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = SOURCE_ROOT; };
-		34C697E71AEB03470031350E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK.framework; sourceTree = "<group>"; };
 		34E8C67C1AE75307000F3455 /* TermsAndConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndConditionsViewController.h; sourceTree = "<group>"; };
 		34E8C67D1AE75307000F3455 /* TermsAndConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndConditionsViewController.m; sourceTree = "<group>"; };
 		34E8C67F1AE75BE0000F3455 /* LogoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutViewController.h; sourceTree = "<group>"; };
 		34E8C6801AE75BE0000F3455 /* LogoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoutViewController.m; sourceTree = "<group>"; };
 		34E8C6821AE8429D000F3455 /* DetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsTableViewCell.h; sourceTree = "<group>"; };
 		34E8C6831AE8429D000F3455 /* DetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsTableViewCell.m; sourceTree = "<group>"; };
-		34E8C6851AE86B72000F3455 /* BebasNeue.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = BebasNeue.otf; path = ../../../../Downloads/bebas_neue/BebasNeue.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,8 +251,8 @@
 			children = (
 				1D0E137A1A932DDF0006D292 /* Circular Button Classes */,
 				1DBCBD761A9C49E500C7886A /* Vacaciones-font-ffp-defharo.otf */,
+				1D7DEADA1AF9CDC000C0E4AF /* BebasNeue.otf */,
 				1DBCBD771A9C49E500C7886A /* Vacaciones-font-ffp-defharo.ttf */,
-				34E8C6851AE86B72000F3455 /* BebasNeue.otf */,
 				34B3A5731ABF4EE500FBE7FC /* SourceSansPro-Bold.ttf */,
 				34B3A5741ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf */,
 				1DFC2C0E1A8C080800ADEA1B /* AppDelegate.h */,
@@ -372,7 +370,7 @@
 				TargetAttributes = {
 					1DFC2C061A8C080800ADEA1B = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 2DW23XF3GV;
+						DevelopmentTeam = BSE5P48532;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -410,9 +408,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D7DEADB1AF9CE1700C0E4AF /* BebasNeue.otf in Resources */,
 				1DBCBD781A9C4A3600C7886A /* Vacaciones-font-ffp-defharo.otf in Resources */,
 				1DBCBD791A9C4A3700C7886A /* Vacaciones-font-ffp-defharo.ttf in Resources */,
-				34E8C6861AE86B72000F3455 /* BebasNeue.otf in Resources */,
 				1DFC2C161A8C080900ADEA1B /* Main.storyboard in Resources */,
 				34B3A5761ABF4EE500FBE7FC /* SourceSansPro-Regular.ttf in Resources */,
 				1DFC2C1B1A8C080900ADEA1B /* LaunchScreen.xib in Resources */,

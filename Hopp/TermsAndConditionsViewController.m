@@ -13,6 +13,14 @@
 @end
 
 @implementation TermsAndConditionsViewController
+- (IBAction)didAccept:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"disclaimerAccepted"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)didReject:(id)sender {
+    [self performSegueWithIdentifier:@"tac_rejected_segue" sender:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,16 +46,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    if ([[segue identifier] isEqualToString:@"tac_approved_segue"]){
-        
-       //  NSLog(@"approved");
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"disclaimerAccepted"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    } else if ([[segue identifier] isEqualToString:@"tac_rejected_segue"]){
-             //    NSLog(@"rejected");
-        }
+
                 
 }
 
